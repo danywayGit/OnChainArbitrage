@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+coverage.json
+.nyc_output
+
+# Hardhat
+cache/
+artifacts/
+typechain-types/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Hardhat specific
+deployments/
+
+# Gas reports
+gas-report.txt
+
+# Contract flattened files
+flattened/
+
+# Private keys (NEVER COMMIT THESE)
+*.key
+*.pem
+private-keys.txt
+generate-testnet-wallet.js
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+tmp/
+temp/
