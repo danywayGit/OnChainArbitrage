@@ -1,6 +1,18 @@
-# 🤖 On-Chain Arbitrage Bot with Flash Loans
+# 🤖 On-Chain Arbitrage Bot - Multi-Chain
 
-**Flash loan arbitrage bot for Polygon network using Aave V3.**
+**Flash loan arbitrage bot monitoring 164 trading pairs across Polygon, BSC, and Base networks.**
+
+---
+
+## 📖 Documentation Navigation
+
+| Document | Description |
+|----------|-------------|
+| **[QUICK-START.md](QUICK-START.md)** | 🚀 Installation, setup, and running the bot |
+| **[FINAL-PAIR-DETECTION.md](FINAL-PAIR-DETECTION.md)** | 📊 164 curated trading pairs (no BTC/ETH/BNB/top 15) |
+| **[DATA-COLLECTION-GUIDE.md](DATA-COLLECTION-GUIDE.md)** | 📈 How to monitor and analyze performance |
+| **[PROJECT-COMPLETE.md](PROJECT-COMPLETE.md)** | ✅ Project status, features, and roadmap |
+| **[archive/](archive/)** | 📦 Historical documentation archive |
 
 ---
 
@@ -8,47 +20,56 @@
 
 | Component | Status |
 |-----------|--------|
-| **Smart Contract** | ✅ Deployed to Polygon: `0x671A158DA6248e965698726ebb5e3512AF171Af3` |
+| **Multi-Chain** | ✅ Polygon, BSC, Base configured |
+| **Trading Pairs** | ✅ 164 curated pairs (no top coins) |
+| **DEXes** | ✅ 15 total (6 Polygon + 5 BSC + 4 Base) |
 | **Bot Code** | ✅ TypeScript, fully functional |
-| **Token Config** | ✅ 83 tokens across 20 tiers |
 | **Build System** | ✅ Zero compilation errors |
-| **Testing** | 🔄 Ready for 24-hour data collection |
+| **Status** | 🎯 Ready for production monitoring |
 
-**👉 [See Full Status](PROJECT_STATUS.md)**
+**👉 [See Full Status & Roadmap](PROJECT-COMPLETE.md)**
 
 ---
 
 ## ⚡ Quick Start
 
 ```powershell
-# 1. Validate configuration
-node scripts/validate-tokens.js
+# 1. Install dependencies
+npm install
 
-# 2. Start bot (dry run mode)
-npm run bot
+# 2. Configure environment
+cp .env.example .env
+# Edit .env with your RPC URLs and private key
 
-# 3. Monitor real-time (optional - separate terminal)
-node scripts/monitor-live.js
+# 3. Start monitoring on Polygon (recommended)
+$env:NETWORK="polygon"; npm run bot
 
-# 4. After 24 hours, analyze
-node scripts/analyze-data.js
+# 4. After 2-4 hours, stop (Ctrl+C) and review results
+# Check: opportunities_YYYY-MM-DD.json for detected opportunities
 ```
 
-**👉 [Complete Quick Start Guide](QUICK_START.md)**
+**👉 [Complete Setup Guide](QUICK-START.md) | [Trading Pairs Guide](FINAL-PAIR-DETECTION.md)**
 
 ---
 
 ## 🎯 What This Bot Does
 
-1. **Monitors Prices** across multiple DEXes (QuickSwap, Uniswap V3, SushiSwap)
-2. **Detects Arbitrage** opportunities when price differences exist
-3. **Executes Trades** using Aave V3 flash loans (zero upfront capital)
-4. **Keeps Profit** after repaying loan + fees
+1. **Monitors 164 Trading Pairs** across multiple DEXes on Polygon, BSC, and Base
+2. **Detects Arbitrage Opportunities** when price differences exist between DEXes
+3. **Filters Top Coins** - Excludes BTC, ETH, BNB, and other MEV-dominated tokens
+4. **Logs Opportunities** to JSON/CSV files for analysis
 
-### How It Works
+### Key Features
 
-```
-1. Bot finds: WETH cheaper on QuickSwap vs SushiSwap
+- **Multi-Chain**: Supports Polygon (cheapest gas), BSC, and Base
+- **Smart Filtering**: Excludes top 15 tokens and stablecoin pairs
+- **164 Curated Pairs**: Gaming, DeFi, AI, and ecosystem tokens
+- **Real-time Monitoring**: HTTP polling (~1 scan per second)
+- **Data Logging**: JSON and CSV output for analysis
+
+**👉 [See All 164 Trading Pairs](FINAL-PAIR-DETECTION.md)**
+
+---
 2. Borrow USDC via flash loan (e.g., $10,000)
 3. Buy WETH on QuickSwap (cheaper)
 4. Sell WETH on SushiSwap (higher price)

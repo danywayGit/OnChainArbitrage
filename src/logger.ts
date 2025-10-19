@@ -48,11 +48,11 @@ class Logger {
       case LogLevel.INFO:
         return chalk.blue("[INFO] ");
       case LogLevel.SUCCESS:
-        return chalk.green("[✓]    ");
+        return chalk.green("[OK]   ");
       case LogLevel.WARNING:
-        return chalk.yellow("[⚠]    ");
+        return chalk.yellow("[WARN] ");
       case LogLevel.ERROR:
-        return chalk.red("[✗]    ");
+        return chalk.red("[ERROR]");
       default:
         return `[${level}]`;
     }
@@ -129,7 +129,7 @@ class Logger {
   banner(): void {
     console.log(chalk.cyan("\n" + "=".repeat(80)));
     console.log(
-      chalk.cyan.bold("    🤖 ARBITRAGE BOT STARTED - Flash Loan Edition")
+      chalk.cyan.bold("    [BOT] ARBITRAGE BOT STARTED - Flash Loan Edition")
     );
     console.log(chalk.cyan("=".repeat(80) + "\n"));
   }
@@ -142,7 +142,7 @@ class Logger {
     const percentStr = chalk.green(`${profitPercent.toFixed(2)}%`);
     console.log(
       chalk.bold(
-        `\n💰 OPPORTUNITY FOUND: ${pair} - Profit: ${profitStr} (${percentStr})`
+        `\n[OPPORTUNITY] ${pair} - Profit: ${profitStr} (${percentStr})`
       )
     );
   }
@@ -152,13 +152,13 @@ class Logger {
    */
   trade(type: "START" | "SUCCESS" | "FAILED", txHash?: string): void {
     if (type === "START") {
-      console.log(chalk.yellow("⚡ Executing arbitrage trade..."));
+      console.log(chalk.yellow("[EXECUTING] Arbitrage trade..."));
     } else if (type === "SUCCESS") {
       console.log(
-        chalk.green(`✅ Trade executed successfully! TX: ${txHash}`)
+        chalk.green(`[SUCCESS] Trade executed successfully! TX: ${txHash}`)
       );
     } else {
-      console.log(chalk.red(`❌ Trade failed! TX: ${txHash}`));
+      console.log(chalk.red(`[FAILED] Trade failed! TX: ${txHash}`));
     }
   }
 
@@ -171,7 +171,7 @@ class Logger {
     const diffPercent = (diff / dex1Price) * 100;
     console.log(
       chalk.gray(
-        `💱 ${pair}: DEX1=${dex1Price.toFixed(4)} | DEX2=${dex2Price.toFixed(
+        `[PRICE] ${pair}: DEX1=${dex1Price.toFixed(4)} | DEX2=${dex2Price.toFixed(
           4
         )} | Diff=${diffPercent.toFixed(3)}%`
       )

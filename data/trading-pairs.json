@@ -1,0 +1,1750 @@
+{
+  "lastUpdated": "2025-10-19T07:56:49.269Z",
+  "updateFrequency": "daily",
+  "source": "curated_manual_selection",
+  "criteria": {
+    "excludeTop15": true,
+    "excludeStablecoinPairs": true,
+    "curatedSelection": true,
+    "focus": "Mid-cap tokens with known arbitrage opportunities"
+  },
+  "pairs": [
+    {
+      "name": "CRV/SUSHI",
+      "token0": "CRV",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "bsc"
+      ]
+    },
+    {
+      "name": "CRV/BAL",
+      "token0": "CRV",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "polygon",
+        "bsc"
+      ]
+    },
+    {
+      "name": "CRV/YFI",
+      "token0": "CRV",
+      "token1": "YFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "polygon"
+      ]
+    },
+    {
+      "name": "SAND/MANA",
+      "token0": "SAND",
+      "token1": "MANA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SAND/GHST",
+      "token0": "SAND",
+      "token1": "GHST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SAND/AXS",
+      "token0": "SAND",
+      "token1": "AXS",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "MANA/GHST",
+      "token0": "MANA",
+      "token1": "GHST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "MANA/AXS",
+      "token0": "MANA",
+      "token1": "AXS",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "MANA/GALA",
+      "token0": "MANA",
+      "token1": "GALA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GHST/AXS",
+      "token0": "GHST",
+      "token1": "AXS",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GHST/GALA",
+      "token0": "GHST",
+      "token1": "GALA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GHST/IMX",
+      "token0": "GHST",
+      "token1": "IMX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "AXS/GALA",
+      "token0": "AXS",
+      "token1": "GALA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "bsc"
+      ]
+    },
+    {
+      "name": "AXS/IMX",
+      "token0": "AXS",
+      "token1": "IMX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CRV/COMP",
+      "token0": "CRV",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SUSHI/BAL",
+      "token0": "SUSHI",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "bsc"
+      ]
+    },
+    {
+      "name": "SUSHI/COMP",
+      "token0": "SUSHI",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SUSHI/YFI",
+      "token0": "SUSHI",
+      "token1": "YFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAL/COMP",
+      "token0": "BAL",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAL/YFI",
+      "token0": "BAL",
+      "token1": "YFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAL/QI",
+      "token0": "BAL",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "COMP/YFI",
+      "token0": "COMP",
+      "token1": "YFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "COMP/QI",
+      "token0": "COMP",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "YFI/QI",
+      "token0": "YFI",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QI/DQUICK",
+      "token0": "QI",
+      "token1": "DQUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QI/QUICK",
+      "token0": "QI",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/QUICK",
+      "token0": "POL",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/DYST",
+      "token0": "POL",
+      "token1": "DYST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/QI",
+      "token0": "POL",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/DYST",
+      "token0": "QUICK",
+      "token1": "DYST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/DQUICK",
+      "token0": "QUICK",
+      "token1": "DQUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CRV/SNX",
+      "token0": "CRV",
+      "token1": "SNX",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "CRV/CVX",
+      "token0": "CRV",
+      "token1": "CVX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SUSHI/CVX",
+      "token0": "SUSHI",
+      "token1": "CVX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAL/SNX",
+      "token0": "BAL",
+      "token1": "SNX",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "COMP/SNX",
+      "token0": "COMP",
+      "token1": "SNX",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "YFI/CVX",
+      "token0": "YFI",
+      "token1": "CVX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QI/BIFI",
+      "token0": "QI",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/BIFI",
+      "token0": "QUICK",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "DQUICK/BIFI",
+      "token0": "DQUICK",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SAND/REVV",
+      "token0": "SAND",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "MANA/REVV",
+      "token0": "MANA",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GHST/REVV",
+      "token0": "GHST",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "AXS/REVV",
+      "token0": "AXS",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GALA/REVV",
+      "token0": "GALA",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "IMX/REVV",
+      "token0": "IMX",
+      "token1": "REVV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/INJ",
+      "token0": "RNDR",
+      "token1": "INJ",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/FET",
+      "token0": "RNDR",
+      "token1": "FET",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/GRT",
+      "token0": "RNDR",
+      "token1": "GRT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/FET",
+      "token0": "INJ",
+      "token1": "FET",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/GRT",
+      "token0": "INJ",
+      "token1": "GRT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/OCEAN",
+      "token0": "INJ",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/GRT",
+      "token0": "FET",
+      "token1": "GRT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/OCEAN",
+      "token0": "FET",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/AGIX",
+      "token0": "FET",
+      "token1": "AGIX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GRT/OCEAN",
+      "token0": "GRT",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GRT/AGIX",
+      "token0": "GRT",
+      "token1": "AGIX",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/RARI",
+      "token0": "ENJ",
+      "token1": "RARI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/ALICE",
+      "token0": "ENJ",
+      "token1": "ALICE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/SAND",
+      "token0": "ENJ",
+      "token1": "SAND",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RARI/ALICE",
+      "token0": "RARI",
+      "token1": "ALICE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "API3/BAND",
+      "token0": "API3",
+      "token1": "BAND",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAND/GRT",
+      "token0": "BAND",
+      "token1": "GRT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/BIFI",
+      "token0": "CVX",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/CRV",
+      "token0": "CVX",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/BAL",
+      "token0": "CVX",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BIFI/CRV",
+      "token0": "BIFI",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BIFI/QI",
+      "token0": "BIFI",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/LRC",
+      "token0": "ZRX",
+      "token1": "LRC",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/SUSHI",
+      "token0": "ZRX",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/QUICK",
+      "token0": "ZRX",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "LRC/SUSHI",
+      "token0": "LRC",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "LRC/QUICK",
+      "token0": "LRC",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ELON/SHIB",
+      "token0": "ELON",
+      "token1": "SHIB",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "ELON/TEL",
+      "token0": "ELON",
+      "token1": "TEL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SHIB/TEL",
+      "token0": "SHIB",
+      "token1": "TEL",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "SHIB/CELR",
+      "token0": "SHIB",
+      "token1": "CELR",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "ALCX/ALPHA",
+      "token0": "ALCX",
+      "token1": "ALPHA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALCX/PERP",
+      "token0": "ALCX",
+      "token1": "PERP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALCX/CRV",
+      "token0": "ALCX",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon",
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALPHA/PERP",
+      "token0": "ALPHA",
+      "token1": "PERP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALPHA/TRIBE",
+      "token0": "ALPHA",
+      "token1": "TRIBE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "PERP/TRIBE",
+      "token0": "PERP",
+      "token1": "TRIBE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CELR/WOO",
+      "token0": "CELR",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CELR/OM",
+      "token0": "CELR",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "WOO/OM",
+      "token0": "WOO",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "WOO/SKL",
+      "token0": "WOO",
+      "token1": "SKL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "OM/SKL",
+      "token0": "OM",
+      "token1": "SKL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "OM/ANKR",
+      "token0": "OM",
+      "token1": "ANKR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "SKL/ANKR",
+      "token0": "SKL",
+      "token1": "ANKR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RPL/ANKR",
+      "token0": "RPL",
+      "token1": "ANKR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RPL/CELR",
+      "token0": "RPL",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALCX/BAL",
+      "token0": "ALCX",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALCX/SUSHI",
+      "token0": "ALCX",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "PERP/CRV",
+      "token0": "PERP",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "PERP/BAL",
+      "token0": "PERP",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "PERP/SUSHI",
+      "token0": "PERP",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "TRIBE/CRV",
+      "token0": "TRIBE",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "TRIBE/BAL",
+      "token0": "TRIBE",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "TRIBE/COMP",
+      "token0": "TRIBE",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "API3/GRT",
+      "token0": "API3",
+      "token1": "GRT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "API3/OCEAN",
+      "token0": "API3",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "API3/FET",
+      "token0": "API3",
+      "token1": "FET",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAND/OCEAN",
+      "token0": "BAND",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAND/FET",
+      "token0": "BAND",
+      "token1": "FET",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BAND/RNDR",
+      "token0": "BAND",
+      "token1": "RNDR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/QI",
+      "token0": "CVX",
+      "token1": "QI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/QUICK",
+      "token0": "CVX",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BIFI/QUICK",
+      "token0": "BIFI",
+      "token1": "QUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "BIFI/DQUICK",
+      "token0": "BIFI",
+      "token1": "DQUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CVX/DQUICK",
+      "token0": "CVX",
+      "token1": "DQUICK",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/GHST",
+      "token0": "ENJ",
+      "token1": "GHST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/MANA",
+      "token0": "ENJ",
+      "token1": "MANA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ENJ/GALA",
+      "token0": "ENJ",
+      "token1": "GALA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RARI/GHST",
+      "token0": "RARI",
+      "token1": "GHST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RARI/MANA",
+      "token0": "RARI",
+      "token1": "MANA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ALICE/GHST",
+      "token0": "ALICE",
+      "token1": "GHST",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/BAL",
+      "token0": "ZRX",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/CRV",
+      "token0": "ZRX",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "ZRX/COMP",
+      "token0": "ZRX",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "LRC/BAL",
+      "token0": "LRC",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "LRC/CRV",
+      "token0": "LRC",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "LRC/COMP",
+      "token0": "LRC",
+      "token1": "COMP",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/CRV",
+      "token0": "POL",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/SUSHI",
+      "token0": "POL",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "POL/BAL",
+      "token0": "POL",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/CRV",
+      "token0": "QUICK",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/SUSHI",
+      "token0": "QUICK",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "QUICK/BAL",
+      "token0": "QUICK",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "DQUICK/CRV",
+      "token0": "DQUICK",
+      "token1": "CRV",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "DQUICK/SUSHI",
+      "token0": "DQUICK",
+      "token1": "SUSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "DQUICK/BAL",
+      "token0": "DQUICK",
+      "token1": "BAL",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/OCEAN",
+      "token0": "RNDR",
+      "token1": "OCEAN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/CELR",
+      "token0": "RNDR",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "RNDR/WOO",
+      "token0": "RNDR",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/CELR",
+      "token0": "INJ",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/WOO",
+      "token0": "INJ",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "INJ/OM",
+      "token0": "INJ",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/CELR",
+      "token0": "FET",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/WOO",
+      "token0": "FET",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "FET/OM",
+      "token0": "FET",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GRT/CELR",
+      "token0": "GRT",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GRT/WOO",
+      "token0": "GRT",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "GRT/OM",
+      "token0": "GRT",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "OCEAN/CELR",
+      "token0": "OCEAN",
+      "token1": "CELR",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "OCEAN/WOO",
+      "token0": "OCEAN",
+      "token1": "WOO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "OCEAN/OM",
+      "token0": "OCEAN",
+      "token1": "OM",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "polygon"
+      ]
+    },
+    {
+      "name": "CAKE/BANANA",
+      "token0": "CAKE",
+      "token1": "BANANA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "CAKE/BIFI",
+      "token0": "CAKE",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "CAKE/TWT",
+      "token0": "CAKE",
+      "token1": "TWT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "BANANA/BIFI",
+      "token0": "BANANA",
+      "token1": "BIFI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "BANANA/TWT",
+      "token0": "BANANA",
+      "token1": "TWT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "BIFI/TWT",
+      "token0": "BIFI",
+      "token1": "TWT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "AXS/ALICE",
+      "token0": "AXS",
+      "token1": "ALICE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "AXS/SAND",
+      "token0": "AXS",
+      "token1": "SAND",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "GALA/ALICE",
+      "token0": "GALA",
+      "token1": "ALICE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "GALA/SAND",
+      "token0": "GALA",
+      "token1": "SAND",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "ALICE/SAND",
+      "token0": "ALICE",
+      "token1": "SAND",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "SFP/TWT",
+      "token0": "SFP",
+      "token1": "TWT",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "SFP/XVS",
+      "token0": "SFP",
+      "token1": "XVS",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "SFP/ALPACA",
+      "token0": "SFP",
+      "token1": "ALPACA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "TWT/XVS",
+      "token0": "TWT",
+      "token1": "XVS",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "TWT/ALPACA",
+      "token0": "TWT",
+      "token1": "ALPACA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "XVS/ALPACA",
+      "token0": "XVS",
+      "token1": "ALPACA",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "XVS/AUTO",
+      "token0": "XVS",
+      "token1": "AUTO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "ALPACA/AUTO",
+      "token0": "ALPACA",
+      "token1": "AUTO",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "SAFEMOON/BABYDOGE",
+      "token0": "SAFEMOON",
+      "token1": "BABYDOGE",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "bsc"
+      ]
+    },
+    {
+      "name": "SAFEMOON/SHIB",
+      "token0": "SAFEMOON",
+      "token1": "SHIB",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "BABYDOGE/SHIB",
+      "token0": "BABYDOGE",
+      "token1": "SHIB",
+      "enabled": false,
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "BRETT/TOSHI",
+      "token0": "BRETT",
+      "token1": "TOSHI",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "base"
+      ]
+    },
+    {
+      "name": "BRETT/DEGEN",
+      "token0": "BRETT",
+      "token1": "DEGEN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "base"
+      ]
+    },
+    {
+      "name": "TOSHI/DEGEN",
+      "token0": "TOSHI",
+      "token1": "DEGEN",
+      "enabled": true,
+      "reason": "Curated pair - known for arbitrage opportunities",
+      "chains": [
+        "base"
+      ]
+    }
+  ],
+  "excludedPairs": [
+    {
+      "name": "CRV/SNX",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "BAL/SNX",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "COMP/SNX",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "ELON/SHIB",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "SHIB/TEL",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "SHIB/CELR",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "SAFEMOON/SHIB",
+      "reason": "Contains top 15 token (MEV dominated)"
+    },
+    {
+      "name": "BABYDOGE/SHIB",
+      "reason": "Contains top 15 token (MEV dominated)"
+    }
+  ]
+}

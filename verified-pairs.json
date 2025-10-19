@@ -1,0 +1,188 @@
+{
+  "validPairs": [
+    {
+      "pair": "WMATIC/USDC",
+      "valid": true,
+      "quickPrice": 0.186937,
+      "sushiPrice": 0.186824,
+      "spread": "0.0605%"
+    },
+    {
+      "pair": "WETH/USDC",
+      "valid": true,
+      "quickPrice": 3848.204469,
+      "sushiPrice": 3806.43676,
+      "spread": "1.0973%"
+    },
+    {
+      "pair": "WMATIC/WETH",
+      "valid": true,
+      "quickPrice": 48285400.296615,
+      "sushiPrice": 48173235.869389,
+      "spread": "0.2328%"
+    },
+    {
+      "pair": "WETH/USDT",
+      "valid": true,
+      "quickPrice": 3706.083338,
+      "sushiPrice": 3666.947193,
+      "spread": "1.0673%"
+    },
+    {
+      "pair": "WBTC/WETH",
+      "valid": true,
+      "quickPrice": 86049840533463.36,
+      "sushiPrice": 95970068643776.31,
+      "spread": "11.5285%"
+    },
+    {
+      "pair": "DAI/USDC",
+      "valid": true,
+      "quickPrice": 0.994027,
+      "sushiPrice": 0.995371,
+      "spread": "0.1352%"
+    },
+    {
+      "pair": "WMATIC/USDT",
+      "valid": true,
+      "quickPrice": 0.186772,
+      "sushiPrice": 0.186699,
+      "spread": "0.0391%"
+    },
+    {
+      "pair": "WMATIC/DAI",
+      "valid": true,
+      "quickPrice": 186595925934.28537,
+      "sushiPrice": 186560405715.74594,
+      "spread": "0.0190%"
+    },
+    {
+      "pair": "CRV/USDC",
+      "valid": true,
+      "quickPrice": 0.474878,
+      "sushiPrice": 0.440443,
+      "spread": "7.8183%"
+    },
+    {
+      "pair": "LINK/WMATIC",
+      "valid": true,
+      "quickPrice": 84402491744619.42,
+      "sushiPrice": 68985024720188.5,
+      "spread": "22.3490%"
+    },
+    {
+      "pair": "SUSHI/WMATIC",
+      "valid": true,
+      "quickPrice": 2428194858499.1113,
+      "sushiPrice": 2735617772910.5986,
+      "spread": "12.6606%"
+    },
+    {
+      "pair": "MANA/USDC",
+      "valid": true,
+      "quickPrice": 0.197089,
+      "sushiPrice": 0.225129,
+      "spread": "14.2271%"
+    },
+    {
+      "pair": "MAI/USDC",
+      "valid": true,
+      "quickPrice": 0.991249,
+      "sushiPrice": 0.991431,
+      "spread": "0.0184%"
+    },
+    {
+      "pair": "AAVE/WMATIC",
+      "valid": true,
+      "quickPrice": 729652727132087.9,
+      "sushiPrice": 682281527862692.5,
+      "spread": "6.9431%"
+    },
+    {
+      "pair": "GHST/USDC",
+      "valid": true,
+      "quickPrice": 0.303322,
+      "sushiPrice": 0.298213,
+      "spread": "1.7132%"
+    }
+  ],
+  "invalidPairs": [
+    {
+      "pair": "WBTC/USDC",
+      "valid": false,
+      "reason": "Unrealistic spread: 71943.09%",
+      "quickPrice": 189211.575608,
+      "sushiPrice": 262.636662,
+      "spread": 71943.09336219024
+    },
+    {
+      "pair": "USDC/USDT",
+      "valid": false,
+      "reason": "Unrealistic spread: 78.16%",
+      "quickPrice": 318736.325055,
+      "sushiPrice": 178906.508212,
+      "spread": 78.158038095129
+    },
+    {
+      "pair": "LINK/USDC",
+      "valid": false,
+      "reason": "Unrealistic spread: 183.91%",
+      "quickPrice": 4.437795,
+      "sushiPrice": 12.59933,
+      "spread": 183.90968938402966
+    },
+    {
+      "pair": "AAVE/USDC",
+      "valid": false,
+      "reason": "Unrealistic spread: 97.83%",
+      "quickPrice": 177.262073,
+      "sushiPrice": 89.603424,
+      "spread": 97.82957512873612
+    },
+    {
+      "pair": "UNI/USDC",
+      "valid": false,
+      "reason": "Unrealistic spread: 8780.84%",
+      "quickPrice": 0.065537,
+      "sushiPrice": 5.820235,
+      "spread": 8780.838305079575
+    },
+    {
+      "pair": "POL/WMATIC",
+      "valid": false,
+      "reason": "No pools on either DEX",
+      "quickPrice": null,
+      "sushiPrice": null
+    },
+    {
+      "pair": "POL/USDC",
+      "valid": false,
+      "reason": "No pools on either DEX",
+      "quickPrice": null,
+      "sushiPrice": null
+    },
+    {
+      "pair": "SAND/USDC",
+      "valid": false,
+      "reason": "Unrealistic spread: 13675.95%",
+      "quickPrice": 0.199338,
+      "sushiPrice": 0.001447,
+      "spread": 13675.95024187975
+    },
+    {
+      "pair": "UNI/WMATIC",
+      "valid": false,
+      "reason": "Unrealistic spread: 99.87%",
+      "quickPrice": 31305437807511.74,
+      "sushiPrice": 15662782051187.873,
+      "spread": 99.87150242659169
+    },
+    {
+      "pair": "QUICK/WMATIC",
+      "valid": false,
+      "reason": "No SushiSwap pool",
+      "quickPrice": 96455109966.5486,
+      "sushiPrice": null
+    }
+  ]
+}

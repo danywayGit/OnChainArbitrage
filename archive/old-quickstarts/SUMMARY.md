@@ -165,7 +165,7 @@ contracts: {
 
 trading: {
   minProfitBps: 50,        // 0.5% minimum profit
-  maxGasPrice: 100,        // Max 100 Gwei
+  maxGasPrice: 30000,      // Max 30000 Gwei
   minTradeSize: 100,       // $100 minimum
   maxTradeSize: 10000,     // $10,000 maximum
 }

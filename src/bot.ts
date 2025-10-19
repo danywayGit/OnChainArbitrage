@@ -22,6 +22,7 @@ import { PriceMonitor } from "./priceMonitor";
 import { TradeExecutor } from "./tradeExecutor";
 import type { ArbitrageOpportunity } from "./priceMonitor";
 import { getLogger, stopLogger } from "./dataLogger";
+import { startScheduler, stopScheduler, getScheduler } from "./pairScheduler";
 
 // ============================================================================
 // BOT STATISTICS
@@ -103,7 +104,7 @@ class ArbitrageBot {
     const isAuthorized = await this.tradeExecutor.isAuthorized();
     if (!isAuthorized) {
       logger.warning(
-        "⚠️  Wallet is not authorized to execute trades on the contract!"
+        "[WARNING] Wallet is not authorized to execute trades on the contract!"
       );
       logger.warning(
         "   Run the following command to authorize your wallet:"
@@ -120,7 +121,7 @@ class ArbitrageBot {
       await this.tradeExecutor.hasSufficientBalance();
     if (!hasSufficientBalance) {
       logger.warning(
-        `⚠️  Wallet balance below minimum (${config.safety.minWalletBalance} ETH)`
+        `[WARNING] Wallet balance below minimum (${config.safety.minWalletBalance} ETH)`
       );
     }
 
@@ -309,8 +310,13 @@ class ArbitrageBot {
 
       // Start monitoring
       this.isRunning = true;
-      logger.success("🚀 Bot started successfully!");
+      logger.success("Bot started successfully!");
       logger.info("Monitoring for arbitrage opportunities...");
+      
+      // Start the pair update scheduler (auto-updates every 4 hours)
+      logger.info("⏰ Starting pair update scheduler (every 4 hours)...");
+      startScheduler();
+      
       logger.separator();
 
       // Start monitoring loop
@@ -342,6 +348,10 @@ class ArbitrageBot {
       this.monitoringInterval = null;
     }
 
+    // Stop the pair update scheduler
+    logger.info("⏹️  Stopping pair update scheduler...");
+    stopScheduler();
+
     // Stop data logger and generate final report
     stopLogger();
 
@@ -359,7 +369,7 @@ class ArbitrageBot {
     const runtimeHours = (runtime / (1000 * 60 * 60)).toFixed(2);
 
     logger.separator();
-    logger.info("📊 Final Statistics:");
+    logger.info("[STATS] Final Statistics:");
     logger.separator();
     logger.info(`Runtime: ${runtimeHours} hours`);
     logger.info(`Opportunities Found: ${this.stats.opportunitiesFound}`);

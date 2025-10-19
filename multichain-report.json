@@ -1,0 +1,165 @@
+{
+  "timestamp": "2025-10-19T02:42:12.650Z",
+  "chains": {
+    "polygon": {
+      "displayName": "Polygon",
+      "runtime": 300,
+      "totalOpportunities": 4,
+      "opportunitiesPerMinute": 0.8,
+      "averageSpread": 0.87,
+      "bestOpportunity": {
+        "pair": "SUSHI/WMATIC",
+        "dex1": "SushiSwap",
+        "dex2": "Dfyn",
+        "spread": 1.2,
+        "timestamp": 1760841732642
+      },
+      "topPairs": [
+        {
+          "pair": "WMATIC/USDC",
+          "count": 2
+        },
+        {
+          "pair": "WMATIC/USDT",
+          "count": 1
+        },
+        {
+          "pair": "SUSHI/WMATIC",
+          "count": 1
+        }
+      ],
+      "topDEXPairs": [
+        {
+          "pair": "QuickSwap ↔ SushiSwap",
+          "count": 1
+        },
+        {
+          "pair": "QuickSwap ↔ ApeSwap",
+          "count": 1
+        },
+        {
+          "pair": "SushiSwap ↔ Dfyn",
+          "count": 1
+        }
+      ],
+      "errors": 0,
+      "opportunities": [
+        {
+          "pair": "WMATIC/USDC",
+          "dex1": "QuickSwap",
+          "dex2": "SushiSwap",
+          "spread": 0.85,
+          "timestamp": 1760841732642
+        },
+        {
+          "pair": "WMATIC/USDT",
+          "dex1": "QuickSwap",
+          "dex2": "ApeSwap",
+          "spread": 0.68,
+          "timestamp": 1760841732642
+        },
+        {
+          "pair": "SUSHI/WMATIC",
+          "dex1": "SushiSwap",
+          "dex2": "Dfyn",
+          "spread": 1.2,
+          "timestamp": 1760841732642
+        },
+        {
+          "pair": "WMATIC/USDC",
+          "dex1": "QuickSwap",
+          "dex2": "Polycat",
+          "spread": 0.75,
+          "timestamp": 1760841732642
+        }
+      ]
+    },
+    "bsc": {
+      "displayName": "BSC",
+      "runtime": 300,
+      "totalOpportunities": 2,
+      "opportunitiesPerMinute": 0.4,
+      "averageSpread": 1.035,
+      "bestOpportunity": {
+        "pair": "BANANA/WBNB",
+        "dex1": "ApeSwap",
+        "dex2": "MDEX",
+        "spread": 1.15,
+        "timestamp": 1760841732642
+      },
+      "topPairs": [
+        {
+          "pair": "CAKE/WBNB",
+          "count": 1
+        },
+        {
+          "pair": "BANANA/WBNB",
+          "count": 1
+        }
+      ],
+      "topDEXPairs": [
+        {
+          "pair": "PancakeSwap ↔ BiSwap",
+          "count": 1
+        },
+        {
+          "pair": "ApeSwap ↔ MDEX",
+          "count": 1
+        }
+      ],
+      "errors": 0,
+      "opportunities": [
+        {
+          "pair": "CAKE/WBNB",
+          "dex1": "PancakeSwap",
+          "dex2": "BiSwap",
+          "spread": 0.92,
+          "timestamp": 1760841732642
+        },
+        {
+          "pair": "BANANA/WBNB",
+          "dex1": "ApeSwap",
+          "dex2": "MDEX",
+          "spread": 1.15,
+          "timestamp": 1760841732642
+        }
+      ]
+    },
+    "base": {
+      "displayName": "Base",
+      "runtime": 300,
+      "totalOpportunities": 1,
+      "opportunitiesPerMinute": 0.2,
+      "averageSpread": 0.65,
+      "bestOpportunity": {
+        "pair": "BSWAP/WETH",
+        "dex1": "BaseSwap",
+        "dex2": "SushiSwap",
+        "spread": 0.65,
+        "timestamp": 1760841732642
+      },
+      "topPairs": [
+        {
+          "pair": "BSWAP/WETH",
+          "count": 1
+        }
+      ],
+      "topDEXPairs": [
+        {
+          "pair": "BaseSwap ↔ SushiSwap",
+          "count": 1
+        }
+      ],
+      "errors": 0,
+      "opportunities": [
+        {
+          "pair": "BSWAP/WETH",
+          "dex1": "BaseSwap",
+          "dex2": "SushiSwap",
+          "spread": 0.65,
+          "timestamp": 1760841732642
+        }
+      ]
+    }
+  }
+}

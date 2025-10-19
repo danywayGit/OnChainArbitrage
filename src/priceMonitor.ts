@@ -14,6 +14,7 @@ import { ethers } from "ethers";
 import { config, getTokenAddress } from "./config";
 import { logger } from "./logger";
 import { getLogger } from "./dataLogger";
+import { loadTradingPairs, watchPairsFile, type TradingPair as DynamicPair } from "./dynamicPairs";
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -86,16 +87,24 @@ export class PriceMonitor {
   }
 
   /**
-   * Initialize trading pairs from config
+   * Initialize trading pairs from dynamic JSON file (or fallback to config)
    */
   private initializePairs(): TokenPair[] {
-    return config.monitoring.watchedPairs
-      .filter((pair) => pair.enabled)
-      .map((pair) => ({
-        ...pair,
-        token0Address: getTokenAddress(pair.token0),
-        token1Address: getTokenAddress(pair.token1),
-      }));
+    // Try to load from dynamic JSON first
+    let pairs: any[];
+    try {
+      pairs = loadTradingPairs();
+      logger.info(`[DYNAMIC] ✅ Loaded ${pairs.length} pairs from trading-pairs.json`);
+    } catch (error) {
+      logger.error('[DYNAMIC] Failed to load dynamic pairs, using static config');
+      pairs = config.monitoring.watchedPairs.filter((pair) => pair.enabled);
+    }
+
+    return pairs.map((pair) => ({
+      ...pair,
+      token0Address: pair.token0Address || getTokenAddress(pair.token0),
+      token1Address: pair.token1Address || getTokenAddress(pair.token1),
+    }));
   }
 
   /**
@@ -113,18 +122,42 @@ export class PriceMonitor {
     token1Address: string
   ): Promise<DexPrice> {
     try {
-      // For demonstration: we'll use a single router and simulate price differences
-      // In production, you'd query multiple actual DEX routers
-
       const router = new ethers.Contract(
         routerAddress,
         UNISWAP_V2_ROUTER_ABI,
         this.provider
       );
 
-      // Get token decimals
+      // Get token decimals with error handling
       const token0 = new ethers.Contract(token0Address, ERC20_ABI, this.provider);
-      const decimals0 = await token0.decimals();
+      const token1 = new ethers.Contract(token1Address, ERC20_ABI, this.provider);
+      
+      let decimals0: number;
+      let decimals1: number;
+      
+      try {
+        decimals0 = await token0.decimals();
+      } catch (e) {
+        // Token doesn't exist or doesn't implement decimals()
+        return {
+          dexName,
+          price: 0,
+          liquidity: 0,
+          timestamp: Date.now(),
+        };
+      }
+      
+      try {
+        decimals1 = await token1.decimals();
+      } catch (e) {
+        // Token doesn't exist or doesn't implement decimals()
+        return {
+          dexName,
+          price: 0,
+          liquidity: 0,
+          timestamp: Date.now(),
+        };
+      }
 
       // Amount: 1 token (scaled by decimals)
       const amountIn = ethers.parseUnits("1", decimals0);
@@ -132,35 +165,53 @@ export class PriceMonitor {
       // Trading path: token0 -> token1
       const path = [token0Address, token1Address];
 
-      // Get amounts out
+      // Get amounts out - this will fail if no liquidity pool exists
       const amounts = await router.getAmountsOut(amountIn, path);
       
       // Price = how many token1 per 1 token0
       const amountOut = amounts[1];
-      const token1 = new ethers.Contract(token1Address, ERC20_ABI, this.provider);
-      const decimals1 = await token1.decimals();
       
       const price = parseFloat(ethers.formatUnits(amountOut, decimals1));
 
-      // Simulate different prices for different DEXes
-      // In production, each DEX would have its own router address
-      let adjustedPrice = price;
-      if (dexName === "Sushiswap") {
-        // Simulate Sushiswap having slightly different prices
-        adjustedPrice = price * (1 + (Math.random() * 0.02 - 0.01)); // ±1% variance
-      } else if (dexName === "Curve") {
-        adjustedPrice = price * (1 + (Math.random() * 0.015 - 0.0075)); // ±0.75% variance
+      // Validate price is reasonable (not 0 or extremely large)
+      // Extreme prices indicate broken/non-existent pools
+      // 
+      // Reasonable ranges:
+      // - WBTC/WMATIC: ~40,000 MATIC per WBTC
+      // - WETH/WMATIC: ~4,000 MATIC per WETH  
+      // - Most pairs: < 1000x ratio
+      //
+      // If price > 1000, likely a broken/non-existent pool
+      if (price <= 0 || price > 1000) {
+        return {
+          dexName,
+          price: 0, // Mark as invalid
+          liquidity: 0,
+          timestamp: Date.now(),
+        };
       }
 
+      // Additional validation: Check if price is suspiciously small
+      // Prices < 0.0001 often indicate broken pools
+      if (price < 0.0001) {
+        return {
+          dexName,
+          price: 0,
+          liquidity: 0,
+          timestamp: Date.now(),
+        };
+      }
+
+      // Each DEX has its own liquidity pools, so prices naturally differ
       return {
         dexName,
-        price: adjustedPrice,
+        price: price,
         liquidity: 1000000, // Simulated liquidity - in production, calculate from reserves
         timestamp: Date.now(),
       };
     } catch (error) {
-      logger.error(`Failed to get price from ${dexName}`, error);
-      // Return a fallback price to keep the bot running
+      // Pool doesn't exist on this DEX - this is normal, not all pairs exist on all DEXes
+      // Return zero price to indicate no liquidity
       return {
         dexName,
         price: 0,
@@ -176,30 +227,38 @@ export class PriceMonitor {
   async getPricesForPair(pair: TokenPair): Promise<DexPrice[]> {
     logger.debug(`Fetching prices for ${pair.name}...`);
 
-    // In production, you'd query multiple DEX routers
-    // For demo, we simulate multiple DEXes with price variations
+    // Query multiple LOW-FEE Uniswap V2-compatible DEX routers on Polygon
+    // All have 0.3% fees - focusing on verified pairs with real liquidity
     const prices = await Promise.all([
       this.getPriceFromDex(
-        "Uniswap",
-        config.dexes.uniswapV2Router,
+        "quickswap",
+        config.dexes.quickswap,
         pair.token0Address,
         pair.token1Address
       ),
       this.getPriceFromDex(
-        "Sushiswap",
-        config.dexes.uniswapV2Router, // Using same router but simulating different prices
+        "sushiswap",
+        config.dexes.sushiswap,
         pair.token0Address,
         pair.token1Address
       ),
-      this.getPriceFromDex(
-        "Curve",
-        config.dexes.uniswapV2Router,
-        pair.token0Address,
-        pair.token1Address
-      ),
+      // Dfyn removed - only 2/9 pairs had real liquidity, rest were fake pools
+      // this.getPriceFromDex(
+      //   "dfyn",
+      //   config.dexes.dfyn,
+      //   pair.token0Address,
+      //   pair.token1Address
+      // ),
+      // ApeSwap removed - limited pool coverage on Polygon
+      // this.getPriceFromDex(
+      //   "apeswap",
+      //   config.dexes.apeswap,
+      //   pair.token0Address,
+      //   pair.token1Address
+      // ),
     ]);
 
-    // Filter out failed price fetches
+    // Filter out failed price fetches (pairs with no liquidity pools)
     return prices.filter((p) => p.price > 0);
   }
 
@@ -243,6 +302,28 @@ export class PriceMonitor {
 
       // Skip if same DEX or no price difference
       if (buyPrice.dexName === sellPrice.dexName || profitPercent <= 0) {
+        return null;
+      }
+
+      // ============================================================================
+      // 🚨 CRITICAL: REJECT UNREALISTIC PROFIT PERCENTAGES
+      // ============================================================================
+      // Real arbitrage on efficient markets like Polygon:
+      // - Typical: 0.3% - 2% (30-200 bps)
+      // - Good: 2% - 5% (very rare, MEV bots capture these instantly)
+      // - Impossible: >10% (market would instantly correct this)
+      //
+      // If we see >3% profit, it means:
+      // 1. Price data is wrong (pool doesn't exist)
+      // 2. Trade will fail with INSUFFICIENT_OUTPUT_AMOUNT
+      // 3. Wasting gas trying to execute
+      //
+      const MAX_REALISTIC_PROFIT = 3; // 3% is already extremely high for real arbitrage
+      
+      if (profitPercent > MAX_REALISTIC_PROFIT) {
+        logger.debug(
+          `[FILTER] Rejecting ${pair.name}: ${profitPercent.toFixed(2)}% profit is unrealistic (likely fake pool)`
+        );
         return null;
       }
 

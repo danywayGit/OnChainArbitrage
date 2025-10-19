@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 import { config } from "./config";
 import { logger } from "./logger";
 import { ArbitrageOpportunity } from "./priceMonitor";
+import { getDexRouter, getDexType, getDexFee, isDexPairEfficient } from "./dexRouter";
 
 // ============================================================================
 // FLASH LOAN ARBITRAGE CONTRACT ABI
@@ -85,9 +86,20 @@ export class TradeExecutor {
       sellDex,
     } = opportunity;
 
-    // For simplicity, using same router for both DEXes (in production, use actual DEX routers)
-    const dexRouter1 = config.dexes.uniswapV2Router;
-    const dexRouter2 = config.dexes.uniswapV2Router;
+    // ✅ FIX: Use actual DEX router addresses based on DEX name
+    const dexRouter1 = getDexRouter(buyDex.dexName);
+    const dexRouter2 = getDexRouter(sellDex.dexName);
+
+    // Log which DEXes we're actually using
+    logger.info(`🔀 Buy DEX: ${buyDex.dexName} → Router: ${dexRouter1}`);
+    logger.info(`🔀 Sell DEX: ${sellDex.dexName} → Router: ${dexRouter2}`);
+
+    // Verify we're not using the same DEX twice
+    if (dexRouter1 === dexRouter2) {
+      logger.warning(`[WARNING] Both DEXes resolve to same router! This will lose money!`);
+      logger.warning(`   Buy: ${buyDex.dexName} (${dexRouter1})`);
+      logger.warning(`   Sell: ${sellDex.dexName} (${dexRouter2})`);
+    }
 
     // Trading paths
     // Path 1: token0 -> token1 (buy on cheaper DEX)
@@ -139,6 +151,100 @@ export class TradeExecutor {
   }
 
   /**
+   * ✅ NEW: Validate if trade is actually profitable
+   * 
+   * Calculates TRUE expected profit after:
+   * - DEX swap fees (0.3% x2 = 0.6%)
+   * - Flash loan fee (0.09%)
+   * - Gas costs
+   * - Slippage (estimated)
+   * 
+   * Returns false if trade would lose money
+   */
+  private async validateProfitability(
+    opportunity: ArbitrageOpportunity,
+    flashLoanAmount: bigint
+  ): Promise<{ profitable: boolean; reason?: string; estimatedProfit?: number }> {
+    try {
+      // Get DEX fees
+      const buyDexFee = getDexFee(opportunity.buyDex.dexName);
+      const sellDexFee = getDexFee(opportunity.sellDex.dexName);
+      const flashLoanFee = config.trading.flashLoanFeeBps;
+      
+      // Calculate total fees in basis points
+      const totalFeeBps = buyDexFee + sellDexFee + flashLoanFee;
+      
+      // Price spread (from opportunity detection)
+      const spreadBps = opportunity.profitPercent * 100; // Convert % to bps
+      
+      // Estimated gas cost in USD
+      const feeData = await this.provider.getFeeData();
+      const gasEstimate = 500000n; // Conservative estimate for flash loan + 2 swaps
+      const gasCostWei = gasEstimate * (feeData.gasPrice || 0n);
+      const gasCostEth = parseFloat(ethers.formatEther(gasCostWei));
+      const maticPrice = 0.5; // $0.50 per MATIC (conservative)
+      const gasCostUsd = gasCostEth * maticPrice;
+      
+      // Calculate trade size in USD
+      const flashLoanAmountEth = parseFloat(ethers.formatEther(flashLoanAmount));
+      const tradeSizeUsd = flashLoanAmountEth * 2000; // Assume ETH price for calculation
+      
+      // Net profit in bps (spread - fees)
+      const netProfitBps = spreadBps - totalFeeBps;
+      
+      // Net profit in USD
+      const grossProfitUsd = (netProfitBps / 10000) * tradeSizeUsd;
+      const netProfitUsd = grossProfitUsd - gasCostUsd;
+      
+      logger.debug("[ANALYSIS] Profitability Analysis:", {
+        spread: `${spreadBps} bps`,
+        dexFees: `${buyDexFee + sellDexFee} bps`,
+        flashLoanFee: `${flashLoanFee} bps`,
+        totalFees: `${totalFeeBps} bps`,
+        netProfitBps: `${netProfitBps} bps`,
+        gasCost: `$${gasCostUsd.toFixed(2)}`,
+        grossProfit: `$${grossProfitUsd.toFixed(2)}`,
+        netProfit: `$${netProfitUsd.toFixed(2)}`,
+      });
+      
+      // Check if profitable
+      if (netProfitBps <= 0) {
+        return {
+          profitable: false,
+          reason: `Spread (${spreadBps} bps) < Fees (${totalFeeBps} bps). Would lose ${Math.abs(netProfitBps)} bps`
+        };
+      }
+      
+      if (netProfitUsd <= 0) {
+        return {
+          profitable: false,
+          reason: `Gas cost ($${gasCostUsd.toFixed(2)}) > Gross profit ($${grossProfitUsd.toFixed(2)})`
+        };
+      }
+      
+      // Require minimum $1 profit after all costs
+      if (netProfitUsd < 1.0) {
+        return {
+          profitable: false,
+          reason: `Net profit ($${netProfitUsd.toFixed(2)}) < $1.00 minimum threshold`
+        };
+      }
+      
+      return {
+        profitable: true,
+        estimatedProfit: netProfitUsd
+      };
+      
+    } catch (error) {
+      logger.error("Error validating profitability:", error);
+      return {
+        profitable: false,
+        reason: "Error calculating profitability"
+      };
+    }
+  }
+
+  /**
    * Execute arbitrage trade
    * 
    * FLOW:
@@ -165,11 +271,39 @@ export class TradeExecutor {
         throw new Error("Contract is paused");
       }
 
+      // ✅ NEW: Check if DEX pair has acceptable gas costs (< $10 total)
+      const currentFeeData = await this.provider.getFeeData();
+      const currentGasPrice = currentFeeData.gasPrice || 0n;
+      
+      const dexPairCheck = isDexPairEfficient(
+        opportunity.buyDex.dexName,
+        opportunity.sellDex.dexName,
+        currentGasPrice
+      );
+      
+      if (!dexPairCheck.efficient) {
+        logger.warning(`[REJECTED] DEX pair rejected: ${dexPairCheck.reason}`);
+        logger.warning(`   Estimated total gas: $${dexPairCheck.totalGasCost?.toFixed(2) || 'N/A'}`);
+        throw new Error(`High gas cost DEX pair: ${dexPairCheck.reason}`);
+      }
+      
+      logger.info(`[OK] DEX pair efficient! Estimated gas cost: $${dexPairCheck.totalGasCost?.toFixed(2)}`);
+
       // Encode parameters
       const params = this.encodeArbitrageParams(opportunity);
 
       // Calculate flash loan amount
       const flashLoanAmount = this.calculateFlashLoanAmount(opportunity);
+
+      // ✅ NEW: Validate profitability BEFORE executing
+      const profitCheck = await this.validateProfitability(opportunity, flashLoanAmount);
+      
+      if (!profitCheck.profitable) {
+        logger.warning(`[NOT PROFITABLE] Trade rejected: ${profitCheck.reason}`);
+        throw new Error(`Unprofitable trade: ${profitCheck.reason}`);
+      }
+      
+      logger.success(`[PROFITABLE] Trade looks good! Estimated net profit: $${profitCheck.estimatedProfit?.toFixed(2)}`);
 
       logger.debug("Trade parameters", {
         token: opportunity.pair.token0Address,

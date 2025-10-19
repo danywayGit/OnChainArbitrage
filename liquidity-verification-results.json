@@ -1,0 +1,722 @@
+[
+  {
+    "pair": "WMATIC/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WETH/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WBTC/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WMATIC/WETH",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "USDC/USDT",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WETH/USDT",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WBTC/WETH",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "DAI/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WMATIC/USDT",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "WMATIC/DAI",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "LINK/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "AAVE/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "UNI/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "POL/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "CRV/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "LINK/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "POL/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "SAND/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "SUSHI/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "MANA/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "MAI/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":130,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "AAVE/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "UNI/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "QUICK/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "GHST/USDC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "CRV/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "BAL/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "SAND/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "MANA/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "server response 401 Unauthorized (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"{\\\"jsonrpc\\\":\\\"2.0\\\",\\\"id\\\":null,\\\"error\\\":{\\\"code\\\":-32600,\\\"message\\\":\\\"Must be authenticated!\\\"}}\", \"responseStatus\": \"401 Unauthorized\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  },
+  {
+    "pair": "MAI/WMATIC",
+    "dexes": {
+      "quickswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "exceeded maximum retry limit (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"error code: 1015\", \"responseStatus\": \"599 CLIENT ESCALATED SERVER ERROR (429 Too Many Requests; exceeded maximum retry limit)\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "sushiswap": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "exceeded maximum retry limit (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"error code: 1015\", \"responseStatus\": \"599 CLIENT ESCALATED SERVER ERROR (429 Too Many Requests; exceeded maximum retry limit)\" }, code=SERVER_ERROR, version=6.15.0)"
+      },
+      "dfyn": {
+        "exists": false,
+        "liquidity": 0,
+        "price": 0,
+        "error": "exceeded maximum retry limit (request={  }, response={  }, error=null, info={ \"requestUrl\": \"https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHvwRSvP5BYKgL\", \"responseBody\": \"error code: 1015\", \"responseStatus\": \"599 CLIENT ESCALATED SERVER ERROR (429 Too Many Requests; exceeded maximum retry limit)\" }, code=SERVER_ERROR, version=6.15.0)"
+      }
+    },
+    "dexCount": 0
+  }
+]
