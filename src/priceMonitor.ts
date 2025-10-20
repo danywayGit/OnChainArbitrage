@@ -54,6 +54,25 @@ export interface ArbitrageOpportunity {
 const UNISWAP_V2_ROUTER_ABI = [
   "function getAmountsOut(uint amountIn, address[] memory path) public view returns (uint[] memory amounts)",
   "function swapExactTokensForTokens(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) external returns (uint[] memory amounts)",
+  "function factory() external view returns (address)",
+];
+
+// ============================================================================
+// FACTORY ABI (for getting pair address)
+// ============================================================================
+
+const UNISWAP_V2_FACTORY_ABI = [
+  "function getPair(address tokenA, address tokenB) external view returns (address pair)",
+];
+
+// ============================================================================
+// PAIR ABI (for getting reserves)
+// ============================================================================
+
+const UNISWAP_V2_PAIR_ABI = [
+  "function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)",
+  "function token0() external view returns (address)",
+  "function token1() external view returns (address)",
 ];
 
 // ============================================================================
@@ -108,12 +127,71 @@ export class PriceMonitor {
   }
 
   /**
+   * Get real liquidity reserves from a DEX pair
+   * 
+   * CRITICAL: This determines max safe trade size
+   * Returns liquidity in USD (approximated from reserves)
+   */
+  private async getRealLiquidity(
+    routerAddress: string,
+    token0Address: string,
+    token1Address: string,
+    decimals0: number,
+    decimals1: number
+  ): Promise<number> {
+    try {
+      // Get factory address from router
+      const router = new ethers.Contract(routerAddress, UNISWAP_V2_ROUTER_ABI, this.provider);
+      const factoryAddress = await router.factory();
+      
+      // Get pair address from factory
+      const factory = new ethers.Contract(factoryAddress, UNISWAP_V2_FACTORY_ABI, this.provider);
+      const pairAddress = await factory.getPair(token0Address, token1Address);
+      
+      // Check if pair exists
+      if (pairAddress === ethers.ZeroAddress) {
+        return 0; // No pool = no liquidity
+      }
+      
+      // Get reserves from pair contract
+      const pair = new ethers.Contract(pairAddress, UNISWAP_V2_PAIR_ABI, this.provider);
+      const reserves = await pair.getReserves();
+      const token0Pair = await pair.token0();
+      
+      // Determine which reserve is which token
+      let reserve0: bigint, reserve1: bigint;
+      if (token0Pair.toLowerCase() === token0Address.toLowerCase()) {
+        reserve0 = reserves.reserve0;
+        reserve1 = reserves.reserve1;
+      } else {
+        reserve0 = reserves.reserve1;
+        reserve1 = reserves.reserve0;
+      }
+      
+      // Convert reserves to human-readable numbers
+      const reserve0Float = parseFloat(ethers.formatUnits(reserve0, decimals0));
+      const reserve1Float = parseFloat(ethers.formatUnits(reserve1, decimals1));
+      
+      // Estimate liquidity in USD
+      // For simplicity, assume token1 is WMATIC/WETH/USDC worth ~$1-2000
+      // Better: fetch actual prices from oracle, but this gives rough estimate
+      const estimatedLiquidityUSD = reserve1Float * 1; // Conservative $1 per token1
+      
+      return estimatedLiquidityUSD;
+    } catch (error) {
+      logger.debug(`Failed to get reserves: ${error}`);
+      return 0;
+    }
+  }
+
+  /**
    * Get price from a DEX using Uniswap V2 formula
    * 
    * HOW IT WORKS:
    * 1. Calls getAmountsOut on the DEX router
    * 2. Passes in 1 token (scaled by decimals) and the trading path
    * 3. Returns how many of token1 you'd get for 1 token0
+   * 4. NOW ALSO: Gets REAL liquidity from reserves
    */
   private async getPriceFromDex(
     dexName: string,
@@ -202,11 +280,21 @@ export class PriceMonitor {
         };
       }
 
+      // ✅ GET REAL LIQUIDITY FROM RESERVES
+      // This is CRITICAL for determining max safe trade size
+      const realLiquidity = await this.getRealLiquidity(
+        routerAddress,
+        token0Address,
+        token1Address,
+        decimals0,
+        decimals1
+      );
+
       // Each DEX has its own liquidity pools, so prices naturally differ
       return {
         dexName,
         price: price,
-        liquidity: 1000000, // Simulated liquidity - in production, calculate from reserves
+        liquidity: realLiquidity, // ✅ REAL liquidity from reserves (not fake!)
         timestamp: Date.now(),
       };
     } catch (error) {

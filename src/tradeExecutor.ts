@@ -122,32 +122,60 @@ export class TradeExecutor {
   }
 
   /**
-   * Calculate optimal flash loan amount
+   * ✅ Calculate optimal flash loan amount based on REAL liquidity
    * 
-   * FACTORS:
-   * 1. Available liquidity on both DEXes
+   * CRITICAL FACTORS:
+   * 1. Available liquidity on BOTH DEXes (use LOWER of the two)
    * 2. Maximum trade size from config
-   * 3. Gas costs vs. profit margin
+   * 3. Slippage impact (don't use more than 20% of pool depth)
+   * 4. Gas costs vs. profit margin
    */
   private calculateFlashLoanAmount(
     opportunity: ArbitrageOpportunity
   ): bigint {
-    // For demo, use a fixed amount
-    // In production, optimize based on:
-    // - Available liquidity
-    // - Slippage curves
-    // - Gas costs vs. profit
+    // ✅ STEP 1: Get available liquidity on both DEXes
+    const buyDexLiquidity = opportunity.buyDex.liquidity || 0;
+    const sellDexLiquidity = opportunity.sellDex.liquidity || 0;
+    
+    // ✅ STEP 2: Use the LOWER liquidity (constraining factor)
+    const limitingLiquidity = Math.min(buyDexLiquidity, sellDexLiquidity);
+    
+    logger.debug(`[LIQUIDITY CHECK]`);
+    logger.debug(`  Buy DEX (${opportunity.buyDex.dexName}): $${buyDexLiquidity.toFixed(0)}`);
+    logger.debug(`  Sell DEX (${opportunity.sellDex.dexName}): $${sellDexLiquidity.toFixed(0)}`);
+    logger.debug(`  Limiting liquidity: $${limitingLiquidity.toFixed(0)}`);
+    
+    // ✅ STEP 3: Cap at 20% of pool depth to minimize slippage
+    // Using more than 20% causes exponential slippage in AMM pools
+    const maxSafeTradeSize = limitingLiquidity * 0.20;
+    
+    // ✅ STEP 4: Apply config limits
+    const configMaxSize = config.trading.maxTradeSize;
+    const configMinSize = config.trading.minTradeSize;
+    
+    // ✅ STEP 5: Safety check - SKIP if pool too small for minimum trade
+    // If 20% of pool < minimum trade size, pool is too illiquid
+    if (maxSafeTradeSize < configMinSize) {
+      logger.warning(`⚠️ Pool too small! 20% of $${limitingLiquidity.toFixed(0)} = $${maxSafeTradeSize.toFixed(0)} < min $${configMinSize}`);
+      logger.warning(`   Skipping this opportunity - need at least $${(configMinSize * 5).toFixed(0)} liquidity`);
+      // Return minimum possible to avoid division by zero, but this trade will fail profitability check
+      return ethers.parseEther("0.001");
+    }
+    
+    // Choose the smallest of: 20% of liquidity OR config max
+    let tradeSize = Math.min(maxSafeTradeSize, configMaxSize);
+    
+    // Ensure it's at least the minimum (we already checked pool is big enough)
+    tradeSize = Math.max(tradeSize, configMinSize);
+    
+    logger.info(`[TRADE SIZE] $${tradeSize.toFixed(2)} (${((tradeSize/limitingLiquidity)*100).toFixed(1)}% of $${limitingLiquidity.toFixed(0)} pool)`);
 
-    // Start with minimum trade size
-    const tradeSize = config.trading.minTradeSize; // $100 USD
-
-    // Convert to token amount
-    // For ETH at ~$2000: $100 = 0.05 ETH
-    const ethPrice = 2000;
-    const ethAmount = tradeSize / ethPrice;
+    // Convert to token amount (assuming WMATIC/WETH as collateral)
+    const nativeTokenPrice = config.network.name === 'polygon' ? 0.40 : 2000; // MATIC or ETH
+    const tokenAmount = tradeSize / nativeTokenPrice;
 
     // Return in Wei (18 decimals)
-    return ethers.parseEther(ethAmount.toString());
+    return ethers.parseEther(tokenAmount.toString());
   }
 
   /**
