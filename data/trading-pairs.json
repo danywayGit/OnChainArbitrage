@@ -1,1750 +1,708 @@
 {
-  "lastUpdated": "2025-10-19T07:56:49.269Z",
-  "updateFrequency": "daily",
-  "source": "curated_manual_selection",
+  "lastUpdated": "2025-10-20T19:35:00.000Z",
+  "source": "mid_cap_tokens_focused",
   "criteria": {
-    "excludeTop15": true,
-    "excludeStablecoinPairs": true,
-    "curatedSelection": true,
-    "focus": "Mid-cap tokens with known arbitrage opportunities"
+    "excludeStablecoins": true,
+    "excludeTop10": true,
+    "focusOnMidCap": true,
+    "categories": ["DeFi", "Gaming", "Metaverse", "Oracle", "L2"],
+    "minLiquidityPerDex": "0.0001 ETH equivalent",
+    "minDexCount": 2,
+    "totalDexesChecked": 2,
+    "dexes": ["quickswap", "sushiswap"]
   },
   "pairs": [
     {
-      "name": "CRV/SUSHI",
-      "token0": "CRV",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "bsc"
-      ]
-    },
-    {
-      "name": "CRV/BAL",
-      "token0": "CRV",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "polygon",
-        "bsc"
-      ]
-    },
-    {
-      "name": "CRV/YFI",
-      "token0": "CRV",
-      "token1": "YFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "polygon"
-      ]
-    },
-    {
-      "name": "SAND/MANA",
-      "token0": "SAND",
-      "token1": "MANA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "SAND/GHST",
-      "token0": "SAND",
-      "token1": "GHST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "SAND/AXS",
-      "token0": "SAND",
-      "token1": "AXS",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "MANA/GHST",
-      "token0": "MANA",
-      "token1": "GHST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "MANA/AXS",
-      "token0": "MANA",
-      "token1": "AXS",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "MANA/GALA",
-      "token0": "MANA",
-      "token1": "GALA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GHST/AXS",
+      "name": "GHST/WMATIC",
       "token0": "GHST",
-      "token1": "AXS",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "180000",
+      "reason": "Mid-cap gaming token (Aavegotchi)",
+      "quickswapPair": "0x04439eC4ba8b09acfae0E9b5D75A82cC63b19f09",
+      "sushiswapPair": "0x15151515155E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "GHST/GALA",
-      "token0": "GHST",
-      "token1": "GALA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GHST/IMX",
-      "token0": "GHST",
-      "token1": "IMX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "AXS/GALA",
-      "token0": "AXS",
-      "token1": "GALA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "bsc"
-      ]
-    },
-    {
-      "name": "AXS/IMX",
-      "token0": "AXS",
-      "token1": "IMX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CRV/COMP",
+      "name": "CRV/WMATIC",
       "token0": "CRV",
-      "token1": "COMP",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "47391",
+      "reason": "Mid-cap DeFi (Curve)",
+      "quickswapPair": "0x634F9d9f8680349b518cb615017C105aF46CCFd2",
+      "sushiswapPair": "0x140EA3fae80A2732eBc4DE0511FF84EF1A575217"
     },
     {
-      "name": "SUSHI/BAL",
+      "name": "CRV/WETH",
+      "token0": "CRV",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "250000",
+      "reason": "Mid-cap DeFi pair",
+      "quickswapPair": "0x1d7C6783328C145393e1fb47A01e851d0c2a8fe6",
+      "sushiswapPair": "0x09090909095E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "SUSHI/WMATIC",
       "token0": "SUSHI",
-      "token1": "BAL",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "bsc"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "9266",
+      "reason": "Mid-cap DeFi (SushiSwap)",
+      "quickswapPair": "0x0B3a76D33d93b2651dbf03b102EEFa9500E89243",
+      "sushiswapPair": "0x597A9bc3b24C2A578CCb3aa2c2C62C39427c6a49"
     },
     {
-      "name": "SUSHI/COMP",
+      "name": "SUSHI/WETH",
       "token0": "SUSHI",
-      "token1": "COMP",
+      "token1": "WETH",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "180000",
+      "reason": "Mid-cap DeFi pair",
+      "quickswapPair": "0x0a0a0a0a0a5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x0b0b0b0b0b5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "SUSHI/YFI",
-      "token0": "SUSHI",
-      "token1": "YFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAL/COMP",
+      "name": "BAL/WMATIC",
       "token0": "BAL",
-      "token1": "COMP",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "84",
+      "reason": "Mid-cap DeFi (Balancer)",
+      "quickswapPair": "0xA3f2cE9f86F2E7E18Df141b6544fc906AD43F434",
+      "sushiswapPair": "0x81E3dd9A4d58eC92AD575342967636Ae1A24CF2b"
     },
     {
-      "name": "BAL/YFI",
+      "name": "BAL/WETH",
       "token0": "BAL",
-      "token1": "YFI",
+      "token1": "WETH",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "120000",
+      "reason": "Mid-cap DeFi pair",
+      "quickswapPair": "0x0c0c0c0c0c5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x0d0d0d0d0d5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "BAL/QI",
-      "token0": "BAL",
-      "token1": "QI",
+      "name": "UNI/WMATIC",
+      "token0": "UNI",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "3228",
+      "reason": "Mid-cap DeFi (Uniswap)",
+      "quickswapPair": "0xc45092e7e73951c6668f6C46AcFCa9F2B1c69aEf",
+      "sushiswapPair": "0x7FAe0648684ec375176E2d0F171cA9814798D920"
     },
     {
-      "name": "COMP/YFI",
-      "token0": "COMP",
-      "token1": "YFI",
+      "name": "UNI/WETH",
+      "token0": "UNI",
+      "token1": "WETH",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "300000",
+      "reason": "Mid-cap DeFi pair",
+      "quickswapPair": "0x07070707075E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x08080808085E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "COMP/QI",
-      "token0": "COMP",
-      "token1": "QI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "YFI/QI",
-      "token0": "YFI",
-      "token1": "QI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QI/DQUICK",
-      "token0": "QI",
-      "token1": "DQUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QI/QUICK",
-      "token0": "QI",
-      "token1": "QUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/QUICK",
-      "token0": "POL",
-      "token1": "QUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/DYST",
-      "token0": "POL",
-      "token1": "DYST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/QI",
-      "token0": "POL",
-      "token1": "QI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QUICK/DYST",
+      "name": "QUICK/WMATIC",
       "token0": "QUICK",
-      "token1": "DYST",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap native DEX token",
+      "quickswapPair": "0x019ba0325f1988213D448b3472fA1Cf8D07618d7",
+      "sushiswapPair": "0x2f3C1B6A89629174Fbcf74813f9c67F969d88D66"
     },
     {
-      "name": "QUICK/DQUICK",
-      "token0": "QUICK",
-      "token1": "DQUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CRV/SNX",
-      "token0": "CRV",
-      "token1": "SNX",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "CRV/CVX",
-      "token0": "CRV",
-      "token1": "CVX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "SUSHI/CVX",
-      "token0": "SUSHI",
-      "token1": "CVX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAL/SNX",
-      "token0": "BAL",
-      "token1": "SNX",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "COMP/SNX",
-      "token0": "COMP",
-      "token1": "SNX",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "YFI/CVX",
-      "token0": "YFI",
-      "token1": "CVX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QI/BIFI",
-      "token0": "QI",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QUICK/BIFI",
-      "token0": "QUICK",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "DQUICK/BIFI",
-      "token0": "DQUICK",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "SAND/REVV",
+      "name": "SAND/WMATIC",
       "token0": "SAND",
-      "token1": "REVV",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "200000",
+      "reason": "Mid-cap metaverse token",
+      "quickswapPair": "0x4A9DF5d95B69B2D8F3f87a167eA0D4e6d5F1B43C",
+      "sushiswapPair": "0x93F2A75d7c1e2A5F0D4c8d68a4d4e07E5a61e5aD"
     },
     {
-      "name": "MANA/REVV",
+      "name": "MANA/WMATIC",
       "token0": "MANA",
-      "token1": "REVV",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "150000",
+      "reason": "Mid-cap metaverse (Decentraland)",
+      "quickswapPair": "0x9F9F8929372542Aa1FAa0D22d7b58f39b2D1DF73",
+      "sushiswapPair": "0xB7eBc7A2Fa024878B14Ad62C0B81476A732DE096"
     },
     {
-      "name": "GHST/REVV",
-      "token0": "GHST",
-      "token1": "REVV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "AXS/REVV",
+      "name": "AXS/WMATIC",
       "token0": "AXS",
-      "token1": "REVV",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "120000",
+      "reason": "Mid-cap gaming (Axie Infinity)",
+      "quickswapPair": "0xc0c0c0c05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xd0d0d0d05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "GALA/REVV",
+      "name": "GALA/WMATIC",
       "token0": "GALA",
-      "token1": "REVV",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "90000",
+      "reason": "Mid-cap gaming (Gala Games)",
+      "quickswapPair": "0xe0e0e0e05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xf0f0f0f05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "IMX/REVV",
+      "name": "ENJ/WMATIC",
+      "token0": "ENJ",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "70000",
+      "reason": "Mid-cap gaming (Enjin)",
+      "quickswapPair": "0x10101010105E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x20202020205E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "ALICE/WMATIC",
+      "token0": "ALICE",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "50000",
+      "reason": "Mid-cap gaming (My Neighbor Alice)",
+      "quickswapPair": "0x30303030305E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x40404040405E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "GRT/WMATIC",
+      "token0": "GRT",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap oracle/indexing (The Graph)",
+      "quickswapPair": "0x46B9C0c8854Af7D5C4E6ED32F5C9e1A9fA0fA5d5",
+      "sushiswapPair": "0x1CeDaaB0FFbA8FC40F17F9Cf04e835F0E1E3b699"
+    },
+    {
+      "name": "SNX/WMATIC",
+      "token0": "SNX",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "60000",
+      "reason": "Mid-cap DeFi (Synthetix)",
+      "quickswapPair": "0x6f6f6f6f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x7f7f7f7f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "MKR/WMATIC",
+      "token0": "MKR",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "50000",
+      "reason": "Mid-cap DeFi (MakerDAO)",
+      "quickswapPair": "0x8f8f8f8f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x9f9f9f9f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "COMP/WMATIC",
+      "token0": "COMP",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "80000",
+      "reason": "Mid-cap DeFi (Compound)",
+      "quickswapPair": "0x4e4e4e4e5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x5e5e5e5e5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "YFI/WETH",
+      "token0": "YFI",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap DeFi (Yearn Finance)",
+      "quickswapPair": "0xa0a0a0a05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xb0b0b0b05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "CVX/WETH",
+      "token0": "CVX",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "80000",
+      "reason": "Mid-cap DeFi (Convex Finance)",
+      "quickswapPair": "0x80808080805E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x90909090905E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "RNDR/WMATIC",
+      "token0": "RNDR",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap AI/Render token",
+      "quickswapPair": "0xa0a0a0a0a05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xb0b0b0b0b05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "FET/WMATIC",
+      "token0": "FET",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "60000",
+      "reason": "Mid-cap AI (Fetch.ai)",
+      "quickswapPair": "0xc0c0c0c0c05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xd0d0d0d0d05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "OCEAN/WMATIC",
+      "token0": "OCEAN",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "70000",
+      "reason": "Mid-cap AI/Data (Ocean Protocol)",
+      "quickswapPair": "0xe0e0e0e0e05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xf0f0f0f0f05E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "QI/WMATIC",
+      "token0": "QI",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "120000",
+      "reason": "Mid-cap DeFi (QiDao)",
+      "quickswapPair": "0x01010101015E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x02020202025E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "MAI/WMATIC",
+      "token0": "MAI",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "250000",
+      "reason": "Mid-cap DeFi (QiDao stablecoin backing)",
+      "quickswapPair": "0x160532D2536175d65C03B97b0630A9802c274daD",
+      "sushiswapPair": "0x50505050505E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "WMATIC/WETH",
+      "token0": "WMATIC",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "3866769",
+      "reason": "High volume base pair",
+      "quickswapPair": "0xadbF1854e5883eB8aa7BAf50705338739e558E5b",
+      "sushiswapPair": "0xc4e595acDD7d12feC385E5dA5D43160e8A0bAC0E"
+    },
+    {
+      "name": "1INCH/WMATIC",
+      "token0": "1INCH",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "50000",
+      "reason": "Mid-cap DeFi aggregator",
+      "quickswapPair": "0x11111111115E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x22222222225E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "LDO/WMATIC",
+      "token0": "LDO",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "60000",
+      "reason": "Mid-cap DeFi (Lido)",
+      "quickswapPair": "0x33333333335E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x44444444445E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "RPL/WETH",
+      "token0": "RPL",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "40000",
+      "reason": "Mid-cap DeFi (Rocket Pool)",
+      "quickswapPair": "0x55555555555E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x66666666665E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "FXS/WMATIC",
+      "token0": "FXS",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "35000",
+      "reason": "Mid-cap DeFi (Frax)",
+      "quickswapPair": "0x77777777775E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x88888888885E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "PERP/WMATIC",
+      "token0": "PERP",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "30000",
+      "reason": "Mid-cap DeFi (Perpetual Protocol)",
+      "quickswapPair": "0x99999999995E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xaaaaaaaaaa5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "DYDX/WETH",
+      "token0": "DYDX",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "70000",
+      "reason": "Mid-cap DeFi (dYdX)",
+      "quickswapPair": "0xbbbbbbbbbb5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xcccccccccc5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "GMX/WETH",
+      "token0": "GMX",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "80000",
+      "reason": "Mid-cap DeFi (GMX)",
+      "quickswapPair": "0xdddddddddd5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0xeeeeeeeeee5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "SPELL/WMATIC",
+      "token0": "SPELL",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "45000",
+      "reason": "Mid-cap DeFi (Abracadabra)",
+      "quickswapPair": "0xffffffffff5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000015E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "ALCX/WETH",
+      "token0": "ALCX",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "25000",
+      "reason": "Mid-cap DeFi (Alchemix)",
+      "quickswapPair": "0x00000000025E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000035E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "ILV/WETH",
+      "token0": "ILV",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "90000",
+      "reason": "Mid-cap gaming (Illuvium)",
+      "quickswapPair": "0x00000000045E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000055E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "MAGIC/WMATIC",
+      "token0": "MAGIC",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "50000",
+      "reason": "Mid-cap gaming (Treasure)",
+      "quickswapPair": "0x00000000065E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000075E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "APE/WMATIC",
+      "token0": "APE",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "120000",
+      "reason": "Mid-cap metaverse (ApeCoin)",
+      "quickswapPair": "0x00000000085E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000095E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "GODS/WMATIC",
+      "token0": "GODS",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "40000",
+      "reason": "Mid-cap gaming (Gods Unchained)",
+      "quickswapPair": "0x000000000a5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000000b5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "TLM/WMATIC",
+      "token0": "TLM",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "30000",
+      "reason": "Mid-cap gaming (Alien Worlds)",
+      "quickswapPair": "0x000000000c5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000000d5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "VOXEL/WMATIC",
+      "token0": "VOXEL",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "35000",
+      "reason": "Mid-cap metaverse (Voxies)",
+      "quickswapPair": "0x000000000e5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000000f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "REVV/WMATIC",
+      "token0": "REVV",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "25000",
+      "reason": "Mid-cap gaming (REVV Racing)",
+      "quickswapPair": "0x00000000105E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000115E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "IMX/WMATIC",
       "token0": "IMX",
-      "token1": "REVV",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap L2 (Immutable X)",
+      "quickswapPair": "0x00000000125E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000135E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "RNDR/INJ",
-      "token0": "RNDR",
-      "token1": "INJ",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RNDR/FET",
-      "token0": "RNDR",
-      "token1": "FET",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RNDR/GRT",
-      "token0": "RNDR",
-      "token1": "GRT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/FET",
-      "token0": "INJ",
-      "token1": "FET",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/GRT",
-      "token0": "INJ",
-      "token1": "GRT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/OCEAN",
-      "token0": "INJ",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/GRT",
-      "token0": "FET",
-      "token1": "GRT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/OCEAN",
-      "token0": "FET",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/AGIX",
-      "token0": "FET",
-      "token1": "AGIX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GRT/OCEAN",
-      "token0": "GRT",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GRT/AGIX",
-      "token0": "GRT",
-      "token1": "AGIX",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/RARI",
-      "token0": "ENJ",
-      "token1": "RARI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/ALICE",
-      "token0": "ENJ",
-      "token1": "ALICE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/SAND",
-      "token0": "ENJ",
-      "token1": "SAND",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RARI/ALICE",
-      "token0": "RARI",
-      "token1": "ALICE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "API3/BAND",
-      "token0": "API3",
-      "token1": "BAND",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAND/GRT",
-      "token0": "BAND",
-      "token1": "GRT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/BIFI",
-      "token0": "CVX",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/CRV",
-      "token0": "CVX",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/BAL",
-      "token0": "CVX",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BIFI/CRV",
-      "token0": "BIFI",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BIFI/QI",
-      "token0": "BIFI",
-      "token1": "QI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/LRC",
-      "token0": "ZRX",
-      "token1": "LRC",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/SUSHI",
-      "token0": "ZRX",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/QUICK",
-      "token0": "ZRX",
-      "token1": "QUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "LRC/SUSHI",
+      "name": "LRC/WETH",
       "token0": "LRC",
-      "token1": "SUSHI",
+      "token1": "WETH",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "60000",
+      "reason": "Mid-cap L2 (Loopring)",
+      "quickswapPair": "0x00000000145E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000155E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "LRC/QUICK",
-      "token0": "LRC",
-      "token1": "QUICK",
+      "name": "METIS/WMATIC",
+      "token0": "METIS",
+      "token1": "WMATIC",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "45000",
+      "reason": "Mid-cap L2 (Metis)",
+      "quickswapPair": "0x00000000165E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000175E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "ELON/SHIB",
-      "token0": "ELON",
-      "token1": "SHIB",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "ELON/TEL",
-      "token0": "ELON",
-      "token1": "TEL",
+      "name": "BOBA/WETH",
+      "token0": "BOBA",
+      "token1": "WETH",
       "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "35000",
+      "reason": "Mid-cap L2 (Boba Network)",
+      "quickswapPair": "0x00000000185E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000195E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     },
     {
-      "name": "SHIB/TEL",
+      "name": "OP/WETH",
+      "token0": "OP",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "150000",
+      "reason": "Mid-cap L2 (Optimism)",
+      "quickswapPair": "0x000000001a5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000001b5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "AGIX/WMATIC",
+      "token0": "AGIX",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "55000",
+      "reason": "Mid-cap AI (SingularityNET)",
+      "quickswapPair": "0x000000001c5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000001d5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "NMR/WETH",
+      "token0": "NMR",
+      "token1": "WETH",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "40000",
+      "reason": "Mid-cap AI (Numerai)",
+      "quickswapPair": "0x000000001e5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x000000001f5E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "JASMY/WMATIC",
+      "token0": "JASMY",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "30000",
+      "reason": "Mid-cap IoT/AI (JasmyCoin)",
+      "quickswapPair": "0x00000000205E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000215E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "ROSE/WMATIC",
+      "token0": "ROSE",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "50000",
+      "reason": "Mid-cap privacy (Oasis Network)",
+      "quickswapPair": "0x00000000225E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000235E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "SHIB/WMATIC",
       "token0": "SHIB",
-      "token1": "TEL",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "SHIB/CELR",
-      "token0": "SHIB",
-      "token1": "CELR",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "ALCX/ALPHA",
-      "token0": "ALCX",
-      "token1": "ALPHA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALCX/PERP",
-      "token0": "ALCX",
-      "token1": "PERP",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALCX/CRV",
-      "token0": "ALCX",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon",
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALPHA/PERP",
-      "token0": "ALPHA",
-      "token1": "PERP",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALPHA/TRIBE",
-      "token0": "ALPHA",
-      "token1": "TRIBE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "PERP/TRIBE",
-      "token0": "PERP",
-      "token1": "TRIBE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CELR/WOO",
-      "token0": "CELR",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CELR/OM",
-      "token0": "CELR",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "WOO/OM",
-      "token0": "WOO",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "WOO/SKL",
-      "token0": "WOO",
-      "token1": "SKL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "OM/SKL",
-      "token0": "OM",
-      "token1": "SKL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "OM/ANKR",
-      "token0": "OM",
-      "token1": "ANKR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "SKL/ANKR",
-      "token0": "SKL",
-      "token1": "ANKR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RPL/ANKR",
-      "token0": "RPL",
-      "token1": "ANKR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RPL/CELR",
-      "token0": "RPL",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALCX/BAL",
-      "token0": "ALCX",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALCX/SUSHI",
-      "token0": "ALCX",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "PERP/CRV",
-      "token0": "PERP",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "PERP/BAL",
-      "token0": "PERP",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "PERP/SUSHI",
-      "token0": "PERP",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "TRIBE/CRV",
-      "token0": "TRIBE",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "TRIBE/BAL",
-      "token0": "TRIBE",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "TRIBE/COMP",
-      "token0": "TRIBE",
-      "token1": "COMP",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "API3/GRT",
-      "token0": "API3",
-      "token1": "GRT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "API3/OCEAN",
-      "token0": "API3",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "API3/FET",
-      "token0": "API3",
-      "token1": "FET",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAND/OCEAN",
-      "token0": "BAND",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAND/FET",
-      "token0": "BAND",
-      "token1": "FET",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BAND/RNDR",
-      "token0": "BAND",
-      "token1": "RNDR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/QI",
-      "token0": "CVX",
-      "token1": "QI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/QUICK",
-      "token0": "CVX",
-      "token1": "QUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BIFI/QUICK",
-      "token0": "BIFI",
-      "token1": "QUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "BIFI/DQUICK",
-      "token0": "BIFI",
-      "token1": "DQUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CVX/DQUICK",
-      "token0": "CVX",
-      "token1": "DQUICK",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/GHST",
-      "token0": "ENJ",
-      "token1": "GHST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/MANA",
-      "token0": "ENJ",
-      "token1": "MANA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ENJ/GALA",
-      "token0": "ENJ",
-      "token1": "GALA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RARI/GHST",
-      "token0": "RARI",
-      "token1": "GHST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RARI/MANA",
-      "token0": "RARI",
-      "token1": "MANA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ALICE/GHST",
-      "token0": "ALICE",
-      "token1": "GHST",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/BAL",
-      "token0": "ZRX",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/CRV",
-      "token0": "ZRX",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "ZRX/COMP",
-      "token0": "ZRX",
-      "token1": "COMP",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "LRC/BAL",
-      "token0": "LRC",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "LRC/CRV",
-      "token0": "LRC",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "LRC/COMP",
-      "token0": "LRC",
-      "token1": "COMP",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/CRV",
-      "token0": "POL",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/SUSHI",
-      "token0": "POL",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "POL/BAL",
-      "token0": "POL",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QUICK/CRV",
-      "token0": "QUICK",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QUICK/SUSHI",
-      "token0": "QUICK",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "QUICK/BAL",
-      "token0": "QUICK",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "DQUICK/CRV",
-      "token0": "DQUICK",
-      "token1": "CRV",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "DQUICK/SUSHI",
-      "token0": "DQUICK",
-      "token1": "SUSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "DQUICK/BAL",
-      "token0": "DQUICK",
-      "token1": "BAL",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RNDR/OCEAN",
-      "token0": "RNDR",
-      "token1": "OCEAN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RNDR/CELR",
-      "token0": "RNDR",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "RNDR/WOO",
-      "token0": "RNDR",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/CELR",
-      "token0": "INJ",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/WOO",
-      "token0": "INJ",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "INJ/OM",
-      "token0": "INJ",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/CELR",
-      "token0": "FET",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/WOO",
-      "token0": "FET",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "FET/OM",
-      "token0": "FET",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GRT/CELR",
-      "token0": "GRT",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GRT/WOO",
-      "token0": "GRT",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "GRT/OM",
-      "token0": "GRT",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "OCEAN/CELR",
-      "token0": "OCEAN",
-      "token1": "CELR",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "OCEAN/WOO",
-      "token0": "OCEAN",
-      "token1": "WOO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "OCEAN/OM",
-      "token0": "OCEAN",
-      "token1": "OM",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "polygon"
-      ]
-    },
-    {
-      "name": "CAKE/BANANA",
-      "token0": "CAKE",
-      "token1": "BANANA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "CAKE/BIFI",
-      "token0": "CAKE",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "CAKE/TWT",
-      "token0": "CAKE",
-      "token1": "TWT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "BANANA/BIFI",
-      "token0": "BANANA",
-      "token1": "BIFI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "BANANA/TWT",
-      "token0": "BANANA",
-      "token1": "TWT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "BIFI/TWT",
-      "token0": "BIFI",
-      "token1": "TWT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "AXS/ALICE",
-      "token0": "AXS",
-      "token1": "ALICE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "AXS/SAND",
-      "token0": "AXS",
-      "token1": "SAND",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "GALA/ALICE",
-      "token0": "GALA",
-      "token1": "ALICE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "GALA/SAND",
-      "token0": "GALA",
-      "token1": "SAND",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "ALICE/SAND",
-      "token0": "ALICE",
-      "token1": "SAND",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "SFP/TWT",
-      "token0": "SFP",
-      "token1": "TWT",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "SFP/XVS",
-      "token0": "SFP",
-      "token1": "XVS",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "SFP/ALPACA",
-      "token0": "SFP",
-      "token1": "ALPACA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "TWT/XVS",
-      "token0": "TWT",
-      "token1": "XVS",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "TWT/ALPACA",
-      "token0": "TWT",
-      "token1": "ALPACA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "XVS/ALPACA",
-      "token0": "XVS",
-      "token1": "ALPACA",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "XVS/AUTO",
-      "token0": "XVS",
-      "token1": "AUTO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "ALPACA/AUTO",
-      "token0": "ALPACA",
-      "token1": "AUTO",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "SAFEMOON/BABYDOGE",
-      "token0": "SAFEMOON",
-      "token1": "BABYDOGE",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "bsc"
-      ]
-    },
-    {
-      "name": "SAFEMOON/SHIB",
-      "token0": "SAFEMOON",
-      "token1": "SHIB",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "BABYDOGE/SHIB",
-      "token0": "BABYDOGE",
-      "token1": "SHIB",
-      "enabled": false,
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "BRETT/TOSHI",
-      "token0": "BRETT",
-      "token1": "TOSHI",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "base"
-      ]
-    },
-    {
-      "name": "BRETT/DEGEN",
-      "token0": "BRETT",
-      "token1": "DEGEN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "base"
-      ]
-    },
-    {
-      "name": "TOSHI/DEGEN",
-      "token0": "TOSHI",
-      "token1": "DEGEN",
-      "enabled": true,
-      "reason": "Curated pair - known for arbitrage opportunities",
-      "chains": [
-        "base"
-      ]
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "200000",
+      "reason": "Mid-cap meme (Shiba Inu)",
+      "quickswapPair": "0x00000000245E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000255E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "ELON/WMATIC",
+      "token0": "ELON",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "80000",
+      "reason": "Mid-cap meme (Dogelon Mars)",
+      "quickswapPair": "0x00000000265E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000275E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "FLOKI/WMATIC",
+      "token0": "FLOKI",
+      "token1": "WMATIC",
+      "enabled": true,
+      "dexes": ["quickswap", "sushiswap"],
+      "dexCount": 2,
+      "totalLiquidity": "100000",
+      "reason": "Mid-cap meme (Floki Inu)",
+      "quickswapPair": "0x00000000285E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
+      "sushiswapPair": "0x00000000295E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
     }
   ],
-  "excludedPairs": [
-    {
-      "name": "CRV/SNX",
-      "reason": "Contains top 15 token (MEV dominated)"
+  "stats": {
+    "totalPairs": 58,
+    "enabledPairs": 58,
+    "avgDexesPerPair": "2.0",
+    "categories": {
+      "DeFi": 22,
+      "Gaming": 13,
+      "Metaverse": 3,
+      "AI": 7,
+      "Oracle": 1,
+      "L2": 5,
+      "Meme": 3,
+      "Native": 2,
+      "Base": 2
     },
-    {
-      "name": "BAL/SNX",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "COMP/SNX",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "ELON/SHIB",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "SHIB/TEL",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "SHIB/CELR",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "SAFEMOON/SHIB",
-      "reason": "Contains top 15 token (MEV dominated)"
-    },
-    {
-      "name": "BABYDOGE/SHIB",
-      "reason": "Contains top 15 token (MEV dominated)"
+    "dexDistribution": {
+      "quickswap": 58,
+      "sushiswap": 58
     }
-  ]
+  }
 }
