@@ -53,7 +53,7 @@ export const MULTICHAIN_CONFIG: { [chainId: number]: ChainConfig } = {
       quickswap: {
         name: "QuickSwap",
         router: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
-        fee: 30, // 0.3%
+        fee: 25, // 0.25% (QuickSwap V2 actual fee)
         dailyVolume: "$50M+",
       },
       sushiswap: {

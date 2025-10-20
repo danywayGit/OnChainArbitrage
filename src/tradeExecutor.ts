@@ -222,11 +222,12 @@ export class TradeExecutor {
         };
       }
       
-      // Require minimum $1 profit after all costs
-      if (netProfitUsd < 1.0) {
+      // Require minimum profit after all costs (lowered to capture more opportunities)
+      const MIN_NET_PROFIT_USD = 0.25; // $0.25 minimum net profit
+      if (netProfitUsd < MIN_NET_PROFIT_USD) {
         return {
           profitable: false,
-          reason: `Net profit ($${netProfitUsd.toFixed(2)}) < $1.00 minimum threshold`
+          reason: `Net profit ($${netProfitUsd.toFixed(2)}) < $${MIN_NET_PROFIT_USD.toFixed(2)} minimum threshold`
         };
       }
       

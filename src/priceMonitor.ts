@@ -313,12 +313,14 @@ export class PriceMonitor {
       // - Good: 2% - 5% (very rare, MEV bots capture these instantly)
       // - Impossible: >10% (market would instantly correct this)
       //
-      // If we see >3% profit, it means:
+      // If we see >2.5% profit, it means:
       // 1. Price data is wrong (pool doesn't exist)
-      // 2. Trade will fail with INSUFFICIENT_OUTPUT_AMOUNT
-      // 3. Wasting gas trying to execute
+      // 2. Fake/honeypot token (6-10% spreads are NOT real)
+      // 3. Trade will fail with INSUFFICIENT_OUTPUT_AMOUNT
+      // 4. Wasting gas trying to execute
       //
-      const MAX_REALISTIC_PROFIT = 3; // 3% is already extremely high for real arbitrage
+      // Set to 2.5% to filter out fake pools while keeping real opportunities
+      const MAX_REALISTIC_PROFIT = 2.5; 
       
       if (profitPercent > MAX_REALISTIC_PROFIT) {
         logger.debug(
@@ -336,11 +338,14 @@ export class PriceMonitor {
       const gasLimit = 300000n;
       const gasPrice = await this.provider.getFeeData();
       const gasCostWei = gasLimit * (gasPrice.gasPrice || 0n);
-      const gasCostEth = parseFloat(ethers.formatEther(gasCostWei));
+      const gasCostNative = parseFloat(ethers.formatEther(gasCostWei));
       
-      // Assume ETH = $2000 for gas cost calculation
-      const ethPriceUsd = 2000;
-      const estimatedGasCost = gasCostEth * ethPriceUsd;
+      // Network-specific native token prices (for accurate gas cost calculation)
+      const nativePriceUsd = config.network.name === 'polygon' ? 0.40 : // MATIC price
+                             config.network.name === 'bsc' ? 600 :     // BNB price
+                             config.network.name === 'base' ? 2000 :    // ETH on Base
+                             2000; // Default to ETH price for other chains
+      const estimatedGasCost = gasCostNative * nativePriceUsd;
 
       // Calculate net profit after gas costs
       const netProfit = profitUsd - estimatedGasCost;

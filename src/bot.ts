@@ -313,9 +313,9 @@ class ArbitrageBot {
       logger.success("Bot started successfully!");
       logger.info("Monitoring for arbitrage opportunities...");
       
-      // Start the pair update scheduler (auto-updates every 4 hours)
-      logger.info("⏰ Starting pair update scheduler (every 4 hours)...");
-      startScheduler();
+      // DISABLED: Pair update scheduler (was overwriting manual pairs)
+      // logger.info("⏰ Starting pair update scheduler (every 4 hours)...");
+      // startScheduler();
       
       logger.separator();
 

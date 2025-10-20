@@ -353,8 +353,8 @@ export const config = {
   // ============================================================================
   trading: {
     // Minimum profit threshold (in basis points)
-    // 30 bps = 0.3% profit minimum (lower because gas is cheap!)
-    minProfitBps: 30,
+    // 10 bps = 0.1% profit minimum on-chain (very aggressive, allows slippage)
+    minProfitBps: 10,
 
     // Maximum gas price willing to pay (in Gwei)
     // Polygon gas is MUCH cheaper than Ethereum
@@ -362,10 +362,10 @@ export const config = {
 
     // Maximum trade size (in USD equivalent)
     // Start small on mainnet!
-    maxTradeSize: 1000, // Start with $1000 max
+    maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "1000", 10),
 
     // Minimum trade size (in USD equivalent)
-    minTradeSize: 50, // Lower minimum for testing
+    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "50", 10),
 
     // Slippage tolerance (in basis points)
     // 50 bps = 0.5% slippage tolerance

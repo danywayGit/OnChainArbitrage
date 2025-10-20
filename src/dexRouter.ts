@@ -6,6 +6,7 @@
  */
 
 import { config } from "./config";
+import { getChainConfig } from "./multichainConfig";
 
 // ============================================================================
 // DEX ROUTER MAPPING
@@ -102,13 +103,25 @@ export function getDexType(dexName: string): "uniswapV2" | "curve" | "balancer" 
 
 /**
  * Estimate swap fee for a DEX (in basis points)
+ * Returns actual DEX-specific fees from config
  */
 export function getDexFee(dexName: string): number {
+  // Get network-specific config with actual DEX fees
+  const chainConfig = getChainConfig(config.network.chainId);
+  
+  if (chainConfig && chainConfig.dexes) {
+    const dex = chainConfig.dexes[dexName.toLowerCase()];
+    if (dex && dex.fee) {
+      return dex.fee; // Use actual fee from config (QuickSwap=25, SushiSwap=30)
+    }
+  }
+  
+  // Fallback to type-based estimation if not in config
   const dexType = getDexType(dexName);
   
   switch (dexType) {
     case "uniswapV2":
-      return 30; // 0.3% = 30 bps
+      return 30; // 0.3% = 30 bps (conservative fallback)
     case "uniswapV3":
       return 5; // Can be 0.05%, 0.3%, or 1% - using lowest
     case "curve":
