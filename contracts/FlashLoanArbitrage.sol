@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./interfaces/IUniswapV2Router.sol";
+import "./interfaces/IUniswapV3Router.sol";
 
 /**
  * @title FlashLoanArbitrage
@@ -39,6 +40,7 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
 
     // State variables
     mapping(address => bool) public authorizedExecutors;
+    mapping(address => bool) public isUniswapV3Router; // Track which routers are V3
     uint256 public totalProfitGenerated;
     uint256 public totalTradesExecuted;
     bool public paused;
@@ -117,8 +119,10 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
             address dexRouter2,
             address[] memory path1,
             address[] memory path2,
-            uint256 minProfitBps
-        ) = abi.decode(params, (address, address, address[], address[], uint256));
+            uint256 minProfitBps,
+            uint24 feeTier1,
+            uint24 feeTier2
+        ) = abi.decode(params, (address, address, address[], address[], uint256, uint24, uint24));
 
         // Execute the arbitrage logic
         uint256 profit = _executeArbitrageLogic(
@@ -127,7 +131,9 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
             dexRouter1,
             dexRouter2,
             path1,
-            path2
+            path2,
+            feeTier1,
+            feeTier2
         );
 
         // Calculate minimum required profit
@@ -151,12 +157,15 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
     /**
      * @notice Internal function to execute arbitrage logic
      * @dev Executes two swaps across different DEXes to capture price differences
+     * @dev Supports both Uniswap V2 and V3 protocols
      * @param asset The flash loaned asset address
      * @param amount The amount borrowed
      * @param dexRouter1 Address of the first DEX router (buy DEX)
      * @param dexRouter2 Address of the second DEX router (sell DEX)
      * @param path1 Token path for the first swap
      * @param path2 Token path for the second swap
+     * @param feeTier1 Fee tier for V3 swap on DEX1 (0 for V2)
+     * @param feeTier2 Fee tier for V3 swap on DEX2 (0 for V2)
      * @return profit The profit generated from the arbitrage (in the borrowed asset)
      */
     function _executeArbitrageLogic(
@@ -165,7 +174,9 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
         address dexRouter1,
         address dexRouter2,
         address[] memory path1,
-        address[] memory path2
+        address[] memory path2,
+        uint24 feeTier1,
+        uint24 feeTier2
     ) internal returns (uint256 profit) {
         // Validate paths
         require(path1.length >= 2, "Invalid path1 length");
@@ -177,39 +188,53 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
         uint256 initialBalance = IERC20(asset).balanceOf(address(this));
 
         // ========== STEP 1: First Swap (Buy on DEX 1) ==========
-        // Approve DEX Router 1 to spend our borrowed tokens
-        IERC20(asset).forceApprove(dexRouter1, amount);
-
-        // Execute first swap
-        uint256[] memory amounts1 = IUniswapV2Router(dexRouter1).swapExactTokensForTokens(
-            amount,
-            0, // Accept any amount (in production, calculate minimum with slippage)
-            path1,
-            address(this),
-            block.timestamp + 300 // 5 minute deadline
-        );
-
-        // Get the intermediate token and amount received
+        uint256 intermediateAmount;
         address intermediateToken = path1[path1.length - 1];
-        uint256 intermediateAmount = amounts1[amounts1.length - 1];
+
+        if (isUniswapV3Router[dexRouter1]) {
+            // Execute Uniswap V3 swap
+            intermediateAmount = _executeV3Swap(
+                dexRouter1,
+                path1[0],
+                intermediateToken,
+                feeTier1,
+                amount,
+                0 // Accept any amount (slippage handled off-chain)
+            );
+        } else {
+            // Execute Uniswap V2 swap
+            intermediateAmount = _executeV2Swap(
+                dexRouter1,
+                amount,
+                0, // Accept any amount (slippage handled off-chain)
+                path1
+            );
+        }
 
         require(intermediateAmount > 0, "First swap failed");
 
         // ========== STEP 2: Second Swap (Sell on DEX 2) ==========
-        // Approve DEX Router 2 to spend the intermediate tokens
-        IERC20(intermediateToken).forceApprove(dexRouter2, intermediateAmount);
+        uint256 finalAmount;
 
-        // Execute second swap
-        uint256[] memory amounts2 = IUniswapV2Router(dexRouter2).swapExactTokensForTokens(
-            intermediateAmount,
-            amount, // Must get at least the borrowed amount back
-            path2,
-            address(this),
-            block.timestamp + 300 // 5 minute deadline
-        );
-
-        // Get final amount received
-        uint256 finalAmount = amounts2[amounts2.length - 1];
+        if (isUniswapV3Router[dexRouter2]) {
+            // Execute Uniswap V3 swap
+            finalAmount = _executeV3Swap(
+                dexRouter2,
+                intermediateToken,
+                asset,
+                feeTier2,
+                intermediateAmount,
+                amount // Must get at least the borrowed amount back
+            );
+        } else {
+            // Execute Uniswap V2 swap
+            finalAmount = _executeV2Swap(
+                dexRouter2,
+                intermediateAmount,
+                amount, // Must get at least the borrowed amount back
+                path2
+            );
+        }
 
         require(finalAmount > amount, "Arbitrage not profitable");
 
@@ -218,6 +243,72 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
         profit = finalBalance - initialBalance;
 
         return profit;
+    }
+
+    /**
+     * @notice Execute a Uniswap V2 style swap
+     * @param router The V2 router address
+     * @param amountIn Amount of input tokens
+     * @param amountOutMin Minimum amount of output tokens
+     * @param path Token swap path
+     * @return amountOut Amount of output tokens received
+     */
+    function _executeV2Swap(
+        address router,
+        uint256 amountIn,
+        uint256 amountOutMin,
+        address[] memory path
+    ) internal returns (uint256 amountOut) {
+        // Approve router to spend tokens
+        IERC20(path[0]).forceApprove(router, amountIn);
+
+        // Execute swap
+        uint256[] memory amounts = IUniswapV2Router(router).swapExactTokensForTokens(
+            amountIn,
+            amountOutMin,
+            path,
+            address(this),
+            block.timestamp + 300 // 5 minute deadline
+        );
+
+        amountOut = amounts[amounts.length - 1];
+    }
+
+    /**
+     * @notice Execute a Uniswap V3 style swap
+     * @param router The V3 router address
+     * @param tokenIn Input token address
+     * @param tokenOut Output token address
+     * @param fee Fee tier (500 = 0.05%, 3000 = 0.3%, 10000 = 1%)
+     * @param amountIn Amount of input tokens
+     * @param amountOutMin Minimum amount of output tokens
+     * @return amountOut Amount of output tokens received
+     */
+    function _executeV3Swap(
+        address router,
+        address tokenIn,
+        address tokenOut,
+        uint24 fee,
+        uint256 amountIn,
+        uint256 amountOutMin
+    ) internal returns (uint256 amountOut) {
+        // Approve router to spend tokens
+        IERC20(tokenIn).forceApprove(router, amountIn);
+
+        // Prepare swap parameters
+        IUniswapV3Router.ExactInputSingleParams memory params = IUniswapV3Router.ExactInputSingleParams({
+            tokenIn: tokenIn,
+            tokenOut: tokenOut,
+            fee: fee,
+            recipient: address(this),
+            deadline: block.timestamp + 300, // 5 minute deadline
+            amountIn: amountIn,
+            amountOutMinimum: amountOutMin,
+            sqrtPriceLimitX96: 0 // No price limit
+        });
+
+        // Execute swap
+        amountOut = IUniswapV3Router(router).exactInputSingle(params);
     }
 
     /**
@@ -230,6 +321,18 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
         bool authorized
     ) external onlyOwner {
         authorizedExecutors[executor] = authorized;
+    }
+
+    /**
+     * @notice Mark a router as Uniswap V3 compatible
+     * @param router Address of the router
+     * @param isV3 Boolean indicating if the router is V3
+     */
+    function setUniswapV3Router(
+        address router,
+        bool isV3
+    ) external onlyOwner {
+        isUniswapV3Router[router] = isV3;
     }
 
     /**

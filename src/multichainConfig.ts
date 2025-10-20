@@ -62,6 +62,12 @@ export const MULTICHAIN_CONFIG: { [chainId: number]: ChainConfig } = {
         fee: 30, // 0.3%
         dailyVolume: "$20M+",
       },
+      uniswapv3: {
+        name: "Uniswap V3",
+        router: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+        fee: 5, // 0.05% (lowest tier - stablecoins) - can also be 30 or 100 bps
+        dailyVolume: "$100M+",
+      },
       apeswap: {
         name: "ApeSwap",
         router: "0xC0788A3aD43d79aa53B09c2EaCc313A787d1d607",

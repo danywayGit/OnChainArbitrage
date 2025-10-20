@@ -34,6 +34,7 @@ export interface DexPrice {
   price: number; // Price of token0 in terms of token1
   liquidity: number; // Available liquidity in USD
   timestamp: number;
+  feeTier?: number; // V3 fee tier (500, 3000, 10000) - optional for V2 DEXes
 }
 
 export interface ArbitrageOpportunity {
@@ -87,6 +88,46 @@ const ERC20_ABI = [
 ];
 
 // ============================================================================
+// UNISWAP V3 QUOTER ABI (For price quotes)
+// ============================================================================
+
+const UNISWAP_V3_QUOTER_ABI = [
+  "function quoteExactInputSingle(address tokenIn, address tokenOut, uint24 fee, uint256 amountIn, uint160 sqrtPriceLimitX96) external returns (uint256 amountOut)",
+];
+
+// Uniswap V3 Quoter contract address on Polygon
+const UNISWAP_V3_QUOTER_ADDRESS = "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6";
+
+// V3 Fee tiers (in hundredths of a bip, so 500 = 0.05%)
+const V3_FEE_TIERS = [
+  500,   // 0.05% - Stablecoins and very correlated pairs
+  3000,  // 0.3%  - Most pairs (same as V2)
+  10000, // 1%    - Exotic pairs
+];
+
+// ============================================================================
+// UNISWAP V3 POOL ABI (For liquidity checking)
+// ============================================================================
+
+const UNISWAP_V3_POOL_ABI = [
+  "function liquidity() external view returns (uint128)",
+  "function slot0() external view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)",
+  "function token0() external view returns (address)",
+  "function token1() external view returns (address)",
+];
+
+// ============================================================================
+// UNISWAP V3 FACTORY ABI (For getting pool address)
+// ============================================================================
+
+const UNISWAP_V3_FACTORY_ABI = [
+  "function getPool(address tokenA, address tokenB, uint24 fee) external view returns (address pool)",
+];
+
+// Uniswap V3 Factory on Polygon
+const UNISWAP_V3_FACTORY_ADDRESS = "0x1F98431c8aD98523631AE4a59f267346ea31F984";
+
+// ============================================================================
 // PRICE MONITOR CLASS
 // ============================================================================
 
@@ -94,6 +135,8 @@ export class PriceMonitor {
   private provider: ethers.JsonRpcProvider;
   private pairs: TokenPair[];
   private routerContract: ethers.Contract;
+  private v3QuoterContract: ethers.Contract;
+  private v3FactoryContract: ethers.Contract;
 
   constructor(provider: ethers.JsonRpcProvider) {
     this.provider = provider;
@@ -103,6 +146,21 @@ export class PriceMonitor {
       UNISWAP_V2_ROUTER_ABI,
       provider
     );
+    
+    // Initialize Uniswap V3 contracts
+    this.v3QuoterContract = new ethers.Contract(
+      UNISWAP_V3_QUOTER_ADDRESS,
+      UNISWAP_V3_QUOTER_ABI,
+      provider
+    );
+    
+    this.v3FactoryContract = new ethers.Contract(
+      UNISWAP_V3_FACTORY_ADDRESS,
+      UNISWAP_V3_FACTORY_ABI,
+      provider
+    );
+    
+    logger.info("✅ Uniswap V3 Quoter initialized for better price discovery");
   }
 
   /**
@@ -185,13 +243,139 @@ export class PriceMonitor {
   }
 
   /**
-   * Get price from a DEX using Uniswap V2 formula
+   * Get liquidity from Uniswap V3 pool
+   * 
+   * V3 uses concentrated liquidity, so we need to:
+   * 1. Find the pool for each fee tier
+   * 2. Get the current liquidity value
+   * 3. Estimate USD value based on sqrtPriceX96
+   */
+  private async getV3Liquidity(
+    token0Address: string,
+    token1Address: string,
+    feeTier: number,
+    decimals0: number,
+    decimals1: number
+  ): Promise<number> {
+    try {
+      // Get pool address for this fee tier
+      const poolAddress = await this.v3FactoryContract.getPool(
+        token0Address,
+        token1Address,
+        feeTier
+      );
+      
+      // Check if pool exists
+      if (poolAddress === ethers.ZeroAddress) {
+        return 0; // No pool for this fee tier
+      }
+      
+      // Get liquidity from pool
+      const pool = new ethers.Contract(poolAddress, UNISWAP_V3_POOL_ABI, this.provider);
+      const liquidity = await pool.liquidity();
+      const slot0 = await pool.slot0();
+      
+      // V3 uses sqrtPriceX96 for price representation
+      // For simplicity, estimate liquidity based on the liquidity value
+      // More accurate: decode sqrtPriceX96 to actual price and calculate TVL
+      const liquidityFloat = parseFloat(ethers.formatUnits(liquidity, decimals1));
+      
+      // Conservative estimate: liquidity value represents available tokens
+      const estimatedLiquidityUSD = liquidityFloat * 0.5; // Very conservative multiplier
+      
+      return estimatedLiquidityUSD;
+    } catch (error) {
+      // Pool doesn't exist or error querying
+      return 0;
+    }
+  }
+
+  /**
+   * Get price from Uniswap V3 using Quoter
+   * 
+   * V3 DIFFERENCES FROM V2:
+   * - Uses Quoter contract for price quotes (not router)
+   * - Must specify fee tier (500, 3000, or 10000)
+   * - Tries all fee tiers and returns best price
+   * - Returns actual fee tier used for accurate fee calculation
+   */
+  private async getPriceFromV3(
+    token0Address: string,
+    token1Address: string,
+    decimals0: number,
+    decimals1: number
+  ): Promise<{ price: number; liquidity: number; feeTier: number } | null> {
+    try {
+      // Amount to quote: 1 token (scaled by decimals)
+      const amountIn = ethers.parseUnits("1", decimals0);
+      
+      // Try all fee tiers and find best price
+      let bestPrice = 0;
+      let bestLiquidity = 0;
+      let bestFeeTier = 3000; // Default to 0.3%
+      
+      for (const feeTier of V3_FEE_TIERS) {
+        try {
+          // Get quote for this fee tier
+          const amountOut = await this.v3QuoterContract.quoteExactInputSingle.staticCall(
+            token0Address,
+            token1Address,
+            feeTier,
+            amountIn,
+            0 // No price limit
+          );
+          
+          // Convert to human-readable price
+          const price = parseFloat(ethers.formatUnits(amountOut, decimals1));
+          
+          // Get liquidity for this fee tier
+          const liquidity = await this.getV3Liquidity(
+            token0Address,
+            token1Address,
+            feeTier,
+            decimals0,
+            decimals1
+          );
+          
+          // Track best price (higher is better for selling)
+          if (price > bestPrice && liquidity > 0) {
+            bestPrice = price;
+            bestLiquidity = liquidity;
+            bestFeeTier = feeTier;
+          }
+          
+          logger.debug(`[V3] Fee tier ${feeTier / 10000}%: price=${price.toFixed(6)}, liquidity=$${liquidity.toFixed(0)}`);
+        } catch (error) {
+          // Pool doesn't exist for this fee tier, continue to next
+          logger.debug(`[V3] No pool for fee tier ${feeTier / 10000}%`);
+        }
+      }
+      
+      // Return best price found across all fee tiers
+      if (bestPrice > 0) {
+        logger.debug(`[V3] ✅ Best: ${bestFeeTier / 10000}% tier with price=${bestPrice.toFixed(6)}, liquidity=$${bestLiquidity.toFixed(0)}`);
+        return {
+          price: bestPrice,
+          liquidity: bestLiquidity,
+          feeTier: bestFeeTier
+        };
+      }
+      
+      return null; // No pools found
+    } catch (error) {
+      logger.debug(`[V3] Error getting price: ${error}`);
+      return null;
+    }
+  }
+
+  /**
+   * Get price from a DEX using Uniswap V2 formula OR V3 Quoter
    * 
    * HOW IT WORKS:
-   * 1. Calls getAmountsOut on the DEX router
-   * 2. Passes in 1 token (scaled by decimals) and the trading path
-   * 3. Returns how many of token1 you'd get for 1 token0
-   * 4. NOW ALSO: Gets REAL liquidity from reserves
+   * 1. Detects if DEX is Uniswap V3
+   * 2. For V3: Uses Quoter contract to get best price across fee tiers
+   * 3. For V2: Calls getAmountsOut on the DEX router
+   * 4. Gets REAL liquidity from reserves/pools
    */
   private async getPriceFromDex(
     dexName: string,
@@ -200,6 +384,67 @@ export class PriceMonitor {
     token1Address: string
   ): Promise<DexPrice> {
     try {
+      // ============================================================================
+      // DETECT UNISWAP V3 AND USE QUOTER
+      // ============================================================================
+      
+      if (dexName.toLowerCase().includes("uniswap") || dexName.toLowerCase() === "uniswapv3") {
+        logger.debug(`[V3] Detected Uniswap V3, using Quoter for ${dexName}`);
+        
+        // Get token decimals
+        const token0 = new ethers.Contract(token0Address, ERC20_ABI, this.provider);
+        const token1 = new ethers.Contract(token1Address, ERC20_ABI, this.provider);
+        
+        let decimals0: number;
+        let decimals1: number;
+        
+        try {
+          decimals0 = await token0.decimals();
+          decimals1 = await token1.decimals();
+        } catch (e) {
+          // Token doesn't exist
+          return {
+            dexName,
+            price: 0,
+            liquidity: 0,
+            timestamp: Date.now(),
+          };
+        }
+        
+        // Get V3 price using Quoter
+        const v3Result = await this.getPriceFromV3(
+          token0Address,
+          token1Address,
+          decimals0,
+          decimals1
+        );
+        
+        if (v3Result && v3Result.price > 0) {
+          logger.debug(`[V3] ✅ ${dexName}: price=${v3Result.price.toFixed(6)}, fee=${v3Result.feeTier / 10000}%, liquidity=$${v3Result.liquidity.toFixed(0)}`);
+          
+          return {
+            dexName: `${dexName}`,
+            price: v3Result.price,
+            liquidity: v3Result.liquidity,
+            feeTier: v3Result.feeTier, // Include fee tier for accurate fee calculation
+            timestamp: Date.now(),
+          };
+        } else {
+          // No V3 pools found
+          logger.debug(`[V3] No pools found for ${dexName}`);
+          return {
+            dexName,
+            price: 0,
+            liquidity: 0,
+            timestamp: Date.now(),
+          };
+        }
+      }
+      
+      // ============================================================================
+      // UNISWAP V2 LOGIC (QuickSwap, SushiSwap, etc.)
+      // ============================================================================
+      
       const router = new ethers.Contract(
         routerAddress,
         UNISWAP_V2_ROUTER_ABI,
@@ -315,8 +560,8 @@ export class PriceMonitor {
   async getPricesForPair(pair: TokenPair): Promise<DexPrice[]> {
     logger.debug(`Fetching prices for ${pair.name}...`);
 
-    // Query multiple LOW-FEE Uniswap V2-compatible DEX routers on Polygon
-    // All have 0.3% fees - focusing on verified pairs with real liquidity
+    // Query multiple DEX routers on Polygon
+    // QuickSwap: 0.25%, SushiSwap: 0.3%, Uniswap V3: 0.05%-1% (tiered)
     const prices = await Promise.all([
       this.getPriceFromDex(
         "quickswap",
@@ -327,6 +572,12 @@ export class PriceMonitor {
       this.getPriceFromDex(
         "sushiswap",
         config.dexes.sushiswap,
+        pair.token0Address,
+        pair.token1Address
+      ),
+      this.getPriceFromDex(
+        "uniswapv3",
+        config.dexes.uniswapv3,
         pair.token0Address,
         pair.token1Address
       ),

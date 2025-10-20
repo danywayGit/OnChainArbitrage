@@ -132,7 +132,6 @@ export const config = {
     
     // === TIER 16: NFT & COLLECTIBLES ===
     RARI: "0x780053837cE2CeEaD2A90D9151aA21FC89eD49c2",   // Rarible
-    NFTX: "0xb9A5d4B3d4a5c5c5d5d5d5d5d5d5d5d5d5d5d5d5", // NFTX (placeholder)
     
     // === TIER 17: REAL WORLD ASSETS ===
     PAXG: "0x553d3D295e0f695B9228246232eDF400ed3560B5",   // PAX Gold
@@ -239,7 +238,7 @@ export const config = {
   // ============================================================================
   // DEX ROUTER ADDRESSES (Polygon Mainnet)
   // ============================================================================
-  // LOW-FEE DEXes ON POLYGON (0.3% fee each)
+  // LOW-FEE DEXes ON POLYGON
   // ============================================================================
   dexes: {
     // Primary Uniswap V2 Router (using QuickSwap - most popular on Polygon)
@@ -250,12 +249,17 @@ export const config = {
     // ============================================================================
     
     // QuickSwap (Polygon's native Uniswap V2 fork) - MOST POPULAR ✅
-    // Fee: 0.3% | Gas: Low | Liquidity: Highest | Volume: $50M+ daily
+    // Fee: 0.25% | Gas: Low | Liquidity: Highest | Volume: $50M+ daily
     quickswap: "0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff",
     
     // SushiSwap on Polygon ✅
     // Fee: 0.3% | Gas: Low | Liquidity: High | Volume: $20M+ daily
     sushiswap: "0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506",
+    
+    // Uniswap V3 on Polygon ✅ NEW!
+    // Fee: 0.05%-1% (tiered) | Gas: Medium | Liquidity: Very High | Volume: $100M+ daily
+    // BENEFITS: Lower fees (0.05% for stablecoins), concentrated liquidity = better prices
+    uniswapv3: "0xE592427A0AEce92De3Edee1F18E0157C05861564",
     
     // ApeSwap (BSC-originated, now on Polygon) ✅ NEW!
     // Fee: 0.2% | Gas: Low | Liquidity: Medium | Volume: $10M+ daily

@@ -1,23 +1,14 @@
 {
-  "lastUpdated": "2025-10-20T19:35:00.000Z",
-  "source": "mid_cap_tokens_focused",
-  "criteria": {
-    "excludeStablecoins": true,
-    "excludeTop10": true,
-    "focusOnMidCap": true,
-    "categories": ["DeFi", "Gaming", "Metaverse", "Oracle", "L2"],
-    "minLiquidityPerDex": "0.0001 ETH equivalent",
-    "minDexCount": 2,
-    "totalDexesChecked": 2,
-    "dexes": ["quickswap", "sushiswap"]
-  },
   "pairs": [
     {
       "name": "GHST/WMATIC",
       "token0": "GHST",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "180000",
       "reason": "Mid-cap gaming token (Aavegotchi)",
@@ -29,7 +20,10 @@
       "token0": "CRV",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "47391",
       "reason": "Mid-cap DeFi (Curve)",
@@ -41,7 +35,10 @@
       "token0": "CRV",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "250000",
       "reason": "Mid-cap DeFi pair",
@@ -53,7 +50,10 @@
       "token0": "SUSHI",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "9266",
       "reason": "Mid-cap DeFi (SushiSwap)",
@@ -65,7 +65,10 @@
       "token0": "SUSHI",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "180000",
       "reason": "Mid-cap DeFi pair",
@@ -77,7 +80,10 @@
       "token0": "BAL",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "84",
       "reason": "Mid-cap DeFi (Balancer)",
@@ -89,7 +95,10 @@
       "token0": "BAL",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "120000",
       "reason": "Mid-cap DeFi pair",
@@ -101,7 +110,10 @@
       "token0": "UNI",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "3228",
       "reason": "Mid-cap DeFi (Uniswap)",
@@ -113,7 +125,10 @@
       "token0": "UNI",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "300000",
       "reason": "Mid-cap DeFi pair",
@@ -125,7 +140,10 @@
       "token0": "QUICK",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap native DEX token",
@@ -137,7 +155,10 @@
       "token0": "SAND",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "200000",
       "reason": "Mid-cap metaverse token",
@@ -149,7 +170,10 @@
       "token0": "MANA",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "150000",
       "reason": "Mid-cap metaverse (Decentraland)",
@@ -161,7 +185,10 @@
       "token0": "AXS",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "120000",
       "reason": "Mid-cap gaming (Axie Infinity)",
@@ -173,7 +200,10 @@
       "token0": "GALA",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "90000",
       "reason": "Mid-cap gaming (Gala Games)",
@@ -185,7 +215,10 @@
       "token0": "ENJ",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "70000",
       "reason": "Mid-cap gaming (Enjin)",
@@ -197,7 +230,10 @@
       "token0": "ALICE",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "50000",
       "reason": "Mid-cap gaming (My Neighbor Alice)",
@@ -209,7 +245,10 @@
       "token0": "GRT",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap oracle/indexing (The Graph)",
@@ -221,7 +260,10 @@
       "token0": "SNX",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "60000",
       "reason": "Mid-cap DeFi (Synthetix)",
@@ -233,7 +275,10 @@
       "token0": "MKR",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "50000",
       "reason": "Mid-cap DeFi (MakerDAO)",
@@ -245,7 +290,10 @@
       "token0": "COMP",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "80000",
       "reason": "Mid-cap DeFi (Compound)",
@@ -257,7 +305,10 @@
       "token0": "YFI",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap DeFi (Yearn Finance)",
@@ -269,7 +320,10 @@
       "token0": "CVX",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "80000",
       "reason": "Mid-cap DeFi (Convex Finance)",
@@ -281,7 +335,10 @@
       "token0": "RNDR",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap AI/Render token",
@@ -293,7 +350,10 @@
       "token0": "FET",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "60000",
       "reason": "Mid-cap AI (Fetch.ai)",
@@ -305,7 +365,10 @@
       "token0": "OCEAN",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "70000",
       "reason": "Mid-cap AI/Data (Ocean Protocol)",
@@ -317,7 +380,10 @@
       "token0": "QI",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "120000",
       "reason": "Mid-cap DeFi (QiDao)",
@@ -329,7 +395,10 @@
       "token0": "MAI",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "250000",
       "reason": "Mid-cap DeFi (QiDao stablecoin backing)",
@@ -341,7 +410,10 @@
       "token0": "WMATIC",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "3866769",
       "reason": "High volume base pair",
@@ -353,7 +425,10 @@
       "token0": "1INCH",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "50000",
       "reason": "Mid-cap DeFi aggregator",
@@ -365,7 +440,10 @@
       "token0": "LDO",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "60000",
       "reason": "Mid-cap DeFi (Lido)",
@@ -377,7 +455,10 @@
       "token0": "RPL",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "40000",
       "reason": "Mid-cap DeFi (Rocket Pool)",
@@ -389,7 +470,10 @@
       "token0": "FXS",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "35000",
       "reason": "Mid-cap DeFi (Frax)",
@@ -401,7 +485,10 @@
       "token0": "PERP",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "30000",
       "reason": "Mid-cap DeFi (Perpetual Protocol)",
@@ -413,7 +500,10 @@
       "token0": "DYDX",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "70000",
       "reason": "Mid-cap DeFi (dYdX)",
@@ -425,7 +515,10 @@
       "token0": "GMX",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "80000",
       "reason": "Mid-cap DeFi (GMX)",
@@ -437,7 +530,10 @@
       "token0": "SPELL",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "45000",
       "reason": "Mid-cap DeFi (Abracadabra)",
@@ -449,7 +545,10 @@
       "token0": "ALCX",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "25000",
       "reason": "Mid-cap DeFi (Alchemix)",
@@ -461,7 +560,10 @@
       "token0": "ILV",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "90000",
       "reason": "Mid-cap gaming (Illuvium)",
@@ -473,7 +575,10 @@
       "token0": "MAGIC",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "50000",
       "reason": "Mid-cap gaming (Treasure)",
@@ -485,7 +590,10 @@
       "token0": "APE",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "120000",
       "reason": "Mid-cap metaverse (ApeCoin)",
@@ -497,7 +605,10 @@
       "token0": "GODS",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "40000",
       "reason": "Mid-cap gaming (Gods Unchained)",
@@ -509,7 +620,10 @@
       "token0": "TLM",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "30000",
       "reason": "Mid-cap gaming (Alien Worlds)",
@@ -521,7 +635,10 @@
       "token0": "VOXEL",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "35000",
       "reason": "Mid-cap metaverse (Voxies)",
@@ -533,7 +650,10 @@
       "token0": "REVV",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "25000",
       "reason": "Mid-cap gaming (REVV Racing)",
@@ -545,7 +665,10 @@
       "token0": "IMX",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap L2 (Immutable X)",
@@ -557,7 +680,10 @@
       "token0": "LRC",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "60000",
       "reason": "Mid-cap L2 (Loopring)",
@@ -569,7 +695,10 @@
       "token0": "METIS",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "45000",
       "reason": "Mid-cap L2 (Metis)",
@@ -581,7 +710,10 @@
       "token0": "BOBA",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "35000",
       "reason": "Mid-cap L2 (Boba Network)",
@@ -593,7 +725,10 @@
       "token0": "OP",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "150000",
       "reason": "Mid-cap L2 (Optimism)",
@@ -605,7 +740,10 @@
       "token0": "AGIX",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "55000",
       "reason": "Mid-cap AI (SingularityNET)",
@@ -617,7 +755,10 @@
       "token0": "NMR",
       "token1": "WETH",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "40000",
       "reason": "Mid-cap AI (Numerai)",
@@ -629,7 +770,10 @@
       "token0": "JASMY",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "30000",
       "reason": "Mid-cap IoT/AI (JasmyCoin)",
@@ -641,7 +785,10 @@
       "token0": "ROSE",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "50000",
       "reason": "Mid-cap privacy (Oasis Network)",
@@ -653,7 +800,10 @@
       "token0": "SHIB",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "200000",
       "reason": "Mid-cap meme (Shiba Inu)",
@@ -665,7 +815,10 @@
       "token0": "ELON",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "80000",
       "reason": "Mid-cap meme (Dogelon Mars)",
@@ -677,32 +830,112 @@
       "token0": "FLOKI",
       "token1": "WMATIC",
       "enabled": true,
-      "dexes": ["quickswap", "sushiswap"],
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
       "dexCount": 2,
       "totalLiquidity": "100000",
       "reason": "Mid-cap meme (Floki Inu)",
       "quickswapPair": "0x00000000285E7C7E7E7E7E7E7E7E7E7E7E7E7E7E",
       "sushiswapPair": "0x00000000295E7C7E7E7E7E7E7E7E7E7E7E7E7E7E"
+    },
+    {
+      "name": "USDC/USDT",
+      "token0": "USDC",
+      "token1": "USDT",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 637698,
+        "sushiswap": 357973,
+        "minimum": 357973
+      }
+    },
+    {
+      "name": "USDC/DAI",
+      "token0": "USDC",
+      "token1": "DAI",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 297175,
+        "sushiswap": 197513,
+        "minimum": 197513
+      }
+    },
+    {
+      "name": "DAI/WETH",
+      "token0": "DAI",
+      "token1": "WETH",
+      "token0Address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      "token1Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 97994,
+        "sushiswap": 109311,
+        "minimum": 97994
+      }
+    },
+    {
+      "name": "DAI/WBTC",
+      "token0": "DAI",
+      "token1": "WBTC",
+      "token0Address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      "token1Address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 308768242163,
+        "sushiswap": 10792377093,
+        "minimum": 10792377093
+      }
+    },
+    {
+      "name": "WETH/WBTC",
+      "token0": "WETH",
+      "token1": "WBTC",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 1727821979039,
+        "sushiswap": 1926953754869,
+        "minimum": 1727821979039
+      }
     }
   ],
   "stats": {
-    "totalPairs": 58,
-    "enabledPairs": 58,
-    "avgDexesPerPair": "2.0",
-    "categories": {
-      "DeFi": 22,
-      "Gaming": 13,
-      "Metaverse": 3,
-      "AI": 7,
-      "Oracle": 1,
-      "L2": 5,
-      "Meme": 3,
-      "Native": 2,
-      "Base": 2
-    },
-    "dexDistribution": {
-      "quickswap": 58,
-      "sushiswap": 58
+    "totalPairs": 61,
+    "newPairsAdded": 5,
+    "lastUpdated": "2025-10-20T21:08:38.362Z",
+    "criteria": {
+      "minLiquidityPerDex": "$50,000",
+      "dexes": [
+        "QuickSwap",
+        "SushiSwap"
+      ]
     }
   }
 }

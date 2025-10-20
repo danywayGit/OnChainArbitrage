@@ -111,11 +111,17 @@ export class TradeExecutor {
     // Minimum profit threshold
     const minProfitBps = config.trading.minProfitBps;
 
-    // Encode parameters
+    // Get fee tiers (0 for V2, actual tier for V3)
+    const feeTier1 = buyDex.feeTier || 0;
+    const feeTier2 = sellDex.feeTier || 0;
+
+    logger.debug(`[PARAMS] feeTier1=${feeTier1}, feeTier2=${feeTier2}`);
+
+    // Encode parameters with V3 support
     const abiCoder = new ethers.AbiCoder();
     const encodedParams = abiCoder.encode(
-      ["address", "address", "address[]", "address[]", "uint256"],
-      [dexRouter1, dexRouter2, path1, path2, minProfitBps]
+      ["address", "address", "address[]", "address[]", "uint256", "uint24", "uint24"],
+      [dexRouter1, dexRouter2, path1, path2, minProfitBps, feeTier1, feeTier2]
     );
 
     return encodedParams;
@@ -145,24 +151,41 @@ export class TradeExecutor {
     logger.debug(`  Sell DEX (${opportunity.sellDex.dexName}): $${sellDexLiquidity.toFixed(0)}`);
     logger.debug(`  Limiting liquidity: $${limitingLiquidity.toFixed(0)}`);
     
-    // ✅ STEP 3: Cap at 20% of pool depth to minimize slippage
-    // Using more than 20% causes exponential slippage in AMM pools
-    const maxSafeTradeSize = limitingLiquidity * 0.20;
+    // ✅ STEP 3: Adjust percentage based on pool type
+    // V3 0.05% tier pools have concentrated liquidity - use smaller percentage
+    let liquidityPercentage = 0.20; // Default 20% for V2 pools
     
-    // ✅ STEP 4: Apply config limits
-    const configMaxSize = config.trading.maxTradeSize;
+    const isV3LowFeeTier = (opportunity.buyDex.feeTier === 500) || (opportunity.sellDex.feeTier === 500);
+    if (isV3LowFeeTier) {
+      liquidityPercentage = 0.05; // Use only 5% for V3 0.05% tier (concentrated liquidity)
+      logger.debug(`  ⚡ V3 0.05% tier detected - using conservative 5% of liquidity`);
+    }
+    
+    // ✅ STEP 4: Cap at appropriate % of pool depth to minimize slippage
+    const maxSafeTradeSize = limitingLiquidity * liquidityPercentage;
+    
+    // ✅ STEP 5: Apply config limits
+    let configMaxSize = config.trading.maxTradeSize;
     const configMinSize = config.trading.minTradeSize;
     
-    // ✅ STEP 5: Safety check - SKIP if pool too small for minimum trade
-    // If 20% of pool < minimum trade size, pool is too illiquid
+    // ✅ SPECIAL: Hard cap for V3 0.05% tier trades (concentrated liquidity)
+    // These pools report high TVL but have very little liquidity at the current price tick
+    if (isV3LowFeeTier) {
+      const v3MaxSize = 1000; // Maximum $1000 for V3 0.05% tier
+      configMaxSize = Math.min(configMaxSize, v3MaxSize);
+      logger.debug(`  🎯 V3 0.05% tier: Hard capped at $${v3MaxSize}`);
+    }
+    
+    // ✅ STEP 6: Safety check - SKIP if pool too small for minimum trade
     if (maxSafeTradeSize < configMinSize) {
-      logger.warning(`⚠️ Pool too small! 20% of $${limitingLiquidity.toFixed(0)} = $${maxSafeTradeSize.toFixed(0)} < min $${configMinSize}`);
-      logger.warning(`   Skipping this opportunity - need at least $${(configMinSize * 5).toFixed(0)} liquidity`);
+      const percentUsed = liquidityPercentage * 100;
+      logger.warning(`⚠️ Pool too small! ${percentUsed}% of $${limitingLiquidity.toFixed(0)} = $${maxSafeTradeSize.toFixed(0)} < min $${configMinSize}`);
+      logger.warning(`   Skipping this opportunity - need at least $${(configMinSize / liquidityPercentage).toFixed(0)} liquidity`);
       // Return minimum possible to avoid division by zero, but this trade will fail profitability check
       return ethers.parseEther("0.001");
     }
     
-    // Choose the smallest of: 20% of liquidity OR config max
+    // Choose the smallest of: percentage of liquidity OR config max
     let tradeSize = Math.min(maxSafeTradeSize, configMaxSize);
     
     // Ensure it's at least the minimum (we already checked pool is big enough)
@@ -194,13 +217,31 @@ export class TradeExecutor {
     flashLoanAmount: bigint
   ): Promise<{ profitable: boolean; reason?: string; estimatedProfit?: number }> {
     try {
-      // Get DEX fees
-      const buyDexFee = getDexFee(opportunity.buyDex.dexName);
-      const sellDexFee = getDexFee(opportunity.sellDex.dexName);
+      // ✅ Get actual DEX fees based on which DEXes are being used
+      // This now properly accounts for Uniswap V3's lower fees (5 bps vs 25-30 bps)
+      // For V3: Uses actual fee tier from pool (500, 3000, or 10000)
+      
+      // DEBUG: Log feeTier values to diagnose fee calculation issues
+      logger.debug(`[FEE DEBUG] Buy DEX: ${opportunity.buyDex.dexName}, feeTier=${opportunity.buyDex.feeTier}`);
+      logger.debug(`[FEE DEBUG] Sell DEX: ${opportunity.sellDex.dexName}, feeTier=${opportunity.sellDex.feeTier}`);
+      
+      const buyDexFee = getDexFee(opportunity.buyDex.dexName, opportunity.buyDex.feeTier);
+      const sellDexFee = getDexFee(opportunity.sellDex.dexName, opportunity.sellDex.feeTier);
       const flashLoanFee = config.trading.flashLoanFeeBps;
       
+      // DEBUG: Log calculated fees
+      logger.debug(`[FEE DEBUG] Calculated fees: buy=${buyDexFee} bps, sell=${sellDexFee} bps, flash=${flashLoanFee} bps`);
+      
       // Calculate total fees in basis points
+      // Example combinations:
+      // - QuickSwap (25) + SushiSwap (30) + Flash (5) = 60 bps (old)
+      // - Uniswap V3 0.05% (5) + SushiSwap (30) + Flash (5) = 40 bps (new - 33% reduction!)
+      // - Uniswap V3 0.05% (5) + QuickSwap (25) + Flash (5) = 35 bps (new - best case!)
+      // - Uniswap V3 0.3% (30) + QuickSwap (25) + Flash (5) = 60 bps (same as V2 but better liquidity)
       const totalFeeBps = buyDexFee + sellDexFee + flashLoanFee;
+      
+      // Log fee breakdown for debugging
+      logger.debug(`[FEE BREAKDOWN] Buy: ${opportunity.buyDex.dexName} (${buyDexFee} bps) + Sell: ${opportunity.sellDex.dexName} (${sellDexFee} bps) + Flash Loan (${flashLoanFee} bps) = Total: ${totalFeeBps} bps`);
       
       // Price spread (from opportunity detection)
       const spreadBps = opportunity.profitPercent * 100; // Convert % to bps
@@ -323,6 +364,18 @@ export class TradeExecutor {
 
       // Calculate flash loan amount
       const flashLoanAmount = this.calculateFlashLoanAmount(opportunity);
+
+      // 💰 LOG TRADE SIZE DETAILS
+      const flashLoanAmountFormatted = ethers.formatEther(flashLoanAmount);
+      const nativeTokenPrice = config.network.name === 'polygon' ? 0.40 : 2000;
+      const tradeSizeUSD = parseFloat(flashLoanAmountFormatted) * nativeTokenPrice;
+      
+      logger.info(`💰 [TRADE SIZE DETAILS]`);
+      logger.info(`   Amount: ${parseFloat(flashLoanAmountFormatted).toFixed(2)} tokens`);
+      logger.info(`   Value: $${tradeSizeUSD.toFixed(2)} USD`);
+      logger.info(`   Pair: ${opportunity.pair.name}`);
+      logger.info(`   Buy on: ${opportunity.buyDex.dexName} (${opportunity.buyDex.feeTier ? opportunity.buyDex.feeTier/100 + ' bps' : 'V2'})`);
+      logger.info(`   Sell on: ${opportunity.sellDex.dexName} (${opportunity.sellDex.feeTier ? opportunity.sellDex.feeTier/100 + ' bps' : 'V2'})`);
 
       // ✅ NEW: Validate profitability BEFORE executing
       const profitCheck = await this.validateProfitability(opportunity, flashLoanAmount);

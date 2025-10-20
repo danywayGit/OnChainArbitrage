@@ -27,6 +27,14 @@ export const DEX_ROUTERS: Record<string, string> = {
   "sushiswap": config.dexes.sushiswap,
   "SUSHI": config.dexes.sushiswap,
   
+  // Uniswap V3 ✅ NEW - Lower fees, concentrated liquidity
+  "UniswapV3": config.dexes.uniswapv3,
+  "Uniswapv3": config.dexes.uniswapv3,
+  "uniswapv3": config.dexes.uniswapv3,
+  "UNI": config.dexes.uniswapv3,
+  "Uniswap": config.dexes.uniswapv3,
+  "uniswap": config.dexes.uniswapv3,
+  
   // Dfyn removed - only 2/9 pairs had real liquidity
   // "Dfyn": config.dexes.dfyn,
   // "dfyn": config.dexes.dfyn,
@@ -37,11 +45,6 @@ export const DEX_ROUTERS: Record<string, string> = {
   // "Apeswap": config.dexes.apeswap,
   // "apeswap": config.dexes.apeswap,
   // "APE": config.dexes.apeswap,
-  
-  // Uniswap V3
-  "Uniswap": config.dexes.uniswapV3,
-  "uniswap": config.dexes.uniswapV3,
-  "UNI": config.dexes.uniswapV3,
   
   // Balancer
   "Balancer": config.dexes.balancer,
@@ -72,8 +75,7 @@ export function isUniswapV2Compatible(dexName: string): boolean {
   const v2Compatible = [
     "QuickSwap", "Quickswap", "quickswap",
     "SushiSwap", "Sushiswap", "sushiswap", "SUSHI",
-    // "Dfyn", "dfyn", "DFYN", // Removed - 7/9 pairs had fake pools
-    "Uniswap", "uniswap", "UNI"
+    // Note: Uniswap V3 has different interface, handled separately
   ];
   
   return v2Compatible.includes(dexName);
@@ -104,15 +106,22 @@ export function getDexType(dexName: string): "uniswapV2" | "curve" | "balancer" 
 /**
  * Estimate swap fee for a DEX (in basis points)
  * Returns actual DEX-specific fees from config
+ * 
+ * For Uniswap V3: Can optionally pass actual fee tier used
  */
-export function getDexFee(dexName: string): number {
+export function getDexFee(dexName: string, v3FeeTier?: number): number {
+  // If V3 fee tier provided, use it directly (convert from hundredths of bip to bps)
+  if (v3FeeTier !== undefined && dexName.toLowerCase().includes("uniswap")) {
+    return v3FeeTier / 100; // 500 -> 5 bps, 3000 -> 30 bps, 10000 -> 100 bps
+  }
+  
   // Get network-specific config with actual DEX fees
   const chainConfig = getChainConfig(config.network.chainId);
   
   if (chainConfig && chainConfig.dexes) {
     const dex = chainConfig.dexes[dexName.toLowerCase()];
     if (dex && dex.fee) {
-      return dex.fee; // Use actual fee from config (QuickSwap=25, SushiSwap=30)
+      return dex.fee; // Use actual fee from config (QuickSwap=25, SushiSwap=30, UniswapV3=5)
     }
   }
   
@@ -123,7 +132,7 @@ export function getDexFee(dexName: string): number {
     case "uniswapV2":
       return 30; // 0.3% = 30 bps (conservative fallback)
     case "uniswapV3":
-      return 5; // Can be 0.05%, 0.3%, or 1% - using lowest
+      return 5; // 0.05% for stablecoins (lowest tier) - can also be 30 or 100 bps
     case "curve":
       return 4; // ~0.04% for stablecoins
     case "balancer":
