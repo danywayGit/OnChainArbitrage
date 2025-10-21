@@ -133,7 +133,8 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
             path1,
             path2,
             feeTier1,
-            feeTier2
+            feeTier2,
+            minProfitBps
         );
 
         // Calculate minimum required profit
@@ -166,6 +167,7 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
      * @param path2 Token path for the second swap
      * @param feeTier1 Fee tier for V3 swap on DEX1 (0 for V2)
      * @param feeTier2 Fee tier for V3 swap on DEX2 (0 for V2)
+     * @param minProfitBps Minimum required profit in basis points
      * @return profit The profit generated from the arbitrage (in the borrowed asset)
      */
     function _executeArbitrageLogic(
@@ -176,7 +178,8 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
         address[] memory path1,
         address[] memory path2,
         uint24 feeTier1,
-        uint24 feeTier2
+        uint24 feeTier2,
+        uint256 minProfitBps
     ) internal returns (uint256 profit) {
         // Validate paths
         require(path1.length >= 2, "Invalid path1 length");
@@ -224,19 +227,25 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
                 asset,
                 feeTier2,
                 intermediateAmount,
-                amount // Must get at least the borrowed amount back
+                0 // Accept any amount (profitability checked below with proper calculation)
             );
         } else {
             // Execute Uniswap V2 swap
             finalAmount = _executeV2Swap(
                 dexRouter2,
                 intermediateAmount,
-                amount, // Must get at least the borrowed amount back
+                0, // Accept any amount (profitability checked below)
                 path2
             );
         }
 
-        require(finalAmount > amount, "Arbitrage not profitable");
+        // Calculate minimum required return (borrowed amount + flash loan fee + minimum profit)
+        // Flash loan fee is 0.05% (5 bps) on Aave V3
+        uint256 flashLoanFee = (amount * 5) / 10000; // 0.05% fee
+        uint256 minRequiredProfit = (amount * minProfitBps) / 10000;
+        uint256 minRequiredReturn = amount + flashLoanFee + minRequiredProfit;
+
+        require(finalAmount >= minRequiredReturn, "Arbitrage not profitable");
 
         // Calculate profit
         uint256 finalBalance = IERC20(asset).balanceOf(address(this));

@@ -152,13 +152,14 @@ export class TradeExecutor {
     logger.debug(`  Limiting liquidity: $${limitingLiquidity.toFixed(0)}`);
     
     // ✅ STEP 3: Adjust percentage based on pool type
-    // V3 0.05% tier pools have concentrated liquidity - use smaller percentage
+    // V3 0.05% tier pools have concentrated liquidity
+    // STABLECOIN STRATEGY: Can use higher % due to massive stablecoin liquidity
     let liquidityPercentage = 0.20; // Default 20% for V2 pools
     
     const isV3LowFeeTier = (opportunity.buyDex.feeTier === 500) || (opportunity.sellDex.feeTier === 500);
     if (isV3LowFeeTier) {
-      liquidityPercentage = 0.05; // Use only 5% for V3 0.05% tier (concentrated liquidity)
-      logger.debug(`  ⚡ V3 0.05% tier detected - using conservative 5% of liquidity`);
+      liquidityPercentage = 0.15; // Use 15% for stablecoin V3 0.05% tier (vs 5% for volatile)
+      logger.debug(`  ⚡ V3 0.05% tier detected - using 15% of liquidity (stablecoin strategy)`);
     }
     
     // ✅ STEP 4: Cap at appropriate % of pool depth to minimize slippage
@@ -168,12 +169,12 @@ export class TradeExecutor {
     let configMaxSize = config.trading.maxTradeSize;
     const configMinSize = config.trading.minTradeSize;
     
-    // ✅ SPECIAL: Hard cap for V3 0.05% tier trades (concentrated liquidity)
-    // These pools report high TVL but have very little liquidity at the current price tick
+    // ✅ SPECIAL: Hard cap for V3 0.05% tier trades
+    // STABLECOIN STRATEGY: Increased to $5k for deep stablecoin liquidity
     if (isV3LowFeeTier) {
-      const v3MaxSize = 1000; // Maximum $1000 for V3 0.05% tier
+      const v3MaxSize = 5000; // Maximum $5000 for stablecoin V3 0.05% tier
       configMaxSize = Math.min(configMaxSize, v3MaxSize);
-      logger.debug(`  🎯 V3 0.05% tier: Hard capped at $${v3MaxSize}`);
+      logger.debug(`  🎯 V3 0.05% tier: Hard capped at $${v3MaxSize} (stablecoin strategy)`);
     }
     
     // ✅ STEP 6: Safety check - SKIP if pool too small for minimum trade
@@ -193,9 +194,32 @@ export class TradeExecutor {
     
     logger.info(`[TRADE SIZE] $${tradeSize.toFixed(2)} (${((tradeSize/limitingLiquidity)*100).toFixed(1)}% of $${limitingLiquidity.toFixed(0)} pool)`);
 
-    // Convert to token amount (assuming WMATIC/WETH as collateral)
-    const nativeTokenPrice = config.network.name === 'polygon' ? 0.40 : 2000; // MATIC or ETH
-    const tokenAmount = tradeSize / nativeTokenPrice;
+    // Convert to token amount based on ACTUAL token price
+    // For stablecoins (USDC, DAI, MAI, USDT): $1.00 per token
+    // For volatile tokens (WMATIC, ETH, WBTC): use market price
+    let tokenPrice = 1.00; // Default to $1 for stablecoins
+    
+    // Detect if this is a stablecoin pair (token0 and token1 are strings - symbols)
+    const token0Symbol = opportunity.pair.token0.toUpperCase();
+    const token1Symbol = opportunity.pair.token1.toUpperCase();
+    const stablecoins = ['USDC', 'USDT', 'DAI', 'MAI', 'FRAX', 'TUSD', 'BUSD'];
+    
+    const isStablecoin0 = stablecoins.includes(token0Symbol);
+    const isStablecoin1 = stablecoins.includes(token1Symbol);
+    
+    // If both are stablecoins, use $1.00
+    // If one is volatile, we need to estimate (use native token price as fallback)
+    if (!isStablecoin0 && !isStablecoin1) {
+      // Both volatile - use native token price (MATIC or ETH)
+      tokenPrice = config.network.name === 'polygon' ? 0.40 : 2000;
+      logger.debug(`  💱 Using native token price: $${tokenPrice} (volatile pair)`);
+    } else {
+      // At least one stablecoin - use $1.00
+      logger.debug(`  💱 Using stablecoin price: $1.00 (${token0Symbol}/${token1Symbol})`);
+    }
+    
+    const tokenAmount = tradeSize / tokenPrice;
+    logger.debug(`  🔢 Token amount: ${tokenAmount.toFixed(2)} tokens ($${tradeSize.toFixed(2)} / $${tokenPrice})`);
 
     // Return in Wei (18 decimals)
     return ethers.parseEther(tokenAmount.toString());
