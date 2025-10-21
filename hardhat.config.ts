@@ -20,9 +20,9 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
-      forking: process.env.ARBITRUM_RPC_URL
+      forking: process.env.POLYGON_RPC_URL
         ? {
-            url: process.env.ARBITRUM_RPC_URL,
+            url: process.env.POLYGON_RPC_URL,
             enabled: true,
           }
         : undefined,

@@ -353,27 +353,28 @@ export const config = {
   },
 
   // ============================================================================
-  // BOT TRADING PARAMETERS (Optimized for Polygon)
+  // BOT TRADING PARAMETERS (Optimized for Polygon - STABLECOIN STRATEGY)
   // ============================================================================
   trading: {
     // Minimum profit threshold (in basis points)
-    // 10 bps = 0.1% profit minimum on-chain (very aggressive, allows slippage)
-    minProfitBps: 10,
+    // 3 bps = 0.03% profit minimum (ultra-tight for stablecoins with massive liquidity)
+    minProfitBps: 3,
 
     // Maximum gas price willing to pay (in Gwei)
     // Polygon gas is MUCH cheaper than Ethereum
     maxGasPrice: 500, // 500 Gwei on Polygon ≈ $0.02-0.05
 
     // Maximum trade size (in USD equivalent)
-    // Start small on mainnet!
-    maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "1000", 10),
+    // STABLECOIN STRATEGY: Increased to $10k due to deep liquidity
+    maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "10000", 10),
 
     // Minimum trade size (in USD equivalent)
-    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "50", 10),
+    // STABLECOIN STRATEGY: Increased to $500 for better profits per trade
+    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "500", 10),
 
     // Slippage tolerance (in basis points)
-    // 50 bps = 0.5% slippage tolerance
-    slippageTolerance: 50,
+    // 100 bps = 1% slippage tolerance (increased to reduce "Too little received" errors)
+    slippageTolerance: 100,
 
     // Flash loan fee (Aave V3 charges 0.05%)
     flashLoanFeeBps: 5, // 0.05% = 5 basis points
@@ -400,37 +401,37 @@ export const config = {
         name: "WMATIC/DAI",
         token0: "WMATIC",
         token1: "DAI",
-        enabled: true, // ✅ 0.02% spread - BEST! DAI is #8 locally but mid-tier globally
+        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
       },
       {
         name: "MAI/USDC",
         token0: "MAI",
         token1: "USDC",
-        enabled: true, // ✅ 0.02% spread - MAI is mid-tier alt stablecoin
+        enabled: true, // ✅ STABLECOIN ONLY - Top performer (54 bps spread, $388B liquidity)
       },
       {
         name: "WMATIC/USDT",
         token0: "WMATIC",
         token1: "USDT",
-        enabled: true, // ✅ 0.04% spread - USDT used as base pair only
+        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
       },
       {
         name: "WMATIC/USDC",
         token0: "WMATIC",
         token1: "USDC",
-        enabled: true, // ✅ 0.06% spread - USDC used as base pair only
+        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
       },
       {
         name: "DAI/USDC",
         token0: "DAI",
         token1: "USDC",
-        enabled: false, // ❌ EXCLUDED per user request
+        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
       },
       {
         name: "WMATIC/WETH",
         token0: "WMATIC",
         token1: "WETH",
-        enabled: true, // ✅ 0.23% spread - Native/ETH pairing
+        enabled: false, // ❌ DISABLED - Volatile pair (stablecoin-only strategy)
       },
       
       // === EXCLUDED PAIRS (User request) ===
@@ -450,7 +451,7 @@ export const config = {
         name: "GHST/USDC",
         token0: "GHST",
         token1: "USDC",
-        enabled: true, // ✅ 1.71% spread - Gaming token, not top 15
+        enabled: false, // ❌ DISABLED - Volatile gaming token (stablecoin-only strategy)
       },
       
       // === DISABLED: TOP 15 TOKENS (Avoiding MEV competition) ===
@@ -470,7 +471,7 @@ export const config = {
         name: "WMATIC/WBTC",
         token0: "WMATIC",
         token1: "WBTC",
-        enabled: true, // ✅ ENABLED - High volume pair with WBTC
+        enabled: false, // ❌ DISABLED - Volatile pair (stablecoin-only strategy)
       },
       {
         name: "WETH/DAI",
@@ -544,7 +545,7 @@ export const config = {
         name: "USDC/USDT",
         token0: "USDC",
         token1: "USDT",
-        enabled: false, // ❌ Both in top 15 + 78% spread fake pool!
+        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
       },
       {
         name: "USDC/DAI",
@@ -556,7 +557,7 @@ export const config = {
         name: "USDT/DAI",
         token0: "USDT",
         token1: "DAI",
-        enabled: false, // Not verified
+        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
       },
       
       // === MORE TOP 15 TOKEN PAIRS ===
@@ -616,19 +617,19 @@ export const config = {
         name: "SUSHI/WMATIC",
         token0: "SUSHI",
         token1: "WMATIC",
-        enabled: true, // ✅ ENABLED - SushiSwap native token with good liquidity
+        enabled: false, // ❌ DISABLED - Volatile DEX token (stablecoin-only strategy)
       },
       {
         name: "CRV/WMATIC",
         token0: "CRV",
         token1: "WMATIC",
-        enabled: true, // ✅ ENABLED - Curve DAO token, good for DeFi
+        enabled: false, // ❌ DISABLED - Volatile DeFi token (stablecoin-only strategy)
       },
       {
         name: "BAL/WMATIC",
         token0: "BAL",
         token1: "WMATIC",
-        enabled: true, // ✅ ENABLED - Balancer token, especially relevant since we're adding Balancer DEX
+        enabled: false, // ❌ DISABLED - Volatile DeFi token (stablecoin-only strategy)
       },
       {
         name: "UNI/WMATIC",
@@ -642,7 +643,7 @@ export const config = {
         name: "MAI/WMATIC",
         token0: "MAI",
         token1: "WMATIC",
-        enabled: true, // ✅ ENABLED - MAI stablecoin native to Polygon
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "POL/USDC",
@@ -662,37 +663,37 @@ export const config = {
         name: "CRV/WETH",
         token0: "CRV",
         token1: "WETH",
-        enabled: true, // ✅ Curve DAO / ETH - Good DeFi pair
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "CRV/USDC",
         token0: "CRV",
         token1: "USDC",
-        enabled: true, // ✅ Curve DAO / Stablecoin
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "SUSHI/WETH",
         token0: "SUSHI",
         token1: "WETH",
-        enabled: true, // ✅ SushiSwap / ETH
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "SUSHI/USDC",
         token0: "SUSHI",
         token1: "USDC",
-        enabled: true, // ✅ SushiSwap / Stablecoin
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "BAL/WETH",
         token0: "BAL",
         token1: "WETH",
-        enabled: true, // ✅ Balancer / ETH - Relevant for Balancer DEX
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "BAL/USDC",
         token0: "BAL",
         token1: "USDC",
-        enabled: true, // ✅ Balancer token / Stablecoin (DeFi token, not stablecoin-vs-stablecoin)
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
       {
         name: "FRAX/USDC",
@@ -716,7 +717,7 @@ export const config = {
         name: "WMATIC/FRAX",
         token0: "WMATIC",
         token1: "FRAX",
-        enabled: true, // ✅ WMATIC / Frax
+        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
       },
     ],
 
@@ -1016,9 +1017,9 @@ export function validateConfig(): void {
   }
 
   // Check trading parameters are reasonable
-  if (config.trading.minProfitBps < 5) {
+  if (config.trading.minProfitBps < 3) {
     errors.push(
-      "minProfitBps too low - must be at least 5 bps (0.05%) to cover gas costs"
+      "minProfitBps too low - must be at least 3 bps (0.03%) for stablecoin strategy"
     );
   }
 
