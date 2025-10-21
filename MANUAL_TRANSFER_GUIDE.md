@@ -1,58 +1,67 @@
 # Manual Transfer Instructions
 
-## ✅ EASIEST SOLUTION: Use MetaMask + Polygonscan
+## ✅ SOLUTION: withdrawNative() Function Added
 
-Since the V2 contract doesn't have a `withdrawNative()` function, but the successful Hardhat fork test proved the transfer IS POSSIBLE, here's how to do it manually:
+The FlashLoanArbitrage contract has been updated with a `withdrawNative()` function that allows the owner to withdraw native tokens (MATIC/ETH).
 
-### Method 1: Custom Transaction (RECOMMENDED)
+### Method 1: Use withdrawNative() Function (RECOMMENDED)
 
-1. **Open MetaMask**
-2. **Send Transaction** with these settings:
-   - **From:** Your wallet (`0x9b0AEB246858cB30b23A3590ED53a3C754075d33`)
-   - **To:** V2 Contract (`0xb3AdA357140c4942b01f7d3caB137AAe2b9e821f`)
-   - **Amount:** 0 MATIC
-   - **Hex Data:** Paste this:
-   ```
-   0x
-   ```
-   (Empty data - just triggers the contract)
-
-3. This will cost ~$0.02 in gas but won't move funds (the contract can't send to itself)
-
-### Method 2: Deploy Withdrawer Contract (WORKS 100%)
-
-Run this script:
+If you deploy the updated contract or upgrade to V3 with the new code:
 
 ```bash
-npx hardhat run scripts/deploy-withdrawer.ts --network polygon
+npx hardhat run scripts/transfer-v2-to-v3-new.ts --network polygon
 ```
 
-Then use the deployed contract to extract funds.
+This script will:
+1. Check balances of V2 and V3 contracts
+2. Calculate the amount to transfer (keeping 2 MATIC in V2)
+3. Call `withdrawNative()` on the V2 contract to send MATIC to V3
 
-### Method 3: Just Use V2 Contract (SIMPLEST)
+### Method 2: Manual Transfer via Polygonscan
 
-**REALITY CHECK:** Both V2 and V3 contracts have IDENTICAL code. The only difference is:
-- V2 has 39.956 MATIC
-- V3 has 35 MATIC  
+1. **Go to Polygonscan:**
+   - Navigate to: https://polygonscan.com/address/0xb3AdA357140c4942b01f7d3caB137AAe2b9e821f#writeContract
+   
+2. **Connect your wallet** (must be the owner)
 
-**Why move funds?** Just use V2! Update .env:
+3. **Call withdrawNative():**
+   - `amount`: Amount in Wei (e.g., 37956000000000000000 for 37.956 MATIC)
+   - `to`: 0x13e25aF42942C627139A9C4055Bbd53274C201Fd (V3 contract address)
+
+4. **Confirm transaction** and wait for confirmation
+
+### Method 3: Deploy New V3 Contract
+
+If the V2 contract doesn't have `withdrawNative()`, deploy a new V3 contract:
+
+```bash
+npx hardhat run scripts/deploy.ts --network polygon
+```
+
+The new contract will include the `withdrawNative()` function.
+
+### Method 4: Keep Using V2 (ALTERNATIVE)
+
+**REALITY CHECK:** Both V2 and V3 contracts have similar functionality. If the V2 contract has more funds and you can't upgrade it:
+
+- V2 has ~40 MATIC
+- V3 has ~35 MATIC  
+
+Just use V2! Update .env:
 ```
 CONTRACT_ADDRESS=0xb3AdA357140c4942b01f7d3caB137AAe2b9e821f
 ```
 
-The bot doesn't care which contract - they're the same!
-
-### Method 4: Future-Proof Solution
-
-When you deploy to Base network, you'll get a fresh contract anyway. For now, just use whichever contract has more funds.
-
 ## 🎯 RECOMMENDATION
 
-**Use V2 contract (39.956 MATIC) for now.** 
+1. **First Choice:** Use the new `withdrawNative()` function if your contract supports it
+2. **Second Choice:** Deploy a new contract with the updated code
+3. **Fallback:** Keep using V2 contract with its existing funds
 
-When you're ready for Base:
-1. Deploy new contract on Base
-2. Leave the Polygon MATIC where it is
-3. Start fresh on Base network
+## 📝 Technical Details
 
-Both Polygon contracts will keep their MATIC safely until you want to withdraw later (or just leave it for future Polygon trading).
+The new `withdrawNative()` function:
+- Can only be called by the contract owner
+- Validates recipient address and balance
+- Uses low-level `.call{value}` for safe transfers
+- Emits EmergencyWithdraw event for tracking

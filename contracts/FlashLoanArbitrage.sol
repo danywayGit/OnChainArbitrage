@@ -368,6 +368,24 @@ contract FlashLoanArbitrage is FlashLoanSimpleReceiverBase, Ownable {
     }
 
     /**
+     * @notice Withdraw native tokens (ETH/MATIC) from the contract
+     * @param amount Amount of native tokens to withdraw
+     * @param to Address to send the native tokens to
+     */
+    function withdrawNative(
+        uint256 amount,
+        address payable to
+    ) external onlyOwner {
+        require(to != address(0), "Invalid recipient");
+        require(amount <= address(this).balance, "Insufficient balance");
+        
+        (bool success, ) = to.call{value: amount}("");
+        require(success, "Transfer failed");
+        
+        emit EmergencyWithdraw(address(0), amount, to);
+    }
+
+    /**
      * @notice Get contract stats
      * @return totalProfit Total profit generated
      * @return totalTrades Total number of trades executed
