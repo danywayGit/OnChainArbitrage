@@ -977,7 +977,8 @@ export const config = {
     emergencyGasPriceStop: 1000, // Stop if Polygon gas goes crazy
 
     // Minimum balance to keep in wallet (in MATIC)
-    minWalletBalance: 1, // Keep at least 1 MATIC for gas (~$0.50-1)
+    // For flash loans, gas is paid from contract balance, not wallet!
+    minWalletBalance: 0.01, // Just need enough to sign transactions (~$0.004)
   },
 
   // ============================================================================

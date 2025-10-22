@@ -14,17 +14,14 @@ async function main() {
 
   // Polygon Aave V3 Pool Address Provider
   const AAVE_POOL_ADDRESS_PROVIDER = "0xa97684ead0e402dC232d5A977953DF7ECBaB3CDb";
-  const MIN_PROFIT_BPS = 3; // 0.03% minimum profit
 
   console.log("📝 Deployment Parameters:");
   console.log(`   Aave Pool Provider: ${AAVE_POOL_ADDRESS_PROVIDER}`);
-  console.log(`   Min Profit: ${MIN_PROFIT_BPS} bps (${MIN_PROFIT_BPS / 100}%)`);
   console.log();
 
   console.log("⏳ Deploying contract...");
   const contract = await FlashLoanArbitrage.deploy(
-    AAVE_POOL_ADDRESS_PROVIDER,
-    MIN_PROFIT_BPS
+    AAVE_POOL_ADDRESS_PROVIDER
   );
 
   await contract.waitForDeployment();
