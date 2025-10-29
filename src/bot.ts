@@ -37,6 +37,14 @@ interface BotStats {
   totalProfit: number;
   totalGasCost: number;
   netProfit: number;
+  failureReasons: {
+    simulation_unprofitable: number;
+    simulation_error: number;
+    high_gas_cost: number;
+    on_chain_revert: number;
+    pool_too_small: number;
+    unknown: number;
+  };
 }
 
 // ============================================================================
@@ -73,6 +81,14 @@ class ArbitrageBot {
       totalProfit: 0,
       totalGasCost: 0,
       netProfit: 0,
+      failureReasons: {
+        simulation_unprofitable: 0,
+        simulation_error: 0,
+        high_gas_cost: 0,
+        on_chain_revert: 0,
+        pool_too_small: 0,
+        unknown: 0,
+      },
     };
   }
 
@@ -236,7 +252,20 @@ class ArbitrageBot {
         });
       } else {
         this.stats.failedTrades++;
-        logger.error("Trade failed:", { error: result.error });
+        
+        // Track failure reason for better debugging
+        if (result.reason) {
+          this.stats.failureReasons[result.reason]++;
+          
+          // Only log as error if it's not expected (unprofitable and pool_too_small are expected)
+          if (result.reason === 'simulation_unprofitable' || result.reason === 'pool_too_small') {
+            logger.debug(`[FILTERED] Trade rejected (${result.reason}): ${result.error}`);
+          } else {
+            logger.error(`Trade failed (${result.reason}):`, { error: result.error });
+          }
+        } else {
+          logger.error("Trade failed:", { error: result.error });
+        }
       }
     } catch (error) {
       logger.error("Failed to execute trade", error);
@@ -381,6 +410,17 @@ class ArbitrageBot {
       const successRate =
         (this.stats.successfulTrades / this.stats.tradesExecuted) * 100;
       logger.info(`Success Rate: ${successRate.toFixed(1)}%`);
+    }
+    
+    // Display failure reasons breakdown
+    if (this.stats.failedTrades > 0) {
+      logger.info(`\nFailure Breakdown:`);
+      logger.info(`  ⏭️  Simulation filtered (unprofitable): ${this.stats.failureReasons.simulation_unprofitable}`);
+      logger.info(`  🔍 Pool too small: ${this.stats.failureReasons.pool_too_small}`);
+      logger.info(`  ⚠️  Simulation technical errors: ${this.stats.failureReasons.simulation_error}`);
+      logger.info(`  💸 High gas cost: ${this.stats.failureReasons.high_gas_cost}`);
+      logger.info(`  ⛔ On-chain reverts: ${this.stats.failureReasons.on_chain_revert}`);
+      logger.info(`  ❌ Unknown errors: ${this.stats.failureReasons.unknown}`);
     }
 
     logger.info(`Total Profit: $${this.stats.totalProfit.toFixed(2)}`);
