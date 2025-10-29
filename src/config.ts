@@ -353,27 +353,27 @@ export const config = {
   },
 
   // ============================================================================
-  // BOT TRADING PARAMETERS (Optimized for Polygon - STABLECOIN STRATEGY)
+  // BOT TRADING PARAMETERS (Optimized for Polygon - VOLATILE TOKEN STRATEGY)
   // ============================================================================
   trading: {
     // Minimum profit threshold (in basis points)
-    // 3 bps = 0.03% profit minimum (ultra-tight for stablecoins with massive liquidity)
-    minProfitBps: 3,
+    // 40 bps = 0.40% profit minimum (balanced for volatile tokens with wider spreads)
+    minProfitBps: 40,
 
     // Maximum gas price willing to pay (in Gwei)
     // Polygon gas is MUCH cheaper than Ethereum
     maxGasPrice: 500, // 500 Gwei on Polygon ≈ $0.02-0.05
 
     // Maximum trade size (in USD equivalent)
-    // STABLECOIN STRATEGY: Increased to $10k due to deep liquidity
+    // VOLATILE STRATEGY: Using $10k max - volatile tokens have more price impact
     maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "10000", 10),
 
     // Minimum trade size (in USD equivalent)
-    // STABLECOIN STRATEGY: Increased to $500 for better profits per trade
-    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "500", 10),
+    // VOLATILE STRATEGY: $200 minimum to capture more opportunities in small pools
+    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "200", 10),
 
     // Slippage tolerance (in basis points)
-    // 100 bps = 1% slippage tolerance (increased to reduce "Too little received" errors)
+    // 100 bps = 1% slippage tolerance (volatile tokens need higher tolerance)
     slippageTolerance: 100,
 
     // Flash loan fee (Aave V3 charges 0.05%)
@@ -389,49 +389,49 @@ export const config = {
     priceCheckInterval: 1000,
 
     // Pairs to monitor for arbitrage (Polygon pairs)
-    // 100 TOKENS = 400+ TRADING PAIRS! Maximum opportunities!
-    // Each token paired with WMATIC, WETH, USDC, USDT for best coverage
+    // VOLATILE TOKEN STRATEGY: 17+ active pairs with high price movement potential
+    // Focus: DeFi tokens (CRV, SUSHI, BAL), Gaming (GHST), Native pairs (WMATIC/WETH)
     watchedPairs: [
       // ✅ VERIFIED PAIRS (Real liquidity on QuickSwap + SushiSwap)
       // ⚠️ EXCLUDING TOP 15 TOKENS: POL, USDC (used as base only), LINK, USDT (used as base only), UNI, AAVE, WBTC
       // These pairs passed liquidity verification with realistic spreads < 2%
       
-      // === TIER 1: ULTRA-TIGHT SPREADS (0.02-0.25%) ===
+      // === TIER 1: NATIVE TOKEN PAIRS (HIGH VOLATILITY) ===
       {
         name: "WMATIC/DAI",
         token0: "WMATIC",
         token1: "DAI",
-        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Native token vs stablecoin (high volume pair)
       },
       {
         name: "MAI/USDC",
         token0: "MAI",
         token1: "USDC",
-        enabled: true, // ✅ STABLECOIN ONLY - Top performer (54 bps spread, $388B liquidity)
+        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
       },
       {
         name: "WMATIC/USDT",
         token0: "WMATIC",
         token1: "USDT",
-        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - WMATIC has good price movement vs stablecoin
       },
       {
         name: "WMATIC/USDC",
         token0: "WMATIC",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Has WMATIC (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Native token vs stablecoin (high volume)
       },
       {
         name: "DAI/USDC",
         token0: "DAI",
         token1: "USDC",
-        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
+        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
       },
       {
         name: "WMATIC/WETH",
         token0: "WMATIC",
         token1: "WETH",
-        enabled: false, // ❌ DISABLED - Volatile pair (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Crypto-to-crypto pair (high volatility, good liquidity)
       },
       
       // === EXCLUDED PAIRS (User request) ===
@@ -451,7 +451,7 @@ export const config = {
         name: "GHST/USDC",
         token0: "GHST",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Volatile gaming token (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Gaming token (Aavegotchi) with good Polygon liquidity
       },
       
       // === DISABLED: TOP 15 TOKENS (Avoiding MEV competition) ===
@@ -545,7 +545,7 @@ export const config = {
         name: "USDC/USDT",
         token0: "USDC",
         token1: "USDT",
-        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
+        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
       },
       {
         name: "USDC/DAI",
@@ -557,7 +557,7 @@ export const config = {
         name: "USDT/DAI",
         token0: "USDT",
         token1: "DAI",
-        enabled: true, // ✅ STABLECOIN ONLY STRATEGY
+        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
       },
       
       // === MORE TOP 15 TOKEN PAIRS ===
@@ -617,19 +617,19 @@ export const config = {
         name: "SUSHI/WMATIC",
         token0: "SUSHI",
         token1: "WMATIC",
-        enabled: false, // ❌ DISABLED - Volatile DEX token (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - DEX token vs native (mid-cap, good liquidity)
       },
       {
         name: "CRV/WMATIC",
         token0: "CRV",
         token1: "WMATIC",
-        enabled: false, // ❌ DISABLED - Volatile DeFi token (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - DeFi blue-chip vs native (Curve protocol)
       },
       {
         name: "BAL/WMATIC",
         token0: "BAL",
         token1: "WMATIC",
-        enabled: false, // ❌ DISABLED - Volatile DeFi token (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Balancer vs native (strong DeFi token)
       },
       {
         name: "UNI/WMATIC",
@@ -643,7 +643,7 @@ export const config = {
         name: "MAI/WMATIC",
         token0: "MAI",
         token1: "WMATIC",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - MAI (miMATIC) vs native token (Polygon-native pair)
       },
       {
         name: "POL/USDC",
@@ -663,37 +663,37 @@ export const config = {
         name: "CRV/WETH",
         token0: "CRV",
         token1: "WETH",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - DeFi token vs WETH (crypto-to-crypto)
       },
       {
         name: "CRV/USDC",
         token0: "CRV",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Curve vs stablecoin (good volume on Polygon)
       },
       {
         name: "SUSHI/WETH",
         token0: "SUSHI",
         token1: "WETH",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - DEX token vs WETH (both volatile)
       },
       {
         name: "SUSHI/USDC",
         token0: "SUSHI",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - SushiSwap's own token (home advantage)
       },
       {
         name: "BAL/WETH",
         token0: "BAL",
         token1: "WETH",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Balancer vs WETH (both blue-chip)
       },
       {
         name: "BAL/USDC",
         token0: "BAL",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Balancer vs stablecoin
       },
       {
         name: "FRAX/USDC",
@@ -717,7 +717,104 @@ export const config = {
         name: "WMATIC/FRAX",
         token0: "WMATIC",
         token1: "FRAX",
-        enabled: false, // ❌ DISABLED - Volatile (stablecoin-only strategy)
+        enabled: true, // ✅ VOLATILE - Native vs algorithmic stablecoin (price movements)
+      },
+      
+      // === NEW PAIRS - EXPANDING COVERAGE! ===
+      // Additional volatile pairs for more opportunities across 4 DEXes
+      
+      // WMATIC pairs with major tokens
+      {
+        name: "WMATIC/WBTC",
+        token0: "WMATIC",
+        token1: "WBTC",
+        enabled: true, // ✅ VOLATILE - Native vs BTC (high volatility, good liquidity)
+      },
+      {
+        name: "WMATIC/LINK",
+        token0: "WMATIC",
+        token1: "LINK",
+        enabled: false, // ⚠️ OPTIONAL - LINK is top 15 (#3) but has good liquidity
+      },
+      {
+        name: "WMATIC/AAVE",
+        token0: "WMATIC",
+        token1: "AAVE",
+        enabled: false, // ⚠️ OPTIONAL - AAVE is top 15 (#6) but has good liquidity
+      },
+      
+      // WETH pairs (expanding coverage)
+      {
+        name: "WETH/WBTC",
+        token0: "WETH",
+        token1: "WBTC",
+        enabled: true, // ✅ VOLATILE - ETH vs BTC (crypto majors, high volatility)
+      },
+      {
+        name: "WETH/LINK",
+        token0: "WETH",
+        token1: "LINK",
+        enabled: false, // ⚠️ OPTIONAL - LINK is top 15 but ETH pair has volume
+      },
+      {
+        name: "WETH/AAVE",
+        token0: "WETH",
+        token1: "AAVE",
+        enabled: false, // ⚠️ OPTIONAL - AAVE is top 15 but ETH pair has volume
+      },
+      {
+        name: "WETH/CRV",
+        token0: "WETH",
+        token1: "CRV",
+        enabled: true, // ✅ VOLATILE - Duplicate enabled for more coverage (crypto pair)
+      },
+      
+      // DeFi token cross-pairs
+      {
+        name: "CRV/SUSHI",
+        token0: "CRV",
+        token1: "SUSHI",
+        enabled: true, // ✅ VOLATILE - DeFi vs DeFi (both mid-cap tokens)
+      },
+      {
+        name: "CRV/BAL",
+        token0: "CRV",
+        token1: "BAL",
+        enabled: true, // ✅ VOLATILE - Curve vs Balancer (competing protocols)
+      },
+      {
+        name: "SUSHI/BAL",
+        token0: "SUSHI",
+        token1: "BAL",
+        enabled: true, // ✅ VOLATILE - SushiSwap vs Balancer (DEX tokens)
+      },
+      
+      // Gaming/Metaverse tokens (not top 15)
+      {
+        name: "GHST/WMATIC",
+        token0: "GHST",
+        token1: "WMATIC",
+        enabled: true, // ✅ VOLATILE - Aavegotchi vs native (Polygon gaming token)
+      },
+      {
+        name: "GHST/WETH",
+        token0: "GHST",
+        token1: "WETH",
+        enabled: true, // ✅ VOLATILE - Gaming token vs ETH
+      },
+      
+      // MAI (Polygon stablecoin) volatility pairs
+      {
+        name: "MAI/WETH",
+        token0: "MAI",
+        token1: "WETH",
+        enabled: true, // ✅ VOLATILE - MAI can have price deviations from $1
+      },
+      {
+        name: "MAI/CRV",
+        token0: "MAI",
+        token1: "CRV",
+        enabled: true, // ✅ VOLATILE - Polygon stablecoin vs DeFi token
       },
     ],
 
