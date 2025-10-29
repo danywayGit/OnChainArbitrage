@@ -197,7 +197,7 @@ async function queryUniswapV3Pools(token0Address, token1Address) {
 
     const options = {
       hostname: 'api.thegraph.com',
-      path: '/subgraphs/name/ianlapham/uniswap-v3-polygon',
+      path: '/subgraphs/name/ianlapham/uniswap-v3-polygon-regenesis',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
