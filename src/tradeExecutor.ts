@@ -10,6 +10,7 @@ import { config } from "./config";
 import { logger } from "./logger";
 import { ArbitrageOpportunity } from "./priceMonitor";
 import { getDexRouter, getDexType, getDexFee, isDexPairEfficient } from "./dexRouter";
+import { simulateArbitrageWithCosts } from "./swapSimulator";
 
 // ============================================================================
 // FLASH LOAN ARBITRAGE CONTRACT ABI
@@ -34,6 +35,7 @@ export interface TradeResult {
   error?: string;
   gasUsed?: bigint;
   gasCost?: number;
+  reason?: 'simulation_unprofitable' | 'simulation_error' | 'high_gas_cost' | 'on_chain_revert' | 'pool_too_small' | 'unknown';
 }
 
 export interface ContractStats {
@@ -151,15 +153,44 @@ export class TradeExecutor {
     logger.debug(`  Sell DEX (${opportunity.sellDex.dexName}): $${sellDexLiquidity.toFixed(0)}`);
     logger.debug(`  Limiting liquidity: $${limitingLiquidity.toFixed(0)}`);
     
-    // ✅ STEP 3: Adjust percentage based on pool type
-    // V3 0.05% tier pools have concentrated liquidity
-    // STABLECOIN STRATEGY: Can use higher % due to massive stablecoin liquidity
-    let liquidityPercentage = 0.20; // Default 20% for V2 pools
+    // ✅ OPTION 1: Filter out pools that are too small (minimum $500 liquidity)
+    if (limitingLiquidity < 500) {
+      logger.warning(`⚠️ Pool too small! $${limitingLiquidity.toFixed(0)} < $500 minimum liquidity`);
+      logger.warning(`   Skipping opportunity - need at least $500 liquidity for profitable trades`);
+      throw new Error(`Pool too small: $${limitingLiquidity.toFixed(0)} < $500 minimum`);
+    }
     
+    // ✅ STEP 3: OPTION 2 - Dynamic percentage based on pool size
+    // Smaller pools: Lower percentage to reduce price impact
+    // Larger pools: Higher percentage for better profit
+    let liquidityPercentage = 0.20; // Default 20% for large pools
+    
+    // Check if this is a V3 low fee tier pool
     const isV3LowFeeTier = (opportunity.buyDex.feeTier === 500) || (opportunity.sellDex.feeTier === 500);
-    if (isV3LowFeeTier) {
-      liquidityPercentage = 0.15; // Use 15% for stablecoin V3 0.05% tier (vs 5% for volatile)
-      logger.debug(`  ⚡ V3 0.05% tier detected - using 15% of liquidity (stablecoin strategy)`);
+    
+    // Dynamic percentage based on liquidity size
+    if (limitingLiquidity < 1000) {
+      // Small pools ($500-$1000): Use 50% to balance opportunity vs price impact
+      liquidityPercentage = 0.50;
+      logger.debug(`  💎 Small pool ($${limitingLiquidity.toFixed(0)}) - using 50% of liquidity (reduce price impact)`);
+    } else if (limitingLiquidity < 5000) {
+      // Medium pools ($1k-$5k): Use 70% - good balance
+      liquidityPercentage = 0.70;
+      logger.debug(`  📊 Medium pool ($${limitingLiquidity.toFixed(0)}) - using 70% of liquidity`);
+    } else if (limitingLiquidity < 10000) {
+      // Large pools ($5k-$10k): Use 80% - minimal slippage
+      liquidityPercentage = 0.80;
+      logger.debug(`  💰 Large pool ($${limitingLiquidity.toFixed(0)}) - using 80% of liquidity`);
+    } else {
+      // Very large pools (>$10k): Use 90% - very minimal slippage
+      liquidityPercentage = 0.90;
+      logger.debug(`  🏦 Very large pool ($${limitingLiquidity.toFixed(0)}) - using 90% of liquidity`);
+    }
+    
+    // Adjust for V3 concentrated liquidity (if applicable)
+    if (isV3LowFeeTier && limitingLiquidity >= 5000) {
+      liquidityPercentage = Math.min(liquidityPercentage, 0.15); // Cap at 15% for V3 0.05% tier
+      logger.debug(`  ⚡ V3 0.05% tier: Capped at 15% (concentrated liquidity)`);
     }
     
     // ✅ STEP 4: Cap at appropriate % of pool depth to minimize slippage
@@ -169,28 +200,45 @@ export class TradeExecutor {
     let configMaxSize = config.trading.maxTradeSize;
     const configMinSize = config.trading.minTradeSize;
     
-    // ✅ SPECIAL: Hard cap for V3 0.05% tier trades
-    // STABLECOIN STRATEGY: Increased to $5k for deep stablecoin liquidity
-    if (isV3LowFeeTier) {
-      const v3MaxSize = 5000; // Maximum $5000 for stablecoin V3 0.05% tier
+    // ✅ OPTION 3: Focus on larger, more liquid pools
+    // Hard caps based on pool size to ensure quality trades
+    if (limitingLiquidity < 1000) {
+      // Small pools ($500-$1000): Cap at 50% of liquidity
+      const smallPoolMaxSize = Math.min(limitingLiquidity * 0.50, 2000);
+      configMaxSize = Math.min(configMaxSize, smallPoolMaxSize);
+      logger.debug(`  🎯 Small pool: Capped at $${smallPoolMaxSize.toFixed(0)} (50% max to reduce slippage)`);
+    } else if (limitingLiquidity < 5000) {
+      // Medium pools ($1k-$5k): Cap at 70% of liquidity
+      const mediumPoolMaxSize = Math.min(limitingLiquidity * 0.70, 5000);
+      configMaxSize = Math.min(configMaxSize, mediumPoolMaxSize);
+      logger.debug(`  🎯 Medium pool: Capped at $${mediumPoolMaxSize.toFixed(0)} (70% max)`);
+    } else if (isV3LowFeeTier) {
+      // V3 0.05% tier: Special handling for concentrated liquidity
+      const v3MaxSize = 5000;
       configMaxSize = Math.min(configMaxSize, v3MaxSize);
-      logger.debug(`  🎯 V3 0.05% tier: Hard capped at $${v3MaxSize} (stablecoin strategy)`);
+      logger.debug(`  🎯 V3 0.05% tier: Capped at $${v3MaxSize}`);
     }
     
     // ✅ STEP 6: Safety check - SKIP if pool too small for minimum trade
-    if (maxSafeTradeSize < configMinSize) {
+    // Dynamic minimum based on pool size
+    let effectiveMinSize = configMinSize;
+    if (limitingLiquidity < 1000) {
+      // For small pools: minimum = 25% of pool OR $200, whichever is lower
+      effectiveMinSize = Math.min(configMinSize, limitingLiquidity * 0.25);
+    }
+    
+    if (maxSafeTradeSize < effectiveMinSize) {
       const percentUsed = liquidityPercentage * 100;
-      logger.warning(`⚠️ Pool too small! ${percentUsed}% of $${limitingLiquidity.toFixed(0)} = $${maxSafeTradeSize.toFixed(0)} < min $${configMinSize}`);
-      logger.warning(`   Skipping this opportunity - need at least $${(configMinSize / liquidityPercentage).toFixed(0)} liquidity`);
-      // Return minimum possible to avoid division by zero, but this trade will fail profitability check
-      return ethers.parseEther("0.001");
+      logger.warning(`⚠️ Pool too small! ${percentUsed}% of $${limitingLiquidity.toFixed(0)} = $${maxSafeTradeSize.toFixed(0)} < min $${effectiveMinSize.toFixed(0)}`);
+      logger.warning(`   Skipping this opportunity - need at least $${(effectiveMinSize / liquidityPercentage).toFixed(0)} liquidity`);
+      throw new Error(`Pool too small: Safe trade size $${maxSafeTradeSize.toFixed(0)} < min $${effectiveMinSize.toFixed(0)}`);
     }
     
     // Choose the smallest of: percentage of liquidity OR config max
     let tradeSize = Math.min(maxSafeTradeSize, configMaxSize);
     
     // Ensure it's at least the minimum (we already checked pool is big enough)
-    tradeSize = Math.max(tradeSize, configMinSize);
+    tradeSize = Math.max(tradeSize, effectiveMinSize);
     
     logger.info(`[TRADE SIZE] $${tradeSize.toFixed(2)} (${((tradeSize/limitingLiquidity)*100).toFixed(1)}% of $${limitingLiquidity.toFixed(0)} pool)`);
 
@@ -401,15 +449,84 @@ export class TradeExecutor {
       logger.info(`   Buy on: ${opportunity.buyDex.dexName} (${opportunity.buyDex.feeTier ? opportunity.buyDex.feeTier/100 + ' bps' : 'V2'})`);
       logger.info(`   Sell on: ${opportunity.sellDex.dexName} (${opportunity.sellDex.feeTier ? opportunity.sellDex.feeTier/100 + ' bps' : 'V2'})`);
 
-      // ✅ NEW: Validate profitability BEFORE executing
-      const profitCheck = await this.validateProfitability(opportunity, flashLoanAmount);
+      // ⚠️ REMOVED: Off-chain validation was rejecting good trades due to inaccurate estimates
+      // Now we rely ONLY on on-chain simulation for accurate profitability checks
       
-      if (!profitCheck.profitable) {
-        logger.warning(`[NOT PROFITABLE] Trade rejected: ${profitCheck.reason}`);
-        throw new Error(`Unprofitable trade: ${profitCheck.reason}`);
+      // 🔍 ON-CHAIN SIMULATION - Predict actual slippage before executing (THE ONLY TRUTH)
+      logger.info(`🔍 [ON-CHAIN SIMULATION] Simulating swaps to predict real slippage...`);
+      
+      try {
+        const buyRouter = getDexRouter(opportunity.buyDex.dexName);
+        const sellRouter = getDexRouter(opportunity.sellDex.dexName);
+        const buyDexType = getDexType(opportunity.buyDex.dexName);
+        const sellDexType = getDexType(opportunity.sellDex.dexName);
+        
+        // Map DEX types to simulator types (v2/v3)
+        const buySimType = buyDexType === 'uniswapV3' ? 'v3' : 'v2';
+        const sellSimType = sellDexType === 'uniswapV3' ? 'v3' : 'v2';
+        
+        const simulationResult = await simulateArbitrageWithCosts(
+          this.provider,
+          buyRouter,
+          sellRouter,
+          flashLoanAmount,
+          opportunity.pair.token0Address,
+          opportunity.pair.token1Address,
+          config.trading.flashLoanFeeBps,
+          500000n, // Gas estimate
+          buySimType,
+          sellSimType,
+          opportunity.buyDex.feeTier,
+          opportunity.sellDex.feeTier
+        );
+        
+        if (!simulationResult.profitable) {
+          const lossPercent = simulationResult.netProfitPercent.toFixed(4);
+          const lossAmount = ethers.formatEther(simulationResult.netProfit);
+          const grossProfit = ethers.formatEther(simulationResult.grossProfit);
+          const flashFee = ethers.formatEther(simulationResult.flashLoanFee);
+          const gasCost = ethers.formatEther(simulationResult.gasCost);
+          
+          logger.warning(`❌ [SIMULATION REJECTED] On-chain simulation predicts LOSS`);
+          logger.warning(`   Net profit: ${lossAmount} MATIC (${lossPercent}%)`);
+          logger.warning(`   Gross profit: ${grossProfit} MATIC`);
+          logger.warning(`   Flash loan fee: ${flashFee} MATIC`);
+          logger.warning(`   Gas cost: ${gasCost} MATIC`);
+          logger.warning(`   Reason: Real slippage/price impact makes trade unprofitable`);
+          
+          // This is EXPECTED behavior - simulation working correctly
+          // Don't log as error, just skip the trade
+          throw new Error(`UNPROFITABLE: Simulation shows ${lossPercent}% loss`);
+        }
+        
+        const netProfitMATIC = parseFloat(ethers.formatEther(simulationResult.netProfit));
+        const netProfitUSD = netProfitMATIC * nativeTokenPrice;
+        const priceImpact = simulationResult.simulation.priceImpactBps.toFixed(2);
+        
+        logger.success(`✅ [SIMULATION PASSED] On-chain simulation confirms PROFIT`);
+        logger.success(`   Net profit: ${netProfitMATIC.toFixed(6)} MATIC ($${netProfitUSD.toFixed(2)})`);
+        logger.success(`   Net profit %: ${simulationResult.netProfitPercent.toFixed(4)}%`);
+        logger.success(`   Price impact: ${priceImpact} bps`);
+        logger.success(`   ✨ EXECUTING TRADE ON-CHAIN...`);
+        
+      } catch (simError: any) {
+        // Check if this is an expected "unprofitable" error vs technical error
+        if (simError.message.includes('UNPROFITABLE')) {
+          // This is expected - simulation correctly filtered an unprofitable trade
+          // Re-throw to skip trade but don't count as a system error
+          throw simError;
+        }
+        
+        // Technical error with simulation itself
+        logger.error(`❌ [SIMULATION TECHNICAL ERROR] Failed to run simulation`);
+        logger.error(`   Error: ${simError.message}`);
+        logger.error(`   Pair: ${opportunity.pair.name}`);
+        logger.error(`   Buy DEX: ${opportunity.buyDex.dexName}`);
+        logger.error(`   Sell DEX: ${opportunity.sellDex.dexName}`);
+        
+        // Don't execute trade if simulation fails technically
+        throw new Error(`Simulation technical error: ${simError.message}`);
       }
-      
-      logger.success(`[PROFITABLE] Trade looks good! Estimated net profit: $${profitCheck.estimatedProfit?.toFixed(2)}`);
 
       logger.debug("Trade parameters", {
         token: opportunity.pair.token0Address,
@@ -501,11 +618,66 @@ export class TradeExecutor {
         gasCost: gasCostUsd,
       };
     } catch (error: any) {
-      logger.error("Trade execution failed", error);
+      // Categorize errors for better debugging
+      const errorMsg = error.message || "Unknown error";
+      
+      if (errorMsg.includes('UNPROFITABLE')) {
+        // Expected: Simulation correctly filtered unprofitable trade
+        logger.info(`⏭️  [SKIPPED] ${errorMsg}`);
+        return {
+          success: false,
+          error: errorMsg,
+          reason: 'simulation_unprofitable'
+        };
+      }
+      
+      if (errorMsg.includes('Simulation technical error')) {
+        // Technical issue with simulation itself
+        logger.error(`⚠️  [SIMULATION ERROR] ${errorMsg}`);
+        return {
+          success: false,
+          error: errorMsg,
+          reason: 'simulation_error'
+        };
+      }
+      
+      if (errorMsg.includes('High gas cost DEX pair')) {
+        // Gas costs too high for this DEX combination
+        logger.warning(`💸 [HIGH GAS] ${errorMsg}`);
+        return {
+          success: false,
+          error: errorMsg,
+          reason: 'high_gas_cost'
+        };
+      }
+      
+      if (errorMsg.includes('Pool too small')) {
+        // Pool doesn't have enough liquidity for profitable trade
+        logger.debug(`🔍 [POOL TOO SMALL] ${errorMsg}`);
+        return {
+          success: false,
+          error: errorMsg,
+          reason: 'pool_too_small'
+        };
+      }
+      
+      if (errorMsg.includes('execution reverted')) {
+        // On-chain execution failed (should rarely happen with simulation)
+        logger.error(`⛔ [ON-CHAIN REVERT] Transaction reverted: ${errorMsg}`);
+        return {
+          success: false,
+          error: errorMsg,
+          reason: 'on_chain_revert'
+        };
+      }
+      
+      // Unknown error - log full details
+      logger.error(`❌ [UNKNOWN ERROR] Trade execution failed: ${errorMsg}`, error);
 
       return {
         success: false,
-        error: error.message || "Unknown error",
+        error: errorMsg,
+        reason: 'unknown'
       };
     }
   }
