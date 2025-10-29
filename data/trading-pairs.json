@@ -846,7 +846,8 @@
       "token1": "USDT",
       "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
       "token1Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
-      "enabled": true,
+      "enabled": false,
+      "reason": "Stablecoin pair - low profit potential",
       "dexes": [
         "quickswap",
         "sushiswap"
@@ -863,7 +864,8 @@
       "token1": "DAI",
       "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
       "token1Address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
-      "enabled": true,
+      "enabled": false,
+      "reason": "Stablecoin pair - low profit potential",
       "dexes": [
         "quickswap",
         "sushiswap"
@@ -924,18 +926,313 @@
         "sushiswap": 1926953754869,
         "minimum": 1727821979039
       }
+    },
+    {
+      "name": "USDC/WMATIC",
+      "token0": "USDC",
+      "token1": "WMATIC",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 2067964943554292000,
+        "sushiswap": 310570335993786560
+      },
+      "averageLiquidity": 1189267639774039300,
+      "estimatedVolume24h": 594633819887019600,
+      "discoveredAt": "2025-10-29T05:31:01.216Z"
+    },
+    {
+      "name": "USDC/WETH",
+      "token0": "USDC",
+      "token1": "WETH",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 2806884,
+        "sushiswap": 541022
+      },
+      "averageLiquidity": 1673953,
+      "estimatedVolume24h": 836976,
+      "discoveredAt": "2025-10-29T05:31:02.691Z"
+    },
+    {
+      "name": "USDC/WBTC",
+      "token0": "USDC",
+      "token1": "WBTC",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 219374126,
+        "sushiswap": 304600
+      },
+      "averageLiquidity": 109839363,
+      "estimatedVolume24h": 54919681,
+      "discoveredAt": "2025-10-29T05:31:04.151Z"
+    },
+    {
+      "name": "USDC/CRV",
+      "token0": "USDC",
+      "token1": "CRV",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x172370d5Cd63279eFa6d502DAB29171933a610AF",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 8590155963184,
+        "sushiswap": 5775431985354
+      },
+      "averageLiquidity": 7182793974269,
+      "estimatedVolume24h": 3591396987135,
+      "discoveredAt": "2025-10-29T05:31:10.464Z"
+    },
+    {
+      "name": "USDC/SUSHI",
+      "token0": "USDC",
+      "token1": "SUSHI",
+      "token0Address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "token1Address": "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 11512220469226,
+        "sushiswap": 927005292713493
+      },
+      "averageLiquidity": 469258756591360,
+      "estimatedVolume24h": 234629378295680,
+      "discoveredAt": "2025-10-29T05:31:14.768Z"
+    },
+    {
+      "name": "USDT/DAI",
+      "token0": "USDT",
+      "token1": "DAI",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
+      "enabled": false,
+      "reason": "Stablecoin pair - low profit potential",
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 843785759732282500,
+        "sushiswap": 1017339776653641
+      },
+      "averageLiquidity": 422401549754468100,
+      "estimatedVolume24h": 211200774877234050,
+      "discoveredAt": "2025-10-29T05:31:18.819Z"
+    },
+    {
+      "name": "USDT/WMATIC",
+      "token0": "USDT",
+      "token1": "WMATIC",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 425647612369441600,
+        "sushiswap": 36786158435120000
+      },
+      "averageLiquidity": 231216885402280800,
+      "estimatedVolume24h": 115608442701140400,
+      "discoveredAt": "2025-10-29T05:31:20.760Z"
+    },
+    {
+      "name": "USDT/WETH",
+      "token0": "USDT",
+      "token1": "WETH",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 23781262031144,
+        "sushiswap": 19101146159069
+      },
+      "averageLiquidity": 21441204095106,
+      "estimatedVolume24h": 10720602047553,
+      "discoveredAt": "2025-10-29T05:31:22.738Z"
+    },
+    {
+      "name": "USDT/UNI",
+      "token0": "USDT",
+      "token1": "UNI",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0xb33EaAd8d922B1083446DC23f610c2567fB5180f",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 7885069372,
+        "sushiswap": 8519760330
+      },
+      "averageLiquidity": 8202414851,
+      "estimatedVolume24h": 4101207425,
+      "discoveredAt": "2025-10-29T05:31:29.183Z"
+    },
+    {
+      "name": "USDT/LINK",
+      "token0": "USDT",
+      "token1": "LINK",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 20118265520,
+        "sushiswap": 3346526198950
+      },
+      "averageLiquidity": 1683322232235,
+      "estimatedVolume24h": 841661116118,
+      "discoveredAt": "2025-10-29T05:31:31.250Z"
+    },
+    {
+      "name": "USDT/CRV",
+      "token0": "USDT",
+      "token1": "CRV",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x172370d5Cd63279eFa6d502DAB29171933a610AF",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 2775826459,
+        "sushiswap": 151713589884279
+      },
+      "averageLiquidity": 75858182855369,
+      "estimatedVolume24h": 37929091427685,
+      "discoveredAt": "2025-10-29T05:31:33.175Z"
+    },
+    {
+      "name": "USDT/SUSHI",
+      "token0": "USDT",
+      "token1": "SUSHI",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 99057942848,
+        "sushiswap": 122530883540907
+      },
+      "averageLiquidity": 61314970741878,
+      "estimatedVolume24h": 30657485370939,
+      "discoveredAt": "2025-10-29T05:31:38.031Z"
+    },
+    {
+      "name": "USDT/GHST",
+      "token0": "USDT",
+      "token1": "GHST",
+      "token0Address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+      "token1Address": "0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 720926636073,
+        "sushiswap": 321078791973684
+      },
+      "averageLiquidity": 160899859304878,
+      "estimatedVolume24h": 80449929652439,
+      "discoveredAt": "2025-10-29T05:31:40.425Z"
+    },
+    {
+      "name": "WETH/LINK",
+      "token0": "WETH",
+      "token1": "LINK",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0x53E0bca35eC356BD5ddDFebbD1Fc0fD03FaBad39",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 32866839,
+        "sushiswap": 20522435
+      },
+      "averageLiquidity": 26694637,
+      "estimatedVolume24h": 13347319,
+      "discoveredAt": "2025-10-29T05:32:11.755Z"
+    },
+    {
+      "name": "WETH/CRV",
+      "token0": "WETH",
+      "token1": "CRV",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0x172370d5Cd63279eFa6d502DAB29171933a610AF",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "sushiswap"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 3035607,
+        "sushiswap": 278625025
+      },
+      "averageLiquidity": 140830316,
+      "estimatedVolume24h": 70415158,
+      "discoveredAt": "2025-10-29T05:32:13.235Z"
     }
   ],
   "stats": {
-    "totalPairs": 61,
-    "newPairsAdded": 5,
-    "lastUpdated": "2025-10-20T21:08:38.362Z",
+    "totalPairs": 76,
+    "enabledPairs": 73,
+    "disabledPairs": 3,
+    "newPairsAdded": 15,
+    "lastUpdated": "2025-10-29T05:33:04.722Z",
+    "version": "v2",
     "criteria": {
-      "minLiquidityPerDex": "$50,000",
-      "dexes": [
+      "minLiquidityPerDex": "$50 000",
+      "minVolume24hPerDex": "$50 000",
+      "minDexesRequired": 2,
+      "dexesChecked": [
         "QuickSwap",
-        "SushiSwap"
-      ]
+        "SushiSwap",
+        "Uniswap V3",
+        "Balancer",
+        "Curve"
+      ],
+      "priceSource": "CoinGecko API (with fallback)"
     }
   }
 }

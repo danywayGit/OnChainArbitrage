@@ -169,6 +169,61 @@ const FALLBACK_PRICES = {
 // LIQUIDITY & VOLUME FETCHING
 // ============================================================================
 
+// Query Uniswap V3 subgraph for pool data
+async function queryUniswapV3Pools(token0Address, token1Address) {
+  return new Promise((resolve, reject) => {
+    const query = JSON.stringify({
+      query: `{
+        pools(
+          where: {
+            or: [
+              { token0: "${token0Address.toLowerCase()}", token1: "${token1Address.toLowerCase()}" },
+              { token0: "${token1Address.toLowerCase()}", token1: "${token0Address.toLowerCase()}" }
+            ]
+          }
+          orderBy: totalValueLockedUSD
+          orderDirection: desc
+        ) {
+          id
+          feeTier
+          liquidity
+          totalValueLockedUSD
+          volumeUSD
+          token0 { symbol }
+          token1 { symbol }
+        }
+      }`
+    });
+
+    const options = {
+      hostname: 'api.thegraph.com',
+      path: '/subgraphs/name/ianlapham/uniswap-v3-polygon',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': query.length
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const result = JSON.parse(data);
+          resolve(result.data?.pools || []);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+
+    req.on('error', reject);
+    req.write(query);
+    req.end();
+  });
+}
+
 async function getPairInfo(dexKey, dexConfig, token0Address, token1Address, tokenPrices, symbol0, symbol1) {
   try {
     if (dexConfig.type === "v2") {
@@ -210,10 +265,35 @@ async function getPairInfo(dexKey, dexConfig, token0Address, token1Address, toke
         reserve1: reserve1Formatted,
       };
     } else if (dexConfig.type === "v3") {
-      // Uniswap V3 (more complex - would need pool manager)
-      // For now, skip V3 detailed implementation or use subgraph
-      console.log(`   ⚠️  Uniswap V3 liquidity check not fully implemented yet`);
-      return null;
+      // Uniswap V3 - Query The Graph subgraph
+      const pools = await queryUniswapV3Pools(token0Address, token1Address);
+      
+      if (!pools || pools.length === 0) {
+        return null;
+      }
+      
+      // Sum liquidity and volume across all fee tiers
+      let totalLiquidityUSD = 0;
+      let totalVolumeUSD = 0;
+      const poolAddresses = [];
+      
+      pools.forEach(pool => {
+        totalLiquidityUSD += parseFloat(pool.totalValueLockedUSD || 0);
+        totalVolumeUSD += parseFloat(pool.volumeUSD || 0);
+        poolAddresses.push(pool.id);
+      });
+      
+      if (totalLiquidityUSD === 0) {
+        return null;
+      }
+      
+      return {
+        pairAddress: poolAddresses[0], // Primary pool (highest liquidity)
+        liquidityUSD: totalLiquidityUSD,
+        volumeUSD: totalVolumeUSD * 0.1, // 10% of total volume as daily estimate
+        poolCount: pools.length,
+        feeTiers: pools.map(p => p.feeTier).join(', '),
+      };
     }
     
     return null;
@@ -287,9 +367,6 @@ async function discoverHighLiquidityPairs() {
       let validDexCount = 0;
       
       for (const [dexKey, dexConfig] of Object.entries(DEX_FACTORIES)) {
-        // Skip Uniswap V3 for now (needs special handling)
-        if (dexConfig.type === "v3") continue;
-        
         // Skip Balancer and Curve for now (need special handling)
         if (dexConfig.type === "weighted" || dexConfig.type === "stable") continue;
         
@@ -307,6 +384,9 @@ async function discoverHighLiquidityPairs() {
           console.log(`   ✅ ${dexConfig.name}:`);
           console.log(`      Liquidity: $${pairInfo.liquidityUSD.toLocaleString()}`);
           console.log(`      Est. Volume: $${pairInfo.volumeUSD.toLocaleString()}`);
+          if (pairInfo.poolCount) {
+            console.log(`      Pools: ${pairInfo.poolCount} (Fee tiers: ${pairInfo.feeTiers})`);
+          }
           
           // Check if meets thresholds
           if (pairInfo.liquidityUSD >= MIN_LIQUIDITY_USD && 
