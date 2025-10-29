@@ -153,11 +153,12 @@ export class TradeExecutor {
     logger.debug(`  Sell DEX (${opportunity.sellDex.dexName}): $${sellDexLiquidity.toFixed(0)}`);
     logger.debug(`  Limiting liquidity: $${limitingLiquidity.toFixed(0)}`);
     
-    // ✅ OPTION 1: Filter out pools that are too small (minimum $500 liquidity)
-    if (limitingLiquidity < 500) {
-      logger.warning(`⚠️ Pool too small! $${limitingLiquidity.toFixed(0)} < $500 minimum liquidity`);
-      logger.warning(`   Skipping opportunity - need at least $500 liquidity for profitable trades`);
-      throw new Error(`Pool too small: $${limitingLiquidity.toFixed(0)} < $500 minimum`);
+    // ✅ HIGH-LIQUIDITY FOCUS: Filter out pools that are too small (minimum $5000 liquidity)
+    const minLiquidity = config.trading.minPoolLiquidity || 5000;
+    if (limitingLiquidity < minLiquidity) {
+      logger.warning(`⚠️ Pool too small! $${limitingLiquidity.toFixed(0)} < $${minLiquidity} minimum liquidity`);
+      logger.warning(`   Skipping opportunity - need at least $${minLiquidity} liquidity for profitable trades`);
+      throw new Error(`Pool too small: $${limitingLiquidity.toFixed(0)} < $${minLiquidity} minimum`);
     }
     
     // ✅ STEP 3: OPTION 2 - Dynamic percentage based on pool size

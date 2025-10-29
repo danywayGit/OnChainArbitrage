@@ -369,8 +369,8 @@ export const config = {
     maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "10000", 10),
 
     // Minimum trade size (in USD equivalent)
-    // VOLATILE STRATEGY: $200 minimum to capture more opportunities in small pools
-    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "200", 10),
+    // HIGH-LIQUIDITY STRATEGY: Raised to $1000 minimum to ensure only well-liquid pools
+    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "1000", 10),
 
     // Slippage tolerance (in basis points)
     // 100 bps = 1% slippage tolerance (volatile tokens need higher tolerance)
@@ -378,6 +378,10 @@ export const config = {
 
     // Flash loan fee (Aave V3 charges 0.05%)
     flashLoanFeeBps: 5, // 0.05% = 5 basis points
+    
+    // Minimum pool liquidity (in USD) - RAISED FOR HIGH-LIQUIDITY FOCUS
+    // Requires pools to have at least $5000 liquidity to avoid high slippage
+    minPoolLiquidity: 5000,
   },
 
   // ============================================================================
@@ -389,49 +393,48 @@ export const config = {
     priceCheckInterval: 1000,
 
     // Pairs to monitor for arbitrage (Polygon pairs)
-    // VOLATILE TOKEN STRATEGY: 17+ active pairs with high price movement potential
-    // Focus: DeFi tokens (CRV, SUSHI, BAL), Gaming (GHST), Native pairs (WMATIC/WETH)
+    // HIGH-LIQUIDITY STRATEGY: Only 2 pairs with verified deep liquidity
+    // Focus: WMATIC/USDC and WMATIC/WETH - Top volume pairs on QuickSwap, SushiSwap, Uniswap V3
+    // REMOVED: 29 low-liquidity pairs that showed <$5k pools consistently
+    // REMOVED: Dfyn and ApeSwap DEXes (showed pools <$500 liquidity)
     watchedPairs: [
-      // ✅ VERIFIED PAIRS (Real liquidity on QuickSwap + SushiSwap)
-      // ⚠️ EXCLUDING TOP 15 TOKENS: POL, USDC (used as base only), LINK, USDT (used as base only), UNI, AAVE, WBTC
-      // These pairs passed liquidity verification with realistic spreads < 2%
-      
-      // === TIER 1: NATIVE TOKEN PAIRS (HIGH VOLATILITY) ===
+      // === TIER 1: HIGHEST LIQUIDITY PAIRS (>$50M TVL) ===
+      // These pairs have deep liquidity on QuickSwap and/or Uniswap V3
       {
         name: "WMATIC/DAI",
         token0: "WMATIC",
         token1: "DAI",
-        enabled: true, // ✅ VOLATILE - Native token vs stablecoin (high volume pair)
+        enabled: false, // ❌ DISABLED - Showed fake pools with 8258% spread
       },
       {
         name: "MAI/USDC",
         token0: "MAI",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
+        enabled: false, // ❌ DISABLED - Stablecoin pair
       },
       {
         name: "WMATIC/USDT",
         token0: "WMATIC",
         token1: "USDT",
-        enabled: true, // ✅ VOLATILE - WMATIC has good price movement vs stablecoin
+        enabled: false, // ❌ DISABLED - Showed fake pools with 281% spread
       },
       {
         name: "WMATIC/USDC",
         token0: "WMATIC",
         token1: "USDC",
-        enabled: true, // ✅ VOLATILE - Native token vs stablecoin (high volume)
+        enabled: true, // ✅ HIGH-LIQUIDITY - Native token vs stablecoin, top volume pair
       },
       {
         name: "DAI/USDC",
         token0: "DAI",
         token1: "USDC",
-        enabled: false, // ❌ DISABLED - Stablecoin pair (switching to volatile strategy)
+        enabled: false, // ❌ DISABLED - Stablecoin pair
       },
       {
         name: "WMATIC/WETH",
         token0: "WMATIC",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - Crypto-to-crypto pair (high volatility, good liquidity)
+        enabled: true, // ✅ HIGH-LIQUIDITY - Top volume crypto pair on Polygon
       },
       
       // === EXCLUDED PAIRS (User request) ===
@@ -451,7 +454,7 @@ export const config = {
         name: "GHST/USDC",
         token0: "GHST",
         token1: "USDC",
-        enabled: true, // ✅ VOLATILE - Gaming token (Aavegotchi) with good Polygon liquidity
+        enabled: false, // ❌ DISABLED - Showed fake pools with 324% spread
       },
       
       // === DISABLED: TOP 15 TOKENS (Avoiding MEV competition) ===
@@ -617,19 +620,19 @@ export const config = {
         name: "SUSHI/WMATIC",
         token0: "SUSHI",
         token1: "WMATIC",
-        enabled: true, // ✅ VOLATILE - DEX token vs native (mid-cap, good liquidity)
+        enabled: false, // ❌ DISABLED - Showed <$500 liquidity in tests
       },
       {
         name: "CRV/WMATIC",
         token0: "CRV",
         token1: "WMATIC",
-        enabled: true, // ✅ VOLATILE - DeFi blue-chip vs native (Curve protocol)
+        enabled: false, // ❌ DISABLED - Showed multiple <$500 pool failures
       },
       {
         name: "BAL/WMATIC",
         token0: "BAL",
         token1: "WMATIC",
-        enabled: true, // ✅ VOLATILE - Balancer vs native (strong DeFi token)
+        enabled: false, // ❌ DISABLED - Showed 182% fake pool spread
       },
       {
         name: "UNI/WMATIC",
@@ -643,7 +646,7 @@ export const config = {
         name: "MAI/WMATIC",
         token0: "MAI",
         token1: "WMATIC",
-        enabled: true, // ✅ VOLATILE - MAI (miMATIC) vs native token (Polygon-native pair)
+        enabled: false, // ❌ DISABLED - Showed low liquidity in tests
       },
       {
         name: "POL/USDC",
@@ -663,37 +666,37 @@ export const config = {
         name: "CRV/WETH",
         token0: "CRV",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - DeFi token vs WETH (crypto-to-crypto)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "CRV/USDC",
         token0: "CRV",
         token1: "USDC",
-        enabled: true, // ✅ VOLATILE - Curve vs stablecoin (good volume on Polygon)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "SUSHI/WETH",
         token0: "SUSHI",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - DEX token vs WETH (both volatile)
+        enabled: false, // ❌ DISABLED - Showed $2 sell-side liquidity in tests
       },
       {
         name: "SUSHI/USDC",
         token0: "SUSHI",
         token1: "USDC",
-        enabled: true, // ✅ VOLATILE - SushiSwap's own token (home advantage)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "BAL/WETH",
         token0: "BAL",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - Balancer vs WETH (both blue-chip)
+        enabled: false, // ❌ DISABLED - Showed 182% fake pool spread
       },
       {
         name: "BAL/USDC",
         token0: "BAL",
         token1: "USDC",
-        enabled: true, // ✅ VOLATILE - Balancer vs stablecoin
+        enabled: false, // ❌ DISABLED - Showed 19381% fake pool spread
       },
       {
         name: "FRAX/USDC",
@@ -717,7 +720,7 @@ export const config = {
         name: "WMATIC/FRAX",
         token0: "WMATIC",
         token1: "FRAX",
-        enabled: true, // ✅ VOLATILE - Native vs algorithmic stablecoin (price movements)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       
       // === NEW PAIRS - EXPANDING COVERAGE! ===
@@ -728,7 +731,7 @@ export const config = {
         name: "WMATIC/WBTC",
         token0: "WMATIC",
         token1: "WBTC",
-        enabled: true, // ✅ VOLATILE - Native vs BTC (high volatility, good liquidity)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "WMATIC/LINK",
@@ -748,7 +751,7 @@ export const config = {
         name: "WETH/WBTC",
         token0: "WETH",
         token1: "WBTC",
-        enabled: true, // ✅ VOLATILE - ETH vs BTC (crypto majors, high volatility)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "WETH/LINK",
@@ -766,7 +769,7 @@ export const config = {
         name: "WETH/CRV",
         token0: "WETH",
         token1: "CRV",
-        enabled: true, // ✅ VOLATILE - Duplicate enabled for more coverage (crypto pair)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       
       // DeFi token cross-pairs
@@ -774,19 +777,19 @@ export const config = {
         name: "CRV/SUSHI",
         token0: "CRV",
         token1: "SUSHI",
-        enabled: true, // ✅ VOLATILE - DeFi vs DeFi (both mid-cap tokens)
+        enabled: false, // ❌ DISABLED - Showed 707% fake pool spread
       },
       {
         name: "CRV/BAL",
         token0: "CRV",
         token1: "BAL",
-        enabled: true, // ✅ VOLATILE - Curve vs Balancer (competing protocols)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "SUSHI/BAL",
         token0: "SUSHI",
         token1: "BAL",
-        enabled: true, // ✅ VOLATILE - SushiSwap vs Balancer (DEX tokens)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       
       // Gaming/Metaverse tokens (not top 15)
@@ -794,13 +797,13 @@ export const config = {
         name: "GHST/WMATIC",
         token0: "GHST",
         token1: "WMATIC",
-        enabled: true, // ✅ VOLATILE - Aavegotchi vs native (Polygon gaming token)
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "GHST/WETH",
         token0: "GHST",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - Gaming token vs ETH
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       
       // MAI (Polygon stablecoin) volatility pairs
@@ -808,13 +811,13 @@ export const config = {
         name: "MAI/WETH",
         token0: "MAI",
         token1: "WETH",
-        enabled: true, // ✅ VOLATILE - MAI can have price deviations from $1
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
       {
         name: "MAI/CRV",
         token0: "MAI",
         token1: "CRV",
-        enabled: true, // ✅ VOLATILE - Polygon stablecoin vs DeFi token
+        enabled: false, // ❌ DISABLED - Expansion pair, likely low liquidity
       },
     ],
 
