@@ -15,6 +15,7 @@
  * - Real USD price calculation
  */
 
+require('dotenv').config(); // Load environment variables from .env
 const { ethers } = require("ethers");
 const fs = require("fs");
 const path = require("path");
@@ -171,6 +172,13 @@ const FALLBACK_PRICES = {
 
 // Query Uniswap V3 subgraph for pool data
 async function queryUniswapV3Pools(token0Address, token1Address) {
+  const GRAPH_API_KEY = process.env.GRAPH_API_KEY;
+  
+  if (!GRAPH_API_KEY) {
+    console.log('   ⚠️  No GRAPH_API_KEY found in .env file - skipping V3 queries');
+    return [];
+  }
+  
   return new Promise((resolve, reject) => {
     const query = JSON.stringify({
       query: `{
@@ -196,8 +204,8 @@ async function queryUniswapV3Pools(token0Address, token1Address) {
     });
 
     const options = {
-      hostname: 'api.thegraph.com',
-      path: '/subgraphs/name/ianlapham/uniswap-v3-polygon-regenesis',
+      hostname: 'gateway.thegraph.com',
+      path: `/api/${GRAPH_API_KEY}/subgraphs/id/3hCPRGf4z88VC5rsBKU5AA9FBBq5nF3jbKJG7VZCbhjm`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -211,14 +219,24 @@ async function queryUniswapV3Pools(token0Address, token1Address) {
       res.on('end', () => {
         try {
           const result = JSON.parse(data);
-          resolve(result.data?.pools || []);
+          if (result.errors) {
+            console.log(`   ⚠️  V3 Query Error: ${JSON.stringify(result.errors)}`);
+            resolve([]);
+          } else {
+            resolve(result.data?.pools || []);
+          }
         } catch (error) {
-          reject(error);
+          console.log(`   ⚠️  V3 Parse Error: ${error.message}`);
+          console.log(`   Response: ${data.substring(0, 200)}`);
+          resolve([]);
         }
       });
     });
 
-    req.on('error', reject);
+    req.on('error', (error) => {
+      console.log(`   ⚠️  V3 Request Error: ${error.message}`);
+      resolve([]);
+    });
     req.write(query);
     req.end();
   });

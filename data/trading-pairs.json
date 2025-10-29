@@ -1212,14 +1212,71 @@
       "averageLiquidity": 140830316,
       "estimatedVolume24h": 70415158,
       "discoveredAt": "2025-10-29T05:32:13.235Z"
+    },
+    {
+      "name": "WETH/AAVE",
+      "token0": "WETH",
+      "token1": "AAVE",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0xD6DF932A45C0f255f85145f286eA0b292B21C90B",
+      "enabled": true,
+      "dexes": [
+        "sushiswap",
+        "uniswapv3"
+      ],
+      "estimatedLiquidity": {
+        "sushiswap": 258538,
+        "uniswapv3": 3936837
+      },
+      "averageLiquidity": 2097688,
+      "estimatedVolume24h": 43092286,
+      "discoveredAt": "2025-10-29T06:32:52.766Z"
+    },
+    {
+      "name": "WETH/SUSHI",
+      "token0": "WETH",
+      "token1": "SUSHI",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a",
+      "enabled": true,
+      "dexes": [
+        "sushiswap",
+        "uniswapv3"
+      ],
+      "estimatedLiquidity": {
+        "sushiswap": 47042693,
+        "uniswapv3": 95652
+      },
+      "averageLiquidity": 23569172,
+      "estimatedVolume24h": 13574169,
+      "discoveredAt": "2025-10-29T06:32:58.339Z"
+    },
+    {
+      "name": "WETH/GHST",
+      "token0": "WETH",
+      "token1": "GHST",
+      "token0Address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+      "token1Address": "0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7",
+      "enabled": true,
+      "dexes": [
+        "quickswap",
+        "uniswapv3"
+      ],
+      "estimatedLiquidity": {
+        "quickswap": 350142698,
+        "uniswapv3": 55028
+      },
+      "averageLiquidity": 175098863,
+      "estimatedVolume24h": 87817920,
+      "discoveredAt": "2025-10-29T06:32:59.793Z"
     }
   ],
   "stats": {
-    "totalPairs": 76,
-    "enabledPairs": 73,
+    "totalPairs": 79,
+    "enabledPairs": 76,
     "disabledPairs": 3,
-    "newPairsAdded": 15,
-    "lastUpdated": "2025-10-29T05:33:04.722Z",
+    "newPairsAdded": 3,
+    "lastUpdated": "2025-10-29T06:33:40.240Z",
     "version": "v2",
     "criteria": {
       "minLiquidityPerDex": "$50 000",

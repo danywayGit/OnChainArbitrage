@@ -2,6 +2,35 @@
 
 ## **🆕 New: `discover-high-liquidity-pairs-v2.js`**
 
+### **⚙️ Prerequisites:**
+
+#### **1. Create The Graph API Key** (Required for Uniswap V3)
+To query Uniswap V3 pools, you need a free API key from The Graph:
+
+**Steps:**
+1. Visit https://thegraph.com/studio/
+2. **Create an account** (sign in with wallet or email)
+3. Click **"API Keys"** tab in left sidebar (NOT "My Subgraphs")
+4. Click **"Create API Key"** button
+5. Enter a name (e.g., "Arbitrage Bot Key")
+6. Click "Create API Key"
+7. **Copy the API key** (looks like: `5133a139a00ce6b3d5e92fb4c8ac3da4`)
+
+#### **2. Store API Key in .env File**
+Add to your `.env` file:
+```bash
+GRAPH_API_KEY=your_api_key_here
+```
+
+**Example:**
+```bash
+GRAPH_API_KEY=5133a139a00ce6b3d5e92fb4c8ac3da4
+```
+
+**⚠️ Important:** Make sure `.env` is in your `.gitignore`!
+
+---
+
 ### **✨ Key Improvements:**
 
 #### **1. ✅ Preserves Disabled Pairs**

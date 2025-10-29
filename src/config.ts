@@ -393,8 +393,9 @@ export const config = {
     priceCheckInterval: 1000,
 
     // Pairs to monitor for arbitrage (Polygon pairs)
-    // HIGH-LIQUIDITY STRATEGY: 17 verified high-liquidity pairs
-    // Focus: WMATIC/USDC, WMATIC/WETH + 15 discovered pairs with >$50k liquidity & volume
+    // HIGH-LIQUIDITY STRATEGY: 20 verified high-liquidity pairs
+    // Focus: WMATIC/USDC, WMATIC/WETH + 18 discovered pairs with >$50k liquidity & volume
+    // ADDED: 3 new V3 pairs (WETH/AAVE, WETH/SUSHI, WETH/GHST) with massive liquidity
     // REMOVED: 29 low-liquidity pairs that showed <$5k pools consistently
     // REMOVED: Dfyn and ApeSwap DEXes (showed pools <$500 liquidity)
     // REMOVED: 3 stablecoin pairs (USDC/USDT, USDC/DAI, USDT/DAI - low profit potential)
@@ -528,6 +529,26 @@ export const config = {
         token0: "WETH",
         token1: "WBTC",
         enabled: true, // ✅ Crypto majors (existing pair, keep)
+      },
+      
+      // === NEW V3 PAIRS (Discovered via V3 subgraph) ===
+      {
+        name: "WETH/AAVE",
+        token0: "WETH",
+        token1: "AAVE",
+        enabled: true, // ✅ $2.1M liquidity, $43M volume (SushiSwap + Uniswap V3)
+      },
+      {
+        name: "WETH/SUSHI",
+        token0: "WETH",
+        token1: "SUSHI",
+        enabled: true, // ✅ $23.6M liquidity, $13.6M volume (SushiSwap + Uniswap V3)
+      },
+      {
+        name: "WETH/GHST",
+        token0: "WETH",
+        token1: "GHST",
+        enabled: true, // ✅ $175M liquidity, $87.8M volume (QuickSwap + Uniswap V3) - MASSIVE!
       },
       
       // === DISABLED: GHST and other low-liquidity gaming/DeFi tokens ===
