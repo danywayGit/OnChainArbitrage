@@ -35,16 +35,16 @@ export const DEX_ROUTERS: Record<string, string> = {
   "Uniswap": config.dexes.uniswapv3,
   "uniswap": config.dexes.uniswapv3,
   
-  // Dfyn removed - only 2/9 pairs had real liquidity
-  // "Dfyn": config.dexes.dfyn,
-  // "dfyn": config.dexes.dfyn,
-  // "DFYN": config.dexes.dfyn,
+  // Dfyn Exchange ✅ ADDED - Polygon-native DEX
+  "Dfyn": config.dexes.dfyn,
+  "dfyn": config.dexes.dfyn,
+  "DFYN": config.dexes.dfyn,
   
-  // ApeSwap removed (limited liquidity on Polygon)
-  // "ApeSwap": config.dexes.apeswap,
-  // "Apeswap": config.dexes.apeswap,
-  // "apeswap": config.dexes.apeswap,
-  // "APE": config.dexes.apeswap,
+  // ApeSwap ✅ ADDED - BSC-originated, now on Polygon
+  "ApeSwap": config.dexes.apeswap,
+  "Apeswap": config.dexes.apeswap,
+  "apeswap": config.dexes.apeswap,
+  "APE": config.dexes.apeswap,
   
   // Balancer
   "Balancer": config.dexes.balancer,
@@ -75,6 +75,8 @@ export function isUniswapV2Compatible(dexName: string): boolean {
   const v2Compatible = [
     "QuickSwap", "Quickswap", "quickswap",
     "SushiSwap", "Sushiswap", "sushiswap", "SUSHI",
+    "Dfyn", "dfyn", "DFYN",
+    "ApeSwap", "Apeswap", "apeswap", "APE",
     // Note: Uniswap V3 has different interface, handled separately
   ];
   

@@ -658,7 +658,7 @@ export class PriceMonitor {
     logger.debug(`Fetching prices for ${pair.name}...`);
 
     // Query multiple DEX routers on Polygon
-    // QuickSwap: 0.25%, SushiSwap: 0.3%, Uniswap V3: 0.05%-1% (tiered)
+    // QuickSwap: 0.25%, SushiSwap: 0.3%, Uniswap V3: 0.05%-1% (tiered), Dfyn: 0.3%, ApeSwap: 0.2%
     const prices = await Promise.all([
       this.getPriceFromDex(
         "quickswap",
@@ -678,20 +678,20 @@ export class PriceMonitor {
         pair.token0Address,
         pair.token1Address
       ),
-      // Dfyn removed - only 2/9 pairs had real liquidity, rest were fake pools
-      // this.getPriceFromDex(
-      //   "dfyn",
-      //   config.dexes.dfyn,
-      //   pair.token0Address,
-      //   pair.token1Address
-      // ),
-      // ApeSwap removed - limited pool coverage on Polygon
-      // this.getPriceFromDex(
-      //   "apeswap",
-      //   config.dexes.apeswap,
-      //   pair.token0Address,
-      //   pair.token1Address
-      // ),
+      // Dfyn ✅ RE-ENABLED - Polygon-native DEX with decent liquidity
+      this.getPriceFromDex(
+        "dfyn",
+        config.dexes.dfyn,
+        pair.token0Address,
+        pair.token1Address
+      ),
+      // ApeSwap ✅ ENABLED - BSC-originated, now on Polygon with growing liquidity
+      this.getPriceFromDex(
+        "apeswap",
+        config.dexes.apeswap,
+        pair.token0Address,
+        pair.token1Address
+      ),
     ]);
 
     // Filter out failed price fetches (pairs with no liquidity pools)
