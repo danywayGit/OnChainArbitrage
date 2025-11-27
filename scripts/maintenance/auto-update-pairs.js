@@ -26,7 +26,7 @@ const path = require('path');
 const RPC_URL = process.env.POLYGON_RPC_URL || 'https://polygon-mainnet.g.alchemy.com/v2/5z1t0IOirVugLoPi0wSHv';
 const QUICKSWAP_ROUTER = '0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff';
 const SUSHISWAP_ROUTER = '0x1b02dA8Cb0d097eB8D57A175b88c7D8b47997506';
-const PAIRS_FILE = path.join(__dirname, '..', 'data', 'trading-pairs.json');
+const PAIRS_FILE = path.join(__dirname, '..', '..', 'data', 'pairs', 'trading-pairs.json');
 
 // Stablecoin list for exclusion checks
 const STABLECOINS = ['USDC', 'USDT', 'DAI', 'MAI', 'USDD', 'FRAX', 'TUSD', 'BUSD'];

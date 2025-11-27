@@ -29,14 +29,25 @@ OnChainArbitrage/
 │   ├── logger.ts           # Colored console logging
 │   ├── dataLogger.ts       # JSON/CSV data persistence
 │   └── config/             # Network configurations
-├── scripts/                # Utility scripts (JS/TS)
-│   ├── deploy*.ts          # Deployment scripts
-│   ├── discover-*.js       # Pair discovery tools
-│   ├── check-*.ts          # Balance checking utilities
-│   └── test-*.js           # Testing utilities
+├── scripts/                # Utility scripts (organized by category)
+│   ├── deployment/         # Deploy & fund contracts
+│   ├── discovery/          # Pair discovery tools
+│   ├── monitoring/         # Analysis & monitoring
+│   ├── maintenance/        # Balance checks & transfers
+│   ├── testing/            # Test scripts
+│   ├── validation/         # Token & config validation
+│   └── utilities/          # Misc utilities
 ├── data/                   # Data files
-│   └── trading-pairs.json  # Discovered trading pairs
+│   ├── pairs/              # Trading pairs JSON files
+│   ├── tokens/             # Token data
+│   └── results/            # Analysis results
 ├── docs/                   # Technical documentation
+│   ├── guides/             # User guides
+│   ├── technical/          # Technical docs
+│   ├── strategies/         # Trading strategies
+│   ├── deployment/         # Deployment history
+│   └── performance/        # Optimization docs
+├── examples/               # Example configurations
 ├── test/                   # Hardhat tests
 ├── logs/                   # Bot runtime logs (auto-generated)
 ├── archive/                # Historical documentation

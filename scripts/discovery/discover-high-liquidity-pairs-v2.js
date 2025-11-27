@@ -341,7 +341,7 @@ async function discoverHighLiquidityPairs() {
   }
   
   // Load existing pairs
-  const pairsFilePath = path.join(__dirname, "..", "data", "trading-pairs.json");
+  const pairsFilePath = path.join(__dirname, "..", "..", "data", "pairs", "trading-pairs.json");
   let existingData = { pairs: [], stats: {} };
   const existingPairsMap = new Map(); // Use Map to preserve enabled/disabled state
   

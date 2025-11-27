@@ -108,7 +108,7 @@ async function discoverHighLiquidityPairs() {
   const existingPairs = new Set();
   
   // Load existing pairs
-  const pairsFilePath = path.join(__dirname, "..", "data", "trading-pairs.json");
+  const pairsFilePath = path.join(__dirname, "..", "..", "data", "pairs", "trading-pairs.json");
   let existingData = { pairs: [], stats: {} };
   
   if (fs.existsSync(pairsFilePath)) {

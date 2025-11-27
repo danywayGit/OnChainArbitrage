@@ -299,7 +299,7 @@ async function main() {
   };
   
   // Save to file
-  const outputPath = path.join(process.cwd(), 'data', 'trading-pairs.json');
+  const outputPath = path.join(process.cwd(), 'data', 'pairs', 'trading-pairs.json');
   fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
   
   // Summary

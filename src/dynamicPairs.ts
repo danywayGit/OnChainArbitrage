@@ -37,7 +37,7 @@ export interface TradingPairsConfig {
   }>;
 }
 
-const PAIRS_FILE_PATH = path.join(__dirname, '..', 'data', 'trading-pairs.json');
+const PAIRS_FILE_PATH = path.join(__dirname, '..', 'data', 'pairs', 'trading-pairs.json');
 
 /**
  * Load trading pairs from JSON file
