@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import logger from './logger';
+import { config } from './config';
 
 const ROUTER_V2_ABI = [
   'function getAmountsOut(uint amountIn, address[] memory path) view returns (uint[] memory amounts)'
@@ -13,6 +14,10 @@ const QUOTER_V2_ABI = [
 
 // Polygon Uniswap V3 Quoter V2 address
 const POLYGON_QUOTER_V2 = '0x61fFE014bA17989E743c5F6cB21bF9697530B21e';
+
+// Execution slippage buffer (accounts for price movement between detection and execution)
+// This is CRITICAL for realistic profit calculation
+const getExecutionSlippageBps = () => config?.trading?.executionSlippageBuffer || 20;
 
 /**
  * Simulates a V2 swap using router's getAmountsOut
@@ -211,9 +216,15 @@ export async function simulateArbitrageWithCosts(
   const gasPrice = feeData.gasPrice || 0n;
   const gasCost = estimatedGasUnits * gasPrice;
   
-  // Calculate net profit
+  // Calculate execution slippage buffer (accounts for price movement between detection and execution)
+  // This is CRITICAL: on-chain prices move during block time, MEV bots can frontrun, etc.
+  const executionSlippageBps = getExecutionSlippageBps();
+  const executionSlippageCost = (amountIn * BigInt(executionSlippageBps)) / 10000n;
+  
+  // Calculate net profit with ALL costs accounted for
   const grossProfit = simulation.profit;
-  const netProfit = grossProfit - flashLoanFee - gasCost;
+  const totalCosts = flashLoanFee + gasCost + executionSlippageCost;
+  const netProfit = grossProfit - totalCosts;
   const netProfitPercent = (Number(netProfit) * 100) / Number(amountIn);
   const profitable = netProfit > 0n;
   
@@ -221,6 +232,8 @@ export async function simulateArbitrageWithCosts(
   logger.info(`  Gross profit: ${ethers.formatEther(grossProfit)}`);
   logger.info(`  Flash loan fee: ${ethers.formatEther(flashLoanFee)} (${flashLoanFeeBps} bps)`);
   logger.info(`  Gas cost: ${ethers.formatEther(gasCost)} MATIC`);
+  logger.info(`  Execution slippage buffer: ${ethers.formatEther(executionSlippageCost)} (${executionSlippageBps} bps)`);
+  logger.info(`  Total costs: ${ethers.formatEther(totalCosts)}`);
   logger.info(`  Net profit: ${ethers.formatEther(netProfit)} (${netProfitPercent.toFixed(4)}%)`);
   logger.info(`  Status: ${profitable ? '✅ PROFITABLE' : '❌ UNPROFITABLE'}`);
   

@@ -353,35 +353,48 @@ export const config = {
   },
 
   // ============================================================================
-  // BOT TRADING PARAMETERS (Optimized for Polygon - VOLATILE TOKEN STRATEGY)
+  // BOT TRADING PARAMETERS (Optimized for Polygon - SMALL TRADE STRATEGY)
   // ============================================================================
+  // 
+  // OPTIMIZATION STRATEGY (Nov 2025):
+  // - Smaller trades ($100-$500) = less slippage, faster execution
+  // - Lower profit threshold (20 bps) = more opportunities
+  // - Higher slippage tolerance = more successful executions
+  // - Lower pool liquidity requirement = more pools available
+  //
   trading: {
     // Minimum profit threshold (in basis points)
-    // 40 bps = 0.40% profit minimum (balanced for volatile tokens with wider spreads)
-    minProfitBps: 40,
+    // 20 bps = 0.20% profit minimum (LOWERED to capture more opportunities)
+    // With $500 trade: $1.00 gross profit target
+    // After fees (~0.55%): Need 0.75%+ spread to be net profitable
+    minProfitBps: parseInt(process.env.MIN_PROFIT_BPS || "20", 10),
 
     // Maximum gas price willing to pay (in Gwei)
     // Polygon gas is MUCH cheaper than Ethereum
     maxGasPrice: 500, // 500 Gwei on Polygon ≈ $0.02-0.05
 
     // Maximum trade size (in USD equivalent)
-    // VOLATILE STRATEGY: Using $10k max - volatile tokens have more price impact
-    maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "10000", 10),
+    // SMALL TRADE STRATEGY: $500 max - reduces slippage significantly
+    maxTradeSize: parseInt(process.env.MAX_TRADE_SIZE_USD || "500", 10),
 
     // Minimum trade size (in USD equivalent)
-    // HIGH-LIQUIDITY STRATEGY: Raised to $1000 minimum to ensure only well-liquid pools
-    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "1000", 10),
+    // LOWERED to $100 to allow smaller, more frequent trades
+    minTradeSize: parseInt(process.env.MIN_TRADE_SIZE_USD || "100", 10),
 
     // Slippage tolerance (in basis points)
-    // 100 bps = 1% slippage tolerance (volatile tokens need higher tolerance)
-    slippageTolerance: 100,
+    // 150 bps = 1.5% slippage tolerance (INCREASED for better execution rate)
+    slippageTolerance: parseInt(process.env.SLIPPAGE_TOLERANCE_BPS || "150", 10),
 
     // Flash loan fee (Aave V3 charges 0.05%)
     flashLoanFeeBps: 5, // 0.05% = 5 basis points
     
-    // Minimum pool liquidity (in USD) - RAISED FOR HIGH-LIQUIDITY FOCUS
-    // Requires pools to have at least $5000 liquidity to avoid high slippage
-    minPoolLiquidity: 5000,
+    // Minimum pool liquidity (in USD)
+    // LOWERED to $1000 to access more pools while still filtering dead pools
+    minPoolLiquidity: parseInt(process.env.MIN_POOL_LIQUIDITY || "1000", 10),
+    
+    // Execution slippage buffer (NEW) - adds buffer to account for real execution
+    // 20 bps = 0.2% additional buffer on top of detected spread
+    executionSlippageBuffer: parseInt(process.env.EXECUTION_SLIPPAGE_BPS || "20", 10),
   },
 
   // ============================================================================
